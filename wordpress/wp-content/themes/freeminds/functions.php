@@ -3,8 +3,8 @@
 require_once( get_template_directory() . '/lib/init.php' );
 
 // Child theme (do not remove)
-define( 'CHILD_THEME_NAME', 'Genesis Sample Theme' );
-define( 'CHILD_THEME_URL', 'http://www.studiopress.com/' );
+define( 'CHILD_THEME_NAME', 'Free Minds Book Club' );
+define( 'CHILD_THEME_URL', 'http://karveldigital.com/' );
 
 // Add Viewport meta tag for mobile browsers
 add_action( 'genesis_meta', 'sample_viewport_meta_tag' );
