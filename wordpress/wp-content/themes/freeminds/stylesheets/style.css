@@ -1523,13 +1523,14 @@ body {
 
 /* line 1, ../sass/layout/_base.scss */
 #header {
-  min-height: 200px;
+  padding-bottom: 0;
+  position: relative;
 }
-/* line 4, ../sass/layout/_base.scss */
+/* line 5, ../sass/layout/_base.scss */
 #header #description {
   position: absolute;
-  right: 0;
-  top: 120px;
+  right: 10px;
+  bottom: 10px;
   width: 40%;
 }
 
