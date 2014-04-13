@@ -28,6 +28,6 @@ add_theme_support( 'genesis-footer-widgets', 3 );
  * Add Google fonts to the header
  */
 function freeminds_google_fonts() {
-  echo '<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic|Montserrat:400,700" media="screen">';
+  echo '<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic|Montserrat:400,7002" media="screen">';
 }
 add_action( 'wp_head', 'freeminds_google_fonts', 5);
