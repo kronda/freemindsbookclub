@@ -1,0 +1,51 @@
+// Base
+$base-font-size: 16px;
+$base-line-height: 24px;
+$rembase: 16;
+$lineheight: 24;
+
+// Breakpoints
+$mobile: new-breakpoint(max-width 480px 4);
+$tablet: new-breakpoint(max-width 768px 12);
+$desktop: new-breakpoint(max-width 1024px 12);
+
+/* ***********
+ * Colors
+**************/
+
+// Backgrounds
+$body_bg: #6a979e; //(aqua)
+$body_border: #b0cfd4;
+$header_fade: #b3d1d6; // (aqua)
+$widget_bg: #f8f5f5;
+
+// Navigation
+$nav_bg: #036978; // (pick one, Tagline or background)
+$nav_dropdown_bg: #004f5b;
+$nav_link_hover: #b0cfd4;
+$links: #c44c18;
+$link_hover: #036978; 
+$read_more_arrow: #44818b; // (consolidate)
+
+// Text
+$body_text: #363a3b; //(dark gray) 
+$tagline: #004f5b; // (blue/green)
+$pull_quotes: #3d9baa; // (light blue)
+
+// Headers
+$h1_color: #004f5b;
+$h2_color: #3d9baa;
+$h3_color: #3fa02c;
+$h4_color: #036978; //(same as hover: Change)
+$h5_color: #3d9baa;
+
+/* ***************
+ * Header Sizes
+******************/
+
+$h1_size: 32px; // 24pt
+$h2_size: 28px; // 22pt
+$h3_size: 24px; // 20pt
+$h4_size: 20px; // 18pt
+$h5_size: 18px; // 18pt
+$h6_size: 18px; // 18pt
