@@ -1,3 +1,5 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 /* Welcome to Compass.
  *
  * A word about SASS (http://sass-lang.com/)
@@ -8,3 +10,1483 @@
  * If you don't use SASS but want to make further modifications, do so in 
  * wp-content/themes/cornerstone/style.css file AFTER the import statements. 
 */
+/* Table of Contents
+
+  01 Import Fonts
+  02 Defaults
+  03 Typography
+    - Font Color
+    - Font Family
+    - Font Size
+    - Font Miscellaneous
+  04 Layout
+    - Structure
+    - 1152px CSS Grid
+    - Header
+    - Main Content
+    - Post Info & Meta
+    - Column Classes
+    - Miscellaneous
+  05 Menus
+    - Primary Navigation Extras
+  06 Headings
+  07 Lists
+  08 Post Navigation
+  09 Comments
+  10 Sidebars
+  11 Footer
+    - Footer Widgets
+  12 Forms & Buttons
+    - Gravity Forms
+  13 Images & Captions
+  14 Media Queries
+    - max-width: 1024px
+    - max-width: 768px
+    - max-width: 480px
+
+*/
+/*
+01 Import Fonts
+---------------------------------------------------------------------------------------------------- */
+/*
+02 Defaults
+---------------------------------------------------------------------------------------------------- */
+/* line 63, ../sass/base/_vendor.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+input, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+/* line 70, ../sass/base/_vendor.scss */
+html {
+  font-size: 100%;
+  /* 16px browser default */
+}
+
+/* line 74, ../sass/base/_vendor.scss */
+body {
+  background-color: #fff;
+  line-height: 1;
+}
+
+/* line 85, ../sass/base/_vendor.scss */
+body,
+input,
+select,
+textarea,
+.footer-widgets-1,
+.footer-widgets-2,
+.footer-widgets-3 {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 96, ../sass/base/_vendor.scss */
+a,
+a:visited,
+button,
+input[type="button"],
+input[type="submit"],
+.btn {
+  -moz-transition: all 0.1s ease-in-out;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+/* line 102, ../sass/base/_vendor.scss */
+::-moz-selection {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+/* line 107, ../sass/base/_vendor.scss */
+::selection {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+/* line 112, ../sass/base/_vendor.scss */
+a img {
+  border: none;
+}
+
+/*
+03 Typography
+-------------------------------------------------------------------------------------------------------
+
+  This section covers font colors, families, size, styles and weight.
+
+  This style sheet uses rem values with a pixel fallback.
+  The rem values are calculated per the examples below:
+
+  12 / 16 =   0.75rem
+  14 / 16 =   0.875rem
+  16 / 16 =   1rem  
+  18 / 16 =   1.125rem
+  20 / 16 =   1.25rem
+  24 / 16 =   1.5rem
+  30 / 16 =   1.875rem
+  36 / 16 =   2.25rem
+  42 / 16 =   2.625rem
+  48 / 16 =   3rem
+  
+  Further reading on the use and compatibility of rems:
+  
+  http://caniuse.com/rem
+  http://snook.ca/archives/html_and_css/font-size-with-rem
+  
+*/
+/* 03a - Font Color ----------- */
+/* line 160, ../sass/base/_vendor.scss */
+a:hover,
+body,
+h2 a,
+h2 a:visited,
+h4.widgettitle a,
+input,
+.author,
+.date,
+.genesis-nav-menu a,
+.genesis-nav-menu li li a,
+.genesis-nav-menu li li a:link,
+.genesis-nav-menu li li a:visited,
+.post-comments,
+#title a,
+#title a:hover {
+  color: #1e1e1e;
+}
+
+/* line 169, ../sass/base/_vendor.scss */
+a,
+h2 a:hover,
+.genesis-nav-menu li a:hover,
+.genesis-nav-menu li:hover a,
+.genesis-nav-menu li li a:hover,
+.genesis-nav-menu .current-menu-item a {
+  color: #ff2a00;
+}
+
+/* line 175, ../sass/base/_vendor.scss */
+.post-info,
+.post-meta,
+#description {
+  color: #636363;
+}
+
+/* line 183, ../sass/base/_vendor.scss */
+blockquote::before,
+blockquote p,
+input,
+select,
+textarea {
+  color: #999;
+}
+
+/* line 196, ../sass/base/_vendor.scss */
+button,
+input[type="button"],
+input[type="submit"],
+.btn,
+.genesis-nav-menu .highlight-menu-item a,
+.genesis-nav-menu .highlight-menu-item a:hover,
+.navigation li a,
+.navigation li a:hover,
+.navigation li.active a,
+.navigation li.disabled {
+  color: #fff;
+}
+
+/* 03b - Font Family ----------- */
+/* line 205, ../sass/base/_vendor.scss */
+body,
+input,
+textarea,
+.author-box h1 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* line 216, ../sass/base/_vendor.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.entry-title a,
+#title {
+  font-family: 'Lato', sans-serif;
+}
+
+/* 03c - Font Size ----------- */
+/* line 222, ../sass/base/_vendor.scss */
+#title {
+  font-size: 42px;
+  font-size: 2.625rem;
+}
+
+/* line 229, ../sass/base/_vendor.scss */
+h1,
+.entry-title,
+.entry-title a {
+  font-size: 36px;
+  font-size: 2.25rem;
+}
+
+/* line 234, ../sass/base/_vendor.scss */
+blockquote::before {
+  font-size: 32px;
+  font-size: 2rem;
+}
+
+/* line 239, ../sass/base/_vendor.scss */
+h2 {
+  font-size: 30px;
+  font-size: 1.875rem;
+}
+
+/* line 244, ../sass/base/_vendor.scss */
+h3 {
+  font-size: 24px;
+  font-size: 1.5rem;
+}
+
+/* line 252, ../sass/base/_vendor.scss */
+h4,
+.archive-title,
+.taxonomy-description h1,
+.widgettitle {
+  font-size: 20px;
+  font-size: 1.25rem;
+}
+
+/* line 257, ../sass/base/_vendor.scss */
+h5 {
+  font-size: 18px;
+  font-size: 1.125rem;
+}
+
+/* line 264, ../sass/base/_vendor.scss */
+h6,
+.author-box h1,
+.sidebar h2 a {
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+/* line 276, ../sass/base/_vendor.scss */
+input,
+select,
+textarea,
+.genesis-nav-menu,
+.post-info,
+.post-meta,
+.wp-caption,
+#footer p {
+  font-size: 14px;
+  font-size: 0.875rem;
+}
+
+/* 03d - Font Miscellaneous ----------- */
+/* line 284, ../sass/base/_vendor.scss */
+blockquote p {
+  font-style: italic;
+}
+
+/* line 288, ../sass/base/_vendor.scss */
+cite {
+  font-style: normal;
+}
+
+/* line 309, ../sass/base/_vendor.scss */
+button,
+input[type="button"],
+input[type="submit"],
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.btn,
+.entry-title a,
+.genesis-nav-menu,
+.post-comments,
+.post-info .author,
+.post-info .date,
+.wp-caption,
+#footer p,
+#title {
+  font-weight: 700;
+}
+
+/* line 313, ../sass/base/_vendor.scss */
+.wp-caption {
+  text-align: center;
+}
+
+/* line 322, ../sass/base/_vendor.scss */
+h2 a,
+h2 a:visited,
+.genesis-nav-menu a,
+.navigation li a,
+.widgettitle a,
+#title a {
+  text-decoration: none;
+}
+
+/*
+04 Layout
+---------------------------------------------------------------------------------------------------- */
+/* 04a - Structure ----------- */
+/* line 333, ../sass/base/_vendor.scss */
+#wrap {
+  margin: 0 auto;
+  max-width: 1152px;
+}
+
+/* line 338, ../sass/base/_vendor.scss */
+#inner {
+  clear: both;
+  overflow: hidden;
+  padding-top: 40px;
+  padding-top: 2.5rem;
+}
+
+/* 04b - 1152px CSS Grid ----------- */
+/* line 347, ../sass/base/_vendor.scss */
+#sidebar-alt {
+  width: 15.277777777%;
+  /* 176px / 1152px */
+}
+
+/* line 355, ../sass/base/_vendor.scss */
+.footer-widgets-1,
+.footer-widgets-2,
+.footer-widgets-3,
+.sidebar,
+#header .widget-area {
+  width: 30.555555555%;
+  /* 352px / 1152px */
+}
+
+/* line 361, ../sass/base/_vendor.scss */
+.content-sidebar-sidebar .sidebar,
+.sidebar-content-sidebar .sidebar,
+.sidebar-sidebar-content .sidebar {
+  width: 37.931034482%;
+  /* 352px / 928px */
+}
+
+/* line 367, ../sass/base/_vendor.scss */
+.content-sidebar-sidebar #content,
+.sidebar-content-sidebar #content,
+.sidebar-sidebar-content #content {
+  width: 56.896551724%;
+  /* 528px / 928px */
+}
+
+/* line 373, ../sass/base/_vendor.scss */
+.content-sidebar #content,
+.sidebar-content #content,
+#title-area {
+  width: 65.277777777%;
+  /* 752px / 1152px */
+}
+
+/* line 379, ../sass/base/_vendor.scss */
+.content-sidebar-sidebar #content-sidebar-wrap,
+.sidebar-content-sidebar #content-sidebar-wrap,
+.sidebar-sidebar-content #content-sidebar-wrap {
+  width: 80.555555555%;
+  /* 928px / 1152px */
+}
+
+/* line 386, ../sass/base/_vendor.scss */
+.content-sidebar #content-sidebar-wrap,
+.full-width-content #content,
+.full-width-content #content-sidebar-wrap,
+.sidebar-content #content-sidebar-wrap {
+  width: 100%;
+  /* 1152px / 1152px */
+}
+
+/* line 398, ../sass/base/_vendor.scss */
+.footer-widgets-1,
+.footer-widgets-2,
+.sidebar-content #sidebar,
+.sidebar-sidebar-content #sidebar,
+#content,
+#content-sidebar-wrap,
+#footer .gototop,
+#sidebar-alt,
+#title-area {
+  float: left;
+}
+
+/* line 410, ../sass/base/_vendor.scss */
+.content-sidebar-sidebar #sidebar-alt,
+.footer-widgets-3,
+.sidebar,
+.sidebar-content #content,
+.sidebar-content-sidebar #content-sidebar-wrap,
+.sidebar-sidebar-content #content,
+.sidebar-sidebar-content #content-sidebar-wrap,
+#footer .creds,
+#header .widget-area {
+  float: right;
+}
+
+/* 04c - Header ----------- */
+/* line 416, ../sass/base/_vendor.scss */
+#header {
+  border-bottom: 2px solid #1e1e1e;
+  min-height: 120px;
+  overflow: hidden;
+  padding-bottom: 32px;
+  padding-bottom: 2rem;
+}
+
+/* line 424, ../sass/base/_vendor.scss */
+#title {
+  line-height: 1;
+  margin: 40px 0 8px;
+  margin: 2.5rem 0 0.5rem;
+}
+
+/* line 430, ../sass/base/_vendor.scss */
+.header-image #title {
+  margin: 0;
+}
+
+/* line 434, ../sass/base/_vendor.scss */
+#description {
+  line-height: 1.25;
+}
+
+/* line 440, ../sass/base/_vendor.scss */
+.header-full-width #title,
+.header-full-width #title a,
+.header-full-width #title-area {
+  width: 100%;
+}
+
+/* line 446, ../sass/base/_vendor.scss */
+.header-image #title,
+.header-image #title a,
+.header-image #title-area {
+  display: block;
+  float: left;
+  min-height: 120px;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 50%;
+}
+
+/* line 455, ../sass/base/_vendor.scss */
+.header-image #description {
+  display: block;
+  overflow: hidden;
+}
+
+/* 04d - Main Content ----------- */
+/* line 462, ../sass/base/_vendor.scss */
+#content {
+  padding-bottom: 40px;
+  padding-bottom: 2.5rem;
+}
+
+/* line 468, ../sass/base/_vendor.scss */
+.entry,
+.page .post.entry {
+  margin-bottom: 80px;
+  margin-bottom: 5rem;
+}
+
+/* line 473, ../sass/base/_vendor.scss */
+.single .entry {
+  margin-bottom: 48px;
+  margin-bottom: 3rem;
+}
+
+/* line 478, ../sass/base/_vendor.scss */
+.page .entry {
+  margin: 0;
+}
+
+/* line 482, ../sass/base/_vendor.scss */
+.entry-content {
+  overflow: hidden;
+}
+
+/* line 487, ../sass/base/_vendor.scss */
+.entry-content,
+.entry-content p {
+  line-height: 1.625;
+}
+
+/* line 491, ../sass/base/_vendor.scss */
+.entry-content p {
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+}
+
+/* line 496, ../sass/base/_vendor.scss */
+blockquote {
+  padding: 24px 64px;
+  padding: 1.5rem 4rem;
+}
+
+/* line 501, ../sass/base/_vendor.scss */
+blockquote::before {
+  content: "“";
+  display: block;
+  height: 0;
+  left: -20px;
+  position: relative;
+  top: -10px;
+}
+
+/* 04e - Post Info & Meta ----------- */
+/* line 513, ../sass/base/_vendor.scss */
+.post-info,
+.post-meta {
+  clear: both;
+  line-height: 1.5;
+}
+
+/* line 518, ../sass/base/_vendor.scss */
+.post-info {
+  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
+}
+
+/* line 523, ../sass/base/_vendor.scss */
+.post-comments {
+  background: url(images/post-comments.png) no-repeat center left;
+  margin-left: 16px;
+  margin-left: 1rem;
+  padding-left: 20px;
+  padding-left: 1.25rem;
+}
+
+/* line 531, ../sass/base/_vendor.scss */
+.post-meta {
+  border-top: 1px solid #ccc;
+  padding-top: 24px;
+  padding-top: 1.5rem;
+}
+
+/* line 538, ../sass/base/_vendor.scss */
+.categories,
+.tags {
+  display: block;
+}
+
+/* 04f - Column Classes ----------- */
+/* line 558, ../sass/base/_vendor.scss */
+.five-sixths,
+.four-fifths,
+.four-sixths,
+.one-fifth,
+.one-fourth,
+.one-half,
+.one-sixth,
+.one-third,
+.three-fifths,
+.three-fourths,
+.three-sixths,
+.two-fifths,
+.two-fourths,
+.two-sixths,
+.two-thirds {
+  float: left;
+  margin-left: 4.166666666%;
+  /* 48px / 1152px */
+}
+
+/* line 565, ../sass/base/_vendor.scss */
+.one-half,
+.three-sixths,
+.two-fourths {
+  width: 47.9166666666%;
+  /* 552px / 1152px */
+}
+
+/* line 570, ../sass/base/_vendor.scss */
+.one-third,
+.two-sixths {
+  width: 30.555555555%;
+  /* 352px / 1152px */
+}
+
+/* line 575, ../sass/base/_vendor.scss */
+.four-sixths,
+.two-thirds {
+  width: 65.277777777%;
+  /* 752px / 1152px */
+}
+
+/* line 579, ../sass/base/_vendor.scss */
+.one-fourth {
+  width: 21.875%;
+  /* 252px / 1152px */
+}
+
+/* line 583, ../sass/base/_vendor.scss */
+.three-fourths {
+  width: 73.958333333%;
+  /* 852px / 1152px */
+}
+
+/* line 587, ../sass/base/_vendor.scss */
+.one-fifth {
+  width: 16.666666666%;
+  /* 192px / 1152px */
+}
+
+/* line 591, ../sass/base/_vendor.scss */
+.two-fifths {
+  width: 37.5%;
+  /* 432px / 1152px */
+}
+
+/* line 595, ../sass/base/_vendor.scss */
+.three-fifths {
+  width: 58.333333333%;
+  /* 672px / 1152px */
+}
+
+/* line 599, ../sass/base/_vendor.scss */
+.four-fifths {
+  width: 79.166666666%;
+  /* 912px / 1152px */
+}
+
+/* line 603, ../sass/base/_vendor.scss */
+.one-sixth {
+  width: 13.194444444%;
+  /* 152px / 1152px */
+}
+
+/* line 607, ../sass/base/_vendor.scss */
+.five-sixths {
+  width: 82.638888888%;
+  /* 952px / 1152px */
+}
+
+/* line 611, ../sass/base/_vendor.scss */
+.first {
+  margin-left: 0;
+}
+
+/* 04g - Miscellaneous ----------- */
+/* line 617, ../sass/base/_vendor.scss */
+p.subscribe-to-comments {
+  padding: 24px 0 16px;
+  padding: 1.5rem 0 1rem;
+}
+
+/* line 625, ../sass/base/_vendor.scss */
+p.pages,
+.clear,
+.clear-line,
+.first {
+  clear: both;
+}
+
+/* line 629, ../sass/base/_vendor.scss */
+.clear-line {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+}
+
+/* line 636, ../sass/base/_vendor.scss */
+.alignleft,
+.archive-page {
+  float: left;
+}
+
+/* line 640, ../sass/base/_vendor.scss */
+.alignright {
+  float: right;
+}
+
+/* line 644, ../sass/base/_vendor.scss */
+.archive-page {
+  width: 50%;
+}
+
+/* line 649, ../sass/base/_vendor.scss */
+.author-box,
+.sticky {
+  margin-bottom: 80px;
+  margin-bottom: 5rem;
+}
+
+/* line 656, ../sass/base/_vendor.scss */
+.author-box,
+.author-box h1,
+.taxonomy-description {
+  line-height: 1.5;
+}
+
+/* line 663, ../sass/base/_vendor.scss */
+.author-box,
+.breadcrumb,
+.sticky,
+.taxonomy-description {
+  background-color: #f5f5f5;
+  margin-bottom: 48px;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  padding: 32px;
+  padding: 2rem;
+}
+
+/*
+05 Menus
+---------------------------------------------------------------------------------------------------- */
+/* line 677, ../sass/base/_vendor.scss */
+.genesis-nav-menu {
+  clear: both;
+  overflow: hidden;
+}
+
+/* line 682, ../sass/base/_vendor.scss */
+#header .genesis-nav-menu {
+  float: right;
+  margin-top: 48px;
+  margin-top: 3rem;
+  width: auto;
+}
+
+/* line 690, ../sass/base/_vendor.scss */
+.genesis-nav-menu.menu-primary,
+.genesis-nav-menu.menu-secondary {
+  border-bottom: 1px solid #ccc;
+}
+
+/* line 694, ../sass/base/_vendor.scss */
+.genesis-nav-menu ul {
+  float: left;
+  width: 100%;
+}
+
+/* line 699, ../sass/base/_vendor.scss */
+.genesis-nav-menu li {
+  display: inline-block;
+  float: left;
+  list-style-type: none;
+  text-align: left;
+}
+
+/* line 706, ../sass/base/_vendor.scss */
+.genesis-nav-menu a {
+  display: block;
+  padding: 24px 20px;
+  padding: 1.5rem 1.25rem;
+  position: relative;
+}
+
+/* line 713, ../sass/base/_vendor.scss */
+.genesis-nav-menu li.highlight-menu-item {
+  margin-left: 20px;
+  margin-left: 1.25rem;
+}
+
+/* line 718, ../sass/base/_vendor.scss */
+.genesis-nav-menu .highlight-menu-item a {
+  background-color: #1e1e1e;
+}
+
+/* line 722, ../sass/base/_vendor.scss */
+.genesis-nav-menu .highlight-menu-item a:hover {
+  background-color: #ff2a00;
+}
+
+/* line 728, ../sass/base/_vendor.scss */
+.genesis-nav-menu li li a,
+.genesis-nav-menu li li a:link,
+.genesis-nav-menu li li a:visited {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  padding: 20px;
+  padding: 1.25rem;
+  position: relative;
+  width: 170px;
+}
+
+/* line 738, ../sass/base/_vendor.scss */
+.genesis-nav-menu li ul {
+  left: -9999px;
+  position: absolute;
+  width: 212px;
+  z-index: 99;
+}
+
+/* line 745, ../sass/base/_vendor.scss */
+.genesis-nav-menu li ul ul {
+  margin: -55px 0 0 211px;
+}
+
+/* line 750, ../sass/base/_vendor.scss */
+.genesis-nav-menu li:hover ul ul,
+.genesis-nav-menu li.sfHover ul ul {
+  left: -9999px;
+}
+
+/* line 755, ../sass/base/_vendor.scss */
+.genesis-nav-menu li:hover,
+.genesis-nav-menu li.sfHover {
+  position: static;
+}
+
+/* line 762, ../sass/base/_vendor.scss */
+ul.genesis-nav-menu li:hover > ul,
+ul.genesis-nav-menu li.sfHover ul,
+#header .genesis-nav-menu li:hover > ul,
+#header .genesis-nav-menu li.sfHover ul {
+  left: auto;
+}
+
+/* line 768, ../sass/base/_vendor.scss */
+.genesis-nav-menu li a .sf-sub-indicator,
+.genesis-nav-menu li li a .sf-sub-indicator,
+.genesis-nav-menu li li li a .sf-sub-indicator {
+  position: absolute;
+  text-indent: -9999px;
+}
+
+/* line 773, ../sass/base/_vendor.scss */
+#wpadminbar li:hover ul ul {
+  left: 0;
+}
+
+/* 05a - Primary Navigation Extras ----------- */
+/* line 779, ../sass/base/_vendor.scss */
+.genesis-nav-menu li.right {
+  float: right;
+  padding: 24px 20px;
+  padding: 1.5rem 1.25rem;
+}
+
+/* line 785, ../sass/base/_vendor.scss */
+.genesis-nav-menu li.right a {
+  display: inline;
+  padding: 0;
+}
+
+/* line 790, ../sass/base/_vendor.scss */
+.genesis-nav-menu li.search {
+  padding: 6px 0 0;
+  padding: 0.375rem 0 0;
+}
+
+/* line 795, ../sass/base/_vendor.scss */
+.genesis-nav-menu li.rss a {
+  background: url(images/rss.png) no-repeat center left;
+  margin-left: 20px;
+  margin-left: 1.25rem;
+  padding-left: 20px;
+  padding-left: 1.25rem;
+}
+
+/* line 803, ../sass/base/_vendor.scss */
+.genesis-nav-menu li.twitter a {
+  background: url(images/twitter-nav.png) no-repeat center left;
+  padding-left: 24px;
+  padding-left: 1.5rem;
+}
+
+/*
+06 Headings
+---------------------------------------------------------------------------------------------------- */
+/* line 820, ../sass/base/_vendor.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.entry-title a {
+  line-height: 1.2;
+  margin-bottom: 16px;
+  margin-bottom: 1rem;
+}
+
+/* line 826, ../sass/base/_vendor.scss */
+.author-box h1 {
+  margin: 0;
+}
+
+/* line 830, ../sass/base/_vendor.scss */
+.taxonomy-description h1 {
+  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
+}
+
+/* line 835, ../sass/base/_vendor.scss */
+.archive-title {
+  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
+}
+
+/*
+07 Lists
+---------------------------------------------------------------------------------------------------- */
+/* line 846, ../sass/base/_vendor.scss */
+.entry-content ol,
+.entry-content ul {
+  margin-bottom: 26px;
+  margin-bottom: 1.625rem;
+}
+
+/* line 852, ../sass/base/_vendor.scss */
+.entry-content ol li,
+.entry-content ul li {
+  line-height: 1.625;
+}
+
+/* line 857, ../sass/base/_vendor.scss */
+.entry-content ol li,
+.entry-content ul li {
+  margin-left: 40px;
+  margin-left: 2.5rem;
+}
+
+/* line 862, ../sass/base/_vendor.scss */
+.entry-content ol li {
+  list-style-type: decimal;
+}
+
+/* line 866, ../sass/base/_vendor.scss */
+.entry-content ul li {
+  list-style-type: disc;
+}
+
+/* line 871, ../sass/base/_vendor.scss */
+.entry-content ol ol,
+.entry-content ul ul {
+  margin-bottom: 0;
+}
+
+/*
+08 Post Navigation
+---------------------------------------------------------------------------------------------------- */
+/* line 880, ../sass/base/_vendor.scss */
+.navigation li {
+  display: inline;
+}
+
+/* line 887, ../sass/base/_vendor.scss */
+.navigation li a,
+.navigation li a:hover,
+.navigation li.active a,
+.navigation li.disabled {
+  background-color: #1e1e1e;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 12px;
+  padding: 0.75rem;
+}
+
+/* line 896, ../sass/base/_vendor.scss */
+.navigation li a:hover,
+.navigation li.active a {
+  background-color: #ff2a00;
+}
+
+/*
+09 Comments
+---------------------------------------------------------------------------------------------------- */
+/* line 906, ../sass/base/_vendor.scss */
+#comments,
+#respond {
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+/* line 912, ../sass/base/_vendor.scss */
+.ping-list,
+#comments {
+  margin-bottom: 48px;
+  margin-bottom: 3rem;
+}
+
+/* line 919, ../sass/base/_vendor.scss */
+#author,
+#email,
+#url {
+  width: 50%;
+}
+
+/* line 926, ../sass/base/_vendor.scss */
+.commentmetadata,
+#author,
+#email,
+#url {
+  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
+}
+
+/* line 931, ../sass/base/_vendor.scss */
+#comment {
+  margin: 12px 0;
+  margin: 0.75rem 0;
+}
+
+/* line 936, ../sass/base/_vendor.scss */
+label {
+  margin-left: 12px;
+  margin-left: 0.75rem;
+}
+
+/* line 942, ../sass/base/_vendor.scss */
+.comment-list li,
+.ping-list li {
+  list-style-type: none;
+  margin-top: 24px;
+  margin-top: 1.5rem;
+  padding: 32px;
+  padding: 2rem;
+}
+
+/* line 950, ../sass/base/_vendor.scss */
+.comment-list li ul li {
+  margin-right: -32px;
+  margin-right: -2rem;
+}
+
+/* line 955, ../sass/base/_vendor.scss */
+.comment-header {
+  overflow: hidden;
+}
+
+/* line 959, ../sass/base/_vendor.scss */
+.comment {
+  background-color: #f5f5f5;
+  border: 2px solid #fff;
+  border-right: none;
+}
+
+/* line 965, ../sass/base/_vendor.scss */
+.comment-content p {
+  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
+}
+
+/* line 973, ../sass/base/_vendor.scss */
+#comments .navigation {
+  margin-top: 32px;
+  margin-top: 2rem;
+}
+
+/*
+10 Sidebars
+---------------------------------------------------------------------------------------------------- */
+/* line 983, ../sass/base/_vendor.scss */
+.sidebar {
+  display: inline;
+  line-height: 1.5;
+}
+
+/* line 988, ../sass/base/_vendor.scss */
+.sidebar p {
+  margin-bottom: 16px;
+  margin-bottom: 1rem;
+}
+
+/* line 993, ../sass/base/_vendor.scss */
+.sidebar .widget {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 32px;
+  margin-bottom: 2rem;
+  padding-bottom: 32px;
+  padding-bottom: 2rem;
+  overflow: hidden;
+}
+
+/* line 1002, ../sass/base/_vendor.scss */
+.sidebar.widget-area ul li {
+  list-style-type: none;
+  margin-bottom: 6px;
+  margin-bottom: 0.375rem;
+  word-wrap: break-word;
+}
+
+/*
+11 Footer
+---------------------------------------------------------------------------------------------------- */
+/* line 1014, ../sass/base/_vendor.scss */
+#footer {
+  clear: both;
+}
+
+/* line 1018, ../sass/base/_vendor.scss */
+#footer .wrap {
+  border-top: 2px solid #1e1e1e;
+  overflow: hidden;
+  padding: 48px 0;
+  padding: 3rem 0;
+}
+
+/* line 1025, ../sass/base/_vendor.scss */
+#footer .creds {
+  text-align: right;
+}
+
+/* line 1030, ../sass/base/_vendor.scss */
+#footer .creds,
+#footer .gototop {
+  margin: 8px 0;
+  margin: 0.5rem 0;
+}
+
+/* 11a - Footer Widgets ----------- */
+/* line 1037, ../sass/base/_vendor.scss */
+.footer-widgets {
+  border-top: 2px solid #1e1e1e;
+  clear: both;
+  line-height: 1.5;
+  overflow: hidden;
+  padding: 32px 0 16px;
+  padding: 2rem 0 1rem;
+}
+
+/* line 1046, ../sass/base/_vendor.scss */
+.footer-widgets p {
+  margin-bottom: 16px;
+  margin-bottom: 1rem;
+}
+
+/* line 1051, ../sass/base/_vendor.scss */
+.footer-widgets .widget {
+  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
+}
+
+/* line 1056, ../sass/base/_vendor.scss */
+.footer-widgets .widget-area ul li {
+  list-style-type: none;
+  margin-bottom: 6px;
+  margin-bottom: 0.375rem;
+  word-wrap: break-word;
+}
+
+/* line 1063, ../sass/base/_vendor.scss */
+.footer-widgets-1 {
+  margin-right: 4.166666666%;
+  /* 48px / 1152px */
+}
+
+/*
+12 Forms & Buttons
+---------------------------------------------------------------------------------------------------- */
+/* line 1074, ../sass/base/_vendor.scss */
+input,
+select,
+textarea {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: 0 0 5px #ddd inset;
+  padding: 16px;
+  padding: 1rem;
+  width: 100%;
+}
+
+/* line 1084, ../sass/base/_vendor.scss */
+#header .search-form {
+  float: right;
+  margin-top: 56px;
+  margin-top: 3.5rem;
+  width: 100%;
+}
+
+/* line 1094, ../sass/base/_vendor.scss */
+button,
+input[type="button"],
+input[type="submit"],
+.btn {
+  background-color: #1e1e1e;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  padding: 16px 24px;
+  padding: 1rem 1.5rem;
+  width: auto;
+}
+
+/* line 1107, ../sass/base/_vendor.scss */
+button:hover,
+input:hover[type="button"],
+input:hover[type="submit"],
+.btn:hover {
+  background-color: #ff2a00;
+}
+
+/* line 1112, ../sass/base/_vendor.scss */
+.enews input[type="submit"],
+.search-form input[type="submit"] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/* 12a - Gravity Forms ----------- */
+/* line 1128, ../sass/base/_vendor.scss */
+#content div.gform_wrapper input,
+#content div.gform_wrapper select,
+#content div.gform_wrapper textarea,
+#content div.gform_wrapper .ginput_complex label {
+  font-size: 16px;
+  font-size: 1rem;
+  padding: 16px;
+  padding: 1rem;
+}
+
+/* line 1135, ../sass/base/_vendor.scss */
+#content div.gform_wrapper input[type="submit"] {
+  padding: 16px 24px;
+  padding: 1rem 1.5rem;
+}
+
+/* line 1140, ../sass/base/_vendor.scss */
+#content div.gform_wrapper .ginput_complex label {
+  padding: 0;
+}
+
+/* line 1145, ../sass/base/_vendor.scss */
+div.gform_wrapper li,
+div.gform_wrapper form li {
+  margin: 16px 0 0;
+  margin: 1rem 0 0;
+}
+
+/*
+13 Images & Captions
+---------------------------------------------------------------------------------------------------- */
+/* line 1158, ../sass/base/_vendor.scss */
+embed,
+img,
+object,
+video {
+  max-width: 100%;
+}
+
+/* line 1162, ../sass/base/_vendor.scss */
+img {
+  height: auto;
+}
+
+/* line 1166, ../sass/base/_vendor.scss */
+.alignleft .avatar {
+  margin-right: 24px;
+  margin-right: 1.5rem;
+}
+
+/* line 1171, ../sass/base/_vendor.scss */
+.alignright .avatar {
+  margin-left: 24px;
+  margin-left: 1.5rem;
+}
+
+/* line 1176, ../sass/base/_vendor.scss */
+.author-box .avatar {
+  float: left;
+  margin-right: 24px;
+  margin-right: 1.5rem;
+}
+
+/* line 1182, ../sass/base/_vendor.scss */
+.comment-list li .avatar {
+  float: left;
+  margin: 0 16px 24px 0;
+  margin: 0 1rem 1.5rem 0;
+}
+
+/* line 1189, ../sass/base/_vendor.scss */
+img.centered,
+.aligncenter {
+  display: block;
+  margin: 0 auto 24px;
+  margin: 0 auto 1.5rem;
+}
+
+/* line 1195, ../sass/base/_vendor.scss */
+img.alignnone {
+  display: inline;
+  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
+}
+
+/* line 1203, ../sass/base/_vendor.scss */
+img.alignleft,
+.post-image,
+.wp-caption.alignleft {
+  display: inline;
+  margin: 0 24px 24px 0;
+  margin: 0 1.5rem 1.5rem 0;
+}
+
+/* line 1210, ../sass/base/_vendor.scss */
+img.alignright,
+.wp-caption.alignright {
+  display: inline;
+  margin: 0 0 24px 24px;
+  margin: 0 0 1.5rem 1.5rem;
+}
+
+/* line 1216, ../sass/base/_vendor.scss */
+p.wp-caption-text {
+  line-height: 1.2;
+  margin-top: 12px;
+  margin-top: 0.75rem;
+}
+
+/*
+14 Media Queries
+---------------------------------------------------------------------------------------------------- */
+/* Desktops, laptops and iPads (landscape) ----------- */
+@media only screen and (max-width: 1024px) {
+  /* line 1234, ../sass/base/_vendor.scss */
+  #wrap {
+    max-width: 960px;
+  }
+}
+/* iPads (portrait) ----------- */
+@media only screen and (max-width: 768px) {
+  /* line 1244, ../sass/base/_vendor.scss */
+  #wrap {
+    padding: 0 5%;
+  }
+
+  /* line 1260, ../sass/base/_vendor.scss */
+  .footer-widgets-1,
+  .footer-widgets-2,
+  .footer-widgets-3,
+  .wrap,
+  #footer .creds,
+  #footer .gototop,
+  #header .widget-area,
+  #inner,
+  #title-area,
+  #wrap .sidebar,
+  #wrap #content,
+  #wrap #content-sidebar-wrap,
+  #wrap #sidebar-alt {
+    width: 100%;
+  }
+
+  /* line 1268, ../sass/base/_vendor.scss */
+  .genesis-nav-menu li,
+  #footer .creds,
+  #footer .gototop,
+  #header ul.genesis-nav-menu,
+  #header .search-form {
+    float: none;
+  }
+
+  /* line 1278, ../sass/base/_vendor.scss */
+  .genesis-nav-menu,
+  #description,
+  #footer .creds,
+  #footer .gototop,
+  #header .search-form,
+  #title,
+  #title-area {
+    text-align: center;
+  }
+
+  /* line 1282, ../sass/base/_vendor.scss */
+  .genesis-nav-menu a {
+    padding: 20px 16px;
+    padding: 1.25rem 1rem;
+  }
+
+  /* line 1287, ../sass/base/_vendor.scss */
+  #title {
+    margin: 16px 0;
+    margin: 1rem 0;
+  }
+
+  /* line 1292, ../sass/base/_vendor.scss */
+  #header .search-form {
+    margin: 32px auto 0;
+    margin: 2rem auto 0;
+    width: 50%;
+  }
+
+  /* line 1298, ../sass/base/_vendor.scss */
+  .genesis-nav-menu li.right {
+    display: none;
+  }
+
+  /* line 1302, ../sass/base/_vendor.scss */
+  #footer .wrap {
+    padding: 24px 0;
+    padding: 1.5rem 0;
+  }
+
+  /* line 1308, ../sass/base/_vendor.scss */
+  .footer-widgets-1,
+  #header .genesis-nav-menu {
+    margin: 0;
+  }
+}
+/* iPhones (portrait and landscape) ----------- */
+@media only screen and (max-width: 480px) {
+  /* line 1318, ../sass/base/_vendor.scss */
+  html {
+    font-size: 87.5%;
+    /* 14px base */
+  }
+
+  /* line 1322, ../sass/base/_vendor.scss */
+  #header .search-form {
+    width: 100%;
+  }
+
+  /* line 1341, ../sass/base/_vendor.scss */
+  .archive-page,
+  .five-sixths,
+  .four-fifths,
+  .four-sixths,
+  .one-fifth,
+  .one-fourth,
+  .one-half,
+  .one-sixth,
+  .one-third,
+  .three-fifths,
+  .three-fourths,
+  .three-sixths,
+  .two-fifths,
+  .two-fourths,
+  .two-sixths,
+  .two-thirds {
+    margin: 0;
+    width: 100%;
+  }
+}
