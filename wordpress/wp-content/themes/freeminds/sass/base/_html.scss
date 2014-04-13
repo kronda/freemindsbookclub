@@ -2,3 +2,16 @@
 //   Font-face
 //   Typography
 //   Element Styles
+
+
+body {
+  background: $body_bg;
+}
+
+#wrap {
+  background: $wrap_bg;
+  @include media($tablet) {
+    border: 10px solid $body_border;
+    background: $wrap_bg url('images/wrap_bg.jpg');
+  }
+}

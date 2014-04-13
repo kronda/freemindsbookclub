@@ -6,8 +6,8 @@ $lineheight: 24;
 
 // Breakpoints
 $mobile: new-breakpoint(max-width 480px 4);
-$tablet: new-breakpoint(max-width 768px 12);
-$desktop: new-breakpoint(max-width 1024px 12);
+$tablet: new-breakpoint(min-width 768px 12);
+$desktop: new-breakpoint(min-width 1024px 12);
 
 /* ***********
  * Colors
@@ -17,6 +17,7 @@ $desktop: new-breakpoint(max-width 1024px 12);
 $body_bg: #6a979e; //(aqua)
 $body_border: #b0cfd4;
 $header_fade: #b3d1d6; // (aqua)
+$wrap_bg: #f0eeeb; // cream
 $widget_bg: #f8f5f5;
 
 // Navigation
