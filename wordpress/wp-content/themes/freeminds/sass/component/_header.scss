@@ -3,4 +3,9 @@
   //@include filter-gradient(#b3d1d6, #b8d4d9, vertical);
   @include background-image(linear-gradient( top, rgba(179,209,214,1) 0%, rgba(221,234,236,0.94) 40%, rgba(255,255,255,1) 100%));
   border-bottom: none;
+
+  #description {
+    color: $tagline;
+    font-weight: bold;
+  }
 }

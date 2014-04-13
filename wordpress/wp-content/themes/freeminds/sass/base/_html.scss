@@ -10,6 +10,8 @@ body {
 
 #wrap {
   background: $wrap_bg;
+  padding: 0;
+
   @include media($tablet) {
     border: 10px solid $body_border;
     background: $wrap_bg url('images/wrap_bg.jpg');

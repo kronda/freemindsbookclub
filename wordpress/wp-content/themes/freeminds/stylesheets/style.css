@@ -1511,6 +1511,7 @@ body {
 /* line 11, ../sass/base/_html.scss */
 #wrap {
   background: #f0eeeb;
+  padding: 0;
 }
 @media screen and (min-width: 768px) {
   /* line 11, ../sass/base/_html.scss */
@@ -1520,10 +1521,27 @@ body {
   }
 }
 
+/* line 1, ../sass/layout/_base.scss */
+#header {
+  min-height: 200px;
+}
+/* line 4, ../sass/layout/_base.scss */
+#header #description {
+  position: absolute;
+  right: 0;
+  top: 120px;
+  width: 40%;
+}
+
 /* line 1, ../sass/component/_header.scss */
 #header {
   background-color: #b3d1d6;
   background-image: -webkit-linear-gradient(top, #b3d1d6 0%, rgba(221, 234, 236, 0.94) 40%, white 100%);
   background-image: linear-gradient(to bottom, #b3d1d6 0%, rgba(221, 234, 236, 0.94) 40%, white 100%);
   border-bottom: none;
+}
+/* line 7, ../sass/component/_header.scss */
+#header #description {
+  color: #004f5b;
+  font-weight: bold;
 }
