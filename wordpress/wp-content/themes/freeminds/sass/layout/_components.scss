@@ -1,0 +1,31 @@
+/* 04e - Post Info & Meta ----------- */
+
+.post-info,
+.post-meta {
+  clear: both;
+  line-height: 1.5;
+}
+
+.post-info {
+  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
+}
+
+.post-comments {
+  background: url(images/post-comments.png) no-repeat center left;
+  margin-left: 16px;
+  margin-left: 1rem;
+  padding-left: 20px;
+  padding-left: 1.25rem;
+}
+
+.post-meta {
+  border-top: 1px solid #ccc;
+  padding-top: 24px;
+  padding-top: 1.5rem;
+}
+
+.categories,
+.tags {
+  display: block;
+}
