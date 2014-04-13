@@ -10,6 +10,13 @@
  * If you don't use SASS but want to make further modifications, do so in 
  * wp-content/themes/cornerstone/style.css file AFTER the import statements. 
 */
+/* line 2, ../sass/neat/grid/_grid.scss */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 /* ***********
  * Colors
 **************/
@@ -1495,4 +1502,28 @@ p.wp-caption-text {
     margin: 0;
     width: 100%;
   }
+}
+/* line 7, ../sass/base/_html.scss */
+body {
+  background: #6a979e;
+}
+
+/* line 11, ../sass/base/_html.scss */
+#wrap {
+  background: #f0eeeb;
+}
+@media screen and (min-width: 768px) {
+  /* line 11, ../sass/base/_html.scss */
+  #wrap {
+    border: 10px solid #b0cfd4;
+    background: #f0eeeb url("images/wrap_bg.jpg");
+  }
+}
+
+/* line 1, ../sass/component/_header.scss */
+#header {
+  background-color: #b3d1d6;
+  background-image: -webkit-linear-gradient(top, #b3d1d6 0%, rgba(221, 234, 236, 0.94) 40%, white 100%);
+  background-image: linear-gradient(to bottom, #b3d1d6 0%, rgba(221, 234, 236, 0.94) 40%, white 100%);
+  border-bottom: none;
 }
