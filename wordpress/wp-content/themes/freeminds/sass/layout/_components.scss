@@ -1,0 +1,13 @@
+#subnav {
+  border: 1px solid yellow;
+  position: absolute;
+  top: 40px;
+  left: 0; 
+
+  .genesis-nav-menu a {
+    padding: 0.5em;
+  }
+  .fontawesome-text {
+    @extend %visuallyhidden;
+  }
+}

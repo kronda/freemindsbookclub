@@ -23,6 +23,18 @@
 /* ***************
  * Header Sizes
 ******************/
+/* line 1, ../sass/global/_mixins.scss */
+#subnav .fontawesome-text {
+  border: 0;
+  clip: rect(0 0 0 0);
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+}
+
 /* Table of Contents
 
   01 Import Fonts
@@ -1527,11 +1539,38 @@ body {
   position: relative;
 }
 /* line 5, ../sass/layout/_base.scss */
+#header .wrap {
+  border-top: 1px solid blue;
+  margin-top: 50px;
+}
+/* line 9, ../sass/layout/_base.scss */
+#header #title-area {
+  width: 50%;
+}
+@media screen and (min-width: 768px) {
+  /* line 9, ../sass/layout/_base.scss */
+  #header #title-area {
+    width: 100%;
+  }
+}
+/* line 16, ../sass/layout/_base.scss */
 #header #description {
   position: absolute;
   right: 10px;
   bottom: 10px;
   width: 40%;
+}
+
+/* line 1, ../sass/layout/_components.scss */
+#subnav {
+  border: 1px solid yellow;
+  position: absolute;
+  top: 40px;
+  left: 0;
+}
+/* line 7, ../sass/layout/_components.scss */
+#subnav .genesis-nav-menu a {
+  padding: 0.5em;
 }
 
 /* line 1, ../sass/component/_header.scss */
@@ -1541,8 +1580,17 @@ body {
   background-image: linear-gradient(to bottom, #b3d1d6 0%, rgba(221, 234, 236, 0.94) 40%, white 100%);
   border-bottom: none;
 }
-/* line 7, ../sass/component/_header.scss */
+/* line 6, ../sass/component/_header.scss */
 #header #description {
   color: #004f5b;
   font-weight: bold;
+}
+
+/* line 13, ../sass/component/_header.scss */
+#subnav .genesis-nav-menu.menu-secondary {
+  border-bottom: none;
+}
+/* line 17, ../sass/component/_header.scss */
+#subnav .genesis-nav-menu a {
+  padding: 0.5em;
 }
