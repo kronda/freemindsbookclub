@@ -48,3 +48,12 @@ function freeminds_filter_genesis_seo_site_title( $title, $inside ){
   return $title;
 }
 add_filter( 'genesis_seo_title', 'freeminds_filter_genesis_seo_site_title', 10, 2 );
+
+/**
+ * Enqueue scripts and styles
+ */
+function freeminds_scripts() {
+  wp_enqueue_script( 'freeminds', get_stylesheet_directory_uri() . '/js/freeminds.js', array('jquery'), '1.2', 'true');
+
+}
+add_action( 'wp_enqueue_scripts', 'freeminds_scripts' );
