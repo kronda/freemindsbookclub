@@ -41,7 +41,7 @@ add_action( 'wp_head', 'freeminds_google_fonts', 5);
  */
 function freeminds_filter_genesis_seo_site_title( $title, $inside ){
  
-  $child_inside = sprintf( '<a href="%s" title="%s"><img src="'. get_stylesheet_directory_uri() .'/images/fm_logo_large.png" title="%s" alt="%s"/></a>', trailingslashit( home_url() ), esc_attr( get_bloginfo( 'name' ) ), esc_attr( get_bloginfo( 'name' ) ), esc_attr( get_bloginfo( 'name' ) ) );
+  $child_inside = sprintf( '<a href="%s" title="%s"><img src="'. get_stylesheet_directory_uri() . '/images/fm_logo_large.png" title="%s" alt="%s"/></a>', trailingslashit( home_url() ), esc_attr( get_bloginfo( 'name' ) ), esc_attr( get_bloginfo( 'name' ) ), esc_attr( get_bloginfo( 'name' ) ) );
  
   $title = str_replace( $inside, $child_inside, $title );
  
@@ -53,7 +53,8 @@ add_filter( 'genesis_seo_title', 'freeminds_filter_genesis_seo_site_title', 10, 
  * Enqueue scripts and styles
  */
 function freeminds_scripts() {
-  wp_enqueue_script( 'freeminds', get_stylesheet_directory_uri() . '/js/freeminds.js', array('jquery'), '1.2', 'true');
+  wp_enqueue_script( 'freeminds_enquire', get_stylesheet_directory_uri() . '/js/vendor/enquire.min.js', array(), '1.0.2', false );
+  wp_enqueue_script( 'freeminds', get_stylesheet_directory_uri() . '/js/freeminds.js', array('jquery', 'freeminds_enquire'));
 
 }
 add_action( 'wp_enqueue_scripts', 'freeminds_scripts' );
