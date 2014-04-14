@@ -1485,8 +1485,8 @@ p.wp-caption-text {
 @media only screen and (max-width: 480px) {
   /* line 1318, ../sass/base/_vendor.scss */
   html {
-    font-size: 87.5%;
-    /* 14px base */
+    font-size: 100%;
+    /* changed from 87.5% 14px base to 100% 16px base */
   }
 
   /* line 1322, ../sass/base/_vendor.scss */
@@ -1533,6 +1533,69 @@ body {
   }
 }
 
+/* 03a - Font Color ----------- */
+/* line 22, ../sass/base/_html.scss */
+body {
+  color: #363a3b;
+}
+
+/* line 38, ../sass/base/_html.scss */
+a:hover,
+h2 a,
+h2 a:visited,
+h4.widgettitle a,
+input,
+.author,
+.date,
+.genesis-nav-menu a,
+.genesis-nav-menu li li a,
+.genesis-nav-menu li li a:link,
+.genesis-nav-menu li li a:visited,
+.post-comments,
+#title a,
+#title a:hover {
+  color: #c44c18;
+}
+
+/* line 47, ../sass/base/_html.scss */
+a,
+h2 a:hover,
+.genesis-nav-menu li a:hover,
+.genesis-nav-menu li:hover a,
+.genesis-nav-menu li li a:hover,
+.genesis-nav-menu .current-menu-item a {
+  color: #036978;
+}
+
+/* line 52, ../sass/base/_html.scss */
+.post-info,
+.post-meta {
+  color: purple;
+}
+
+/* line 60, ../sass/base/_html.scss */
+blockquote::before,
+blockquote p,
+input,
+select,
+textarea {
+  color: #363a3b;
+}
+
+/* line 73, ../sass/base/_html.scss */
+button,
+input[type="button"],
+input[type="submit"],
+.btn,
+.genesis-nav-menu .highlight-menu-item a,
+.genesis-nav-menu .highlight-menu-item a:hover,
+.navigation li a,
+.navigation li a:hover,
+.navigation li.active a,
+.navigation li.disabled {
+  color: #c44c18;
+}
+
 /* line 1, ../sass/layout/_base.scss */
 #header {
   padding-bottom: 0;
@@ -1556,19 +1619,20 @@ body {
 /* line 16, ../sass/layout/_base.scss */
 #header #description {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  right: 15px;
+  bottom: 15px;
   width: 40%;
 }
 
 /* line 1, ../sass/layout/_components.scss */
 #subnav {
   border: 1px solid yellow;
+  width: 100%;
   position: absolute;
-  top: 40px;
+  top: 50px;
   left: 0;
 }
-/* line 7, ../sass/layout/_components.scss */
+/* line 8, ../sass/layout/_components.scss */
 #subnav .genesis-nav-menu a {
   padding: 0.5em;
 }
@@ -1591,6 +1655,6 @@ body {
   border-bottom: none;
 }
 /* line 17, ../sass/component/_header.scss */
-#subnav .genesis-nav-menu a {
-  padding: 0.5em;
+#subnav i.fa {
+  font-size: 1.5em;
 }

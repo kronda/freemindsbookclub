@@ -1316,7 +1316,7 @@ p.wp-caption-text {
 @media only screen and (max-width: 480px) {
 
   html {
-    font-size: 87.5%; /* 14px base */
+    font-size: 100%; /* changed from 87.5% 14px base to 100% 16px base */
   }
 
   #header .search-form {

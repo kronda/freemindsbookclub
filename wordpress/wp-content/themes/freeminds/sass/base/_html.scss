@@ -17,3 +17,60 @@ body {
     background: $wrap_bg image-url('wrap_bg.jpg');
   }
 }
+
+/* 03a - Font Color ----------- */
+body {
+  color: $body_text;
+}
+a:hover,
+h2 a,
+h2 a:visited,
+h4.widgettitle a,
+input,
+.author,
+.date,
+.genesis-nav-menu a,
+.genesis-nav-menu li li a,
+.genesis-nav-menu li li a:link,
+.genesis-nav-menu li li a:visited,
+.post-comments,
+#title a,
+#title a:hover {
+  color: $links;
+}
+
+a,
+h2 a:hover,
+.genesis-nav-menu li a:hover,
+.genesis-nav-menu li:hover a,
+.genesis-nav-menu li li a:hover,
+.genesis-nav-menu .current-menu-item a {
+  color: $link_hover;
+}
+
+.post-info,
+.post-meta {
+  color: purple;
+}
+
+blockquote::before,
+blockquote p,
+input,
+select,
+textarea {
+  color: $body_text;
+}
+
+button,
+input[type="button"],
+input[type="submit"],
+.btn,
+.genesis-nav-menu .highlight-menu-item a,
+.genesis-nav-menu .highlight-menu-item a:hover,
+.navigation li a,
+.navigation li a:hover,
+.navigation li.active a,
+.navigation li.disabled {
+  color: $links;
+}
+
