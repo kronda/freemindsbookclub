@@ -1,7 +1,23 @@
+.genesis-nav-menu > li {
+  @include media($mobile) {
+    float: left;
+    width: 50%;
+    text-align: center;
+  }
+  
+}
+
 .genesis-nav-menu li li a, 
 .genesis-nav-menu li li a:link, 
 .genesis-nav-menu li li a:visited {
-  width: 20em;
+  @include media($mobile) {
+    width: 10em;
+  }
+  @include media($tablet) {
+    width: 20em;
+  }
+
+  
 }
 #subnav {
   width: 100%;

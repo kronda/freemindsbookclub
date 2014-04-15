@@ -1761,21 +1761,40 @@ h2 a:visited,
   width: 40%;
 }
 
-/* line 3, ../sass/layout/_components.scss */
-.genesis-nav-menu li li a,
-.genesis-nav-menu li li a:link,
-.genesis-nav-menu li li a:visited {
-  width: 20em;
+@media screen and (max-width: 480px) {
+  /* line 1, ../sass/layout/_components.scss */
+  .genesis-nav-menu > li {
+    float: left;
+    width: 50%;
+    text-align: center;
+  }
 }
 
-/* line 6, ../sass/layout/_components.scss */
+@media screen and (max-width: 480px) {
+  /* line 12, ../sass/layout/_components.scss */
+  .genesis-nav-menu li li a,
+  .genesis-nav-menu li li a:link,
+  .genesis-nav-menu li li a:visited {
+    width: 10em;
+  }
+}
+@media screen and (min-width: 768px) {
+  /* line 12, ../sass/layout/_components.scss */
+  .genesis-nav-menu li li a,
+  .genesis-nav-menu li li a:link,
+  .genesis-nav-menu li li a:visited {
+    width: 20em;
+  }
+}
+
+/* line 22, ../sass/layout/_components.scss */
 #subnav {
   width: 100%;
   position: absolute;
   top: 50px;
   left: 0;
 }
-/* line 12, ../sass/layout/_components.scss */
+/* line 28, ../sass/layout/_components.scss */
 #subnav .genesis-nav-menu a {
   padding: 0.5em;
 }
@@ -1820,7 +1839,7 @@ h2 a:visited,
 .genesis-nav-menu li li a:link,
 .genesis-nav-menu li li a:visited {
   background: #004f5b;
-  border-bottom: none;
+  border: none;
   color: #FFF;
 }
 
