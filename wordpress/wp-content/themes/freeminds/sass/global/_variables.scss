@@ -21,17 +21,22 @@ $wrap_bg: #f0eeeb; // cream
 $widget_bg: #f8f5f5;
 
 // Navigation
-$nav_bg: #036978; // (pick one, Tagline or background)
+$nav_bg: #004f5b; // (#036978 pick one, Tagline or background)
 $nav_dropdown_bg: #004f5b;
 $nav_link_hover: #b0cfd4;
+$nav_link_current: #b0cfd4;
 $links: #c44c18;
 $link_hover: #036978; 
 $read_more_arrow: #44818b; // (consolidate)
+$email_list_bg: #3fa02c;
+$email_list_arrow: #b0cfd4;
 
 // Text
 $body_text: #363a3b; //(dark gray) 
 $tagline: #004f5b; // (blue/green)
 $pull_quotes: #3d9baa; // (light blue)
+$font_family: Montserrat, sans-serif;
+$font_headers: 'Arvo', sans-serif;
 
 // Headers
 $h1_color: #004f5b;

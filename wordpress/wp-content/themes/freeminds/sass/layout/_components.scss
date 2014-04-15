@@ -1,5 +1,9 @@
+.genesis-nav-menu li li a, 
+.genesis-nav-menu li li a:link, 
+.genesis-nav-menu li li a:visited {
+  width: 20em;
+}
 #subnav {
-  border: 1px solid yellow;
   width: 100%;
   position: absolute;
   top: 50px;
@@ -12,3 +16,4 @@
     @extend %visuallyhidden;
   }
 }
+

@@ -80,7 +80,7 @@ body,
 input,
 textarea,
 .author-box h1 {
-  font-family: Montserrat, sans-serif;
+  font-family: $font_family;
 }
 
 h1,
@@ -91,7 +91,7 @@ h5,
 h6,
 .entry-title a,
 #title {
-  font-family: 'Lato', sans-serif;
+  font-family: $font_headers;
 }
 
 /* 03c - Font Size ----------- */

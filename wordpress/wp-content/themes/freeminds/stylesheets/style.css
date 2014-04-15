@@ -1614,7 +1614,7 @@ h5,
 h6,
 .entry-title a,
 #title {
-  font-family: 'Lato', sans-serif;
+  font-family: "Arvo", sans-serif;
 }
 
 /* 03c - Font Size ----------- */
@@ -1741,20 +1741,19 @@ h2 a:visited,
 }
 /* line 5, ../sass/layout/_base.scss */
 #header .wrap {
-  border-top: 1px solid blue;
   margin-top: 50px;
 }
-/* line 9, ../sass/layout/_base.scss */
+/* line 8, ../sass/layout/_base.scss */
 #header #title-area {
   width: 50%;
 }
 @media screen and (min-width: 768px) {
-  /* line 9, ../sass/layout/_base.scss */
+  /* line 8, ../sass/layout/_base.scss */
   #header #title-area {
     width: 100%;
   }
 }
-/* line 16, ../sass/layout/_base.scss */
+/* line 15, ../sass/layout/_base.scss */
 #header #description {
   position: absolute;
   right: 15px;
@@ -1762,37 +1761,132 @@ h2 a:visited,
   width: 40%;
 }
 
-/* line 1, ../sass/layout/_components.scss */
+/* line 3, ../sass/layout/_components.scss */
+.genesis-nav-menu li li a,
+.genesis-nav-menu li li a:link,
+.genesis-nav-menu li li a:visited {
+  width: 20em;
+}
+
+/* line 6, ../sass/layout/_components.scss */
 #subnav {
-  border: 1px solid yellow;
   width: 100%;
   position: absolute;
   top: 50px;
   left: 0;
 }
-/* line 8, ../sass/layout/_components.scss */
+/* line 12, ../sass/layout/_components.scss */
 #subnav .genesis-nav-menu a {
   padding: 0.5em;
 }
 
-/* line 1, ../sass/component/_header.scss */
+/**********************
+  Header
+***********************/
+/* line 5, ../sass/component/_header.scss */
 #header {
   background-color: #b3d1d6;
   background-image: -webkit-linear-gradient(top, #b3d1d6 0%, rgba(221, 234, 236, 0.94) 40%, white 100%);
   background-image: linear-gradient(to bottom, #b3d1d6 0%, rgba(221, 234, 236, 0.94) 40%, white 100%);
   border-bottom: none;
 }
-/* line 6, ../sass/component/_header.scss */
+/* line 10, ../sass/component/_header.scss */
 #header #description {
   color: #004f5b;
   font-weight: bold;
 }
 
-/* line 13, ../sass/component/_header.scss */
+/**********************
+  Main Navigation
+***********************/
+/* line 19, ../sass/component/_header.scss */
+#nav {
+  background: #004f5b;
+}
+
+/* line 22, ../sass/component/_header.scss */
+.genesis-nav-menu.menu-primary {
+  border-bottom: none;
+}
+
+/* line 25, ../sass/component/_header.scss */
+.genesis-nav-menu a {
+  color: #FFF;
+  font-family: "Arvo", sans-serif;
+}
+
+/* line 31, ../sass/component/_header.scss */
+.genesis-nav-menu li li a,
+.genesis-nav-menu li li a:link,
+.genesis-nav-menu li li a:visited {
+  background: #004f5b;
+  border-bottom: none;
+  color: #FFF;
+}
+
+/* line 38, ../sass/component/_header.scss */
+.genesis-nav-menu
+.current-menu-item a {
+  color: #b0cfd4;
+}
+
+/* line 42, ../sass/component/_header.scss */
+.genesis-nav-menu li a:hover,
+.genesis-nav-menu li li a:hover {
+  color: #b0cfd4;
+  background: #004f5b;
+}
+
+/**********************
+  Sub Navigation
+***********************/
+/* line 51, ../sass/component/_header.scss */
 #subnav .genesis-nav-menu.menu-secondary {
   border-bottom: none;
 }
-/* line 17, ../sass/component/_header.scss */
+/* line 55, ../sass/component/_header.scss */
 #subnav i.fa {
   font-size: 1.5em;
+  color: #363a3b;
+}
+/* line 59, ../sass/component/_header.scss */
+#subnav .email-list {
+  font-size: .85em;
+  vertical-align: 35%;
+}
+/* line 63, ../sass/component/_header.scss */
+#subnav .email-list:after {
+  content: " ";
+  left: 69%;
+  top: 50%;
+  border: solid transparent;
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(176, 207, 212, 0);
+  border-left-color: #b0cfd4;
+  border-width: 6px;
+  margin-top: -6px;
+}
+/* line 78, ../sass/component/_header.scss */
+#subnav .email-list a {
+  background-color: #3fa02c;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  padding: 0.5em 2em 0.5em 1em;
+}
+/* line 84, ../sass/component/_header.scss */
+#subnav .donate {
+  vertical-align: 30%;
+}
+/* line 87, ../sass/component/_header.scss */
+#subnav .donate a {
+  color: #c44c18;
+  padding: 1em;
+  background: transparent url('../images/donate_bg.png?1397427075') no-repeat left top;
+  background-size: cover;
 }

@@ -1,3 +1,7 @@
+/**********************
+  Header
+***********************/
+
 #header {
   background-color: rgba(179,209,214,1);
   @include background-image(linear-gradient( top, rgba(179,209,214,1) 0%, rgba(221,234,236,0.94) 40%, rgba(255,255,255,1) 100%));
@@ -9,6 +13,40 @@
   }
 }
 
+/**********************
+  Main Navigation
+***********************/
+#nav {
+  background: $nav_bg;
+}
+.genesis-nav-menu.menu-primary {
+  border-bottom: none;
+}
+.genesis-nav-menu a {
+  color: #FFF;
+  font-family: $font_headers;
+}
+.genesis-nav-menu li li a, 
+.genesis-nav-menu li li a:link, 
+.genesis-nav-menu li li a:visited {
+  background: $nav_bg;
+  border-bottom: none;
+  color: #FFF;
+
+}
+.genesis-nav-menu 
+.current-menu-item a {
+  color: $nav_link_current;
+}
+.genesis-nav-menu li a:hover,
+.genesis-nav-menu li li a:hover {
+  color: $nav_link_current;
+  background: $nav_bg;
+}
+
+/**********************
+  Sub Navigation
+***********************/
 #subnav {
   .genesis-nav-menu.menu-secondary {
     border-bottom: none;
@@ -16,6 +54,43 @@
 
   i.fa {
     font-size: 1.5em;
+    color: $body_text;
   }
+  .email-list {
+    font-size: .85em;
+    vertical-align: 35%;
 
+    &:after {
+      content: " ";
+      left: 69%;
+      top: 50%;
+      border: solid transparent;
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(176, 207, 212, 0);
+      border-left-color: $email_list_arrow;
+      border-width: 6px;
+      margin-top: -6px;
+    }
+
+    a {
+      background-color: $email_list_bg;
+      @include border-radius(5px);
+      padding: 0.5em 2em 0.5em 1em; 
+    }
+  }
+  .donate {
+    vertical-align: 30%;
+
+    a {
+      color: $links;
+      padding: 1em;
+      background: transparent image-url('donate_bg.png') no-repeat left top;
+      background-size: cover;
+    }
+    
+  }
 }
+
