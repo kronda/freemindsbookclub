@@ -1762,8 +1762,8 @@ h2 a:visited,
 }
 
 @media screen and (max-width: 480px) {
-  /* line 1, ../sass/layout/_components.scss */
-  .genesis-nav-menu > li {
+  /* line 2, ../sass/layout/_components.scss */
+  #nav .genesis-nav-menu > li {
     float: left;
     width: 50%;
     text-align: center;
@@ -1771,7 +1771,7 @@ h2 a:visited,
 }
 
 @media screen and (max-width: 480px) {
-  /* line 12, ../sass/layout/_components.scss */
+  /* line 14, ../sass/layout/_components.scss */
   .genesis-nav-menu li li a,
   .genesis-nav-menu li li a:link,
   .genesis-nav-menu li li a:visited {
@@ -1779,7 +1779,7 @@ h2 a:visited,
   }
 }
 @media screen and (min-width: 768px) {
-  /* line 12, ../sass/layout/_components.scss */
+  /* line 14, ../sass/layout/_components.scss */
   .genesis-nav-menu li li a,
   .genesis-nav-menu li li a:link,
   .genesis-nav-menu li li a:visited {
@@ -1787,14 +1787,14 @@ h2 a:visited,
   }
 }
 
-/* line 22, ../sass/layout/_components.scss */
+/* line 24, ../sass/layout/_components.scss */
 #subnav {
   width: 100%;
   position: absolute;
   top: 50px;
   left: 0;
 }
-/* line 28, ../sass/layout/_components.scss */
+/* line 30, ../sass/layout/_components.scss */
 #subnav .genesis-nav-menu a {
   padding: 0.5em;
 }

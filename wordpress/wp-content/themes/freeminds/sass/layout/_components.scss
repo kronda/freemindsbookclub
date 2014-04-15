@@ -1,11 +1,13 @@
-.genesis-nav-menu > li {
-  @include media($mobile) {
-    float: left;
-    width: 50%;
-    text-align: center;
+#nav {
+  .genesis-nav-menu > li {
+    @include media($mobile) {
+      float: left;
+      width: 50%;
+      text-align: center;
+    }
   }
-  
 }
+
 
 .genesis-nav-menu li li a, 
 .genesis-nav-menu li li a:link, 
