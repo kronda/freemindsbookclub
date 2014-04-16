@@ -1,0 +1,56 @@
+// Base
+$base-font-size: 16px;
+$base-line-height: 24px;
+$rembase: 16;
+$lineheight: 24;
+
+// Breakpoints
+$mobile: new-breakpoint(max-width 480px 4);
+$tablet: new-breakpoint(min-width 768px 12);
+$ipad: new-breakpoint(max-width 767px 12);
+$desktop: new-breakpoint(min-width 1024px 12);
+
+/* ***********
+ * Colors
+**************/
+
+// Backgrounds
+$body_bg: #6a979e; //(aqua)
+$body_border: #b0cfd4;
+$header_fade: #b3d1d6; // (aqua)
+$wrap_bg: #f0eeeb; // cream
+$widget_bg: #f8f5f5;
+
+// Navigation
+$nav_bg: #004f5b; // (#036978 pick one, Tagline or background)
+$nav_dropdown_bg: #004f5b;
+$nav_link_hover: #b0cfd4;
+$nav_link_current: #b0cfd4;
+$links: #c44c18;
+$link_hover: #036978; 
+$read_more_arrow: #44818b; // (consolidate)
+$email_list_bg: #3fa02c;
+$email_list_arrow: #b0cfd4;
+
+// Text
+$body_text: #363a3b; //(dark gray) 
+$tagline: #004f5b; // (blue/green)
+$pull_quotes: #3d9baa; // (light blue)
+$font_family: Montserrat, sans-serif;
+$font_headers: 'Arvo', sans-serif;
+
+// Headers
+$h1_color: #004f5b; // dark green
+$h2_color: #3d9baa; // blue green
+$h3_color: #3fa02c; // bright green
+
+/* ***************
+ * Header Sizes
+******************/
+
+$h1_size: 30px; // 24pt
+$h2_size: 28px; // 22pt
+$h3_size: 24px; // 20pt
+$h4_size: 20px; // 18pt
+$h5_size: 18px; // 18pt
+$h6_size: 18px; // 18pt
