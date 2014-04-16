@@ -1539,14 +1539,23 @@ body {
   color: #363a3b;
 }
 
-/* line 38, ../sass/base/_html.scss */
-a:hover,
+/* line 25, ../sass/base/_html.scss */
+a {
+  color: #c44c18;
+  text-decoration: none;
+}
+
+/* line 29, ../sass/base/_html.scss */
+a:hover {
+  color: #036978;
+}
+
+/* line 43, ../sass/base/_html.scss */
 h2 a,
 h2 a:visited,
 h4.widgettitle a,
 input,
 .author,
-.date,
 .genesis-nav-menu a,
 .genesis-nav-menu li li a,
 .genesis-nav-menu li li a:link,
@@ -1557,8 +1566,7 @@ input,
   color: #c44c18;
 }
 
-/* line 47, ../sass/base/_html.scss */
-a,
+/* line 51, ../sass/base/_html.scss */
 h2 a:hover,
 .genesis-nav-menu li a:hover,
 .genesis-nav-menu li:hover a,
@@ -1567,13 +1575,13 @@ h2 a:hover,
   color: #036978;
 }
 
-/* line 52, ../sass/base/_html.scss */
+/* line 56, ../sass/base/_html.scss */
 .post-info,
 .post-meta {
   color: #363a3b;
 }
 
-/* line 60, ../sass/base/_html.scss */
+/* line 64, ../sass/base/_html.scss */
 blockquote::before,
 blockquote p,
 input,
@@ -1582,7 +1590,7 @@ textarea {
   color: #363a3b;
 }
 
-/* line 73, ../sass/base/_html.scss */
+/* line 77, ../sass/base/_html.scss */
 button,
 input[type="button"],
 input[type="submit"],
@@ -1596,8 +1604,30 @@ input[type="submit"],
   color: #c44c18;
 }
 
+/* line 83, ../sass/base/_html.scss */
+button,
+input[type="button"],
+input[type="submit"] {
+  color: #FFF;
+  background: #3fa02c;
+}
+
+/* line 90, ../sass/base/_html.scss */
+.comment-meta a,
+.comment-author a,
+.comment-reply-link {
+  color: #3fa02c;
+}
+
+/* line 94, ../sass/base/_html.scss */
+.comment {
+  background-color: #FFF;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 5px #dddddd inset;
+}
+
 /* 03b - Font Family ----------- */
-/* line 82, ../sass/base/_html.scss */
+/* line 105, ../sass/base/_html.scss */
 body,
 input,
 textarea,
@@ -1605,7 +1635,7 @@ textarea,
   font-family: Montserrat, sans-serif;
 }
 
-/* line 93, ../sass/base/_html.scss */
+/* line 116, ../sass/base/_html.scss */
 h1,
 h2,
 h3,
@@ -1617,63 +1647,69 @@ h6,
   font-family: "Arvo", sans-serif;
 }
 
-/* 03c - Font Size ----------- */
-/* line 99, ../sass/base/_html.scss */
+/* 03c - Font Size & Header colors----------- */
+/* line 122, ../sass/base/_html.scss */
 #title {
-  font-size: 42px;
-  font-size: 2.625rem;
-}
-
-/* line 106, ../sass/base/_html.scss */
-h1,
-.entry-title,
-.entry-title a {
-  font-size: 36px;
-  font-size: 2.25rem;
-}
-
-/* line 111, ../sass/base/_html.scss */
-blockquote::before {
-  font-size: 32px;
-  font-size: 2rem;
-}
-
-/* line 116, ../sass/base/_html.scss */
-h2 {
   font-size: 30px;
-  font-size: 1.875rem;
-}
-
-/* line 121, ../sass/base/_html.scss */
-h3 {
-  font-size: 24px;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 /* line 129, ../sass/base/_html.scss */
+h1,
+.entry-title,
+.entry-title a {
+  font-size: 30px;
+  font-size: 1.875rem;
+  color: #004f5b;
+}
+
+/* line 135, ../sass/base/_html.scss */
+blockquote::before {
+  font-size: 30px;
+  font-size: 1.5rem;
+}
+
+/* line 140, ../sass/base/_html.scss */
+h2 {
+  font-size: 24px;
+  font-size: 1.5rem;
+  color: #3d9baa;
+}
+
+/* line 146, ../sass/base/_html.scss */
+h3 {
+  font-size: 22px;
+  font-size: 1.375rem;
+  color: #3fa02c;
+}
+
+/* line 155, ../sass/base/_html.scss */
 h4,
 .archive-title,
 .taxonomy-description h1,
 .widgettitle {
   font-size: 20px;
   font-size: 1.25rem;
+  color: #004f5b;
 }
 
-/* line 134, ../sass/base/_html.scss */
+/* line 161, ../sass/base/_html.scss */
 h5 {
   font-size: 18px;
   font-size: 1.125rem;
+  color: #3d9baa;
 }
 
-/* line 141, ../sass/base/_html.scss */
+/* line 169, ../sass/base/_html.scss */
 h6,
 .author-box h1,
 .sidebar h2 a {
   font-size: 16px;
   font-size: 1rem;
+  color: #3fa02c;
 }
 
-/* line 153, ../sass/base/_html.scss */
+/* line 182, ../sass/base/_html.scss */
 input,
 select,
 textarea,
@@ -1687,17 +1723,17 @@ textarea,
 }
 
 /* 03d - Font Miscellaneous ----------- */
-/* line 161, ../sass/base/_html.scss */
+/* line 190, ../sass/base/_html.scss */
 blockquote p {
   font-style: italic;
 }
 
-/* line 165, ../sass/base/_html.scss */
+/* line 194, ../sass/base/_html.scss */
 cite {
   font-style: normal;
 }
 
-/* line 186, ../sass/base/_html.scss */
+/* line 215, ../sass/base/_html.scss */
 button,
 input[type="button"],
 input[type="submit"],
@@ -1719,12 +1755,12 @@ h6,
   font-weight: 700;
 }
 
-/* line 190, ../sass/base/_html.scss */
+/* line 219, ../sass/base/_html.scss */
 .wp-caption {
   text-align: center;
 }
 
-/* line 199, ../sass/base/_html.scss */
+/* line 228, ../sass/base/_html.scss */
 h2 a,
 h2 a:visited,
 .genesis-nav-menu a,
@@ -1734,31 +1770,76 @@ h2 a:visited,
   text-decoration: none;
 }
 
+/* line 233, ../sass/base/_html.scss */
+#comments h3,
+.comment-reply-title {
+  color: #3d9baa;
+}
+
+/**********************
+  Footer
+***********************/
+/* line 240, ../sass/base/_html.scss */
+#footer {
+  background: #004f5b;
+  color: #FFF;
+}
+/* line 244, ../sass/base/_html.scss */
+#footer a {
+  color: #FFF;
+}
+/* line 248, ../sass/base/_html.scss */
+#footer .wrap {
+  border: none;
+}
+
 /* line 1, ../sass/layout/_base.scss */
+#wrap {
+  position: relative;
+}
+
+/* line 4, ../sass/layout/_base.scss */
 #header {
   padding-bottom: 0;
   position: relative;
 }
-/* line 5, ../sass/layout/_base.scss */
+/* line 8, ../sass/layout/_base.scss */
 #header .wrap {
   margin-top: 50px;
 }
-/* line 8, ../sass/layout/_base.scss */
+/* line 11, ../sass/layout/_base.scss */
 #header #title-area {
   width: 50%;
 }
 @media screen and (min-width: 768px) {
-  /* line 8, ../sass/layout/_base.scss */
+  /* line 11, ../sass/layout/_base.scss */
   #header #title-area {
     width: 100%;
   }
 }
-/* line 15, ../sass/layout/_base.scss */
+/* line 18, ../sass/layout/_base.scss */
 #header #description {
   position: absolute;
   right: 15px;
   bottom: 15px;
   width: 40%;
+}
+
+/* line 26, ../sass/layout/_base.scss */
+#inner {
+  padding: 1.5em;
+}
+
+/* line 31, ../sass/layout/_base.scss */
+.entry,
+.page .post.entry {
+  margin-bottom: 24px;
+  margin-bottom: 2em;
+}
+
+/* line 36, ../sass/layout/_base.scss */
+#footer .wrap {
+  padding: 0 1.5em;
 }
 
 @media screen and (max-width: 480px) {
@@ -1791,10 +1872,41 @@ h2 a:visited,
 #subnav {
   width: 100%;
   position: absolute;
-  top: 50px;
+  top: 5px;
   left: 0;
 }
-/* line 30, ../sass/layout/_components.scss */
+@media screen and (min-width: 768px) {
+  /* line 24, ../sass/layout/_components.scss */
+  #subnav {
+    width: auto;
+    left: auto;
+    right: 10px;
+  }
+  /* line 35, ../sass/layout/_components.scss */
+  #subnav .donate {
+    clear: both;
+    margin-left: 38%;
+    width: 154px;
+    text-align: center;
+  }
+}
+/* line 43, ../sass/layout/_components.scss */
+#subnav .email-list {
+  position: relative;
+}
+@media screen and (max-width: 480px) {
+  /* line 43, ../sass/layout/_components.scss */
+  #subnav .email-list {
+    vertical-align: 35%;
+  }
+}
+@media screen and (min-width: 768px) {
+  /* line 43, ../sass/layout/_components.scss */
+  #subnav .email-list {
+    margin-top: 5px;
+  }
+}
+/* line 52, ../sass/layout/_components.scss */
 #subnav .genesis-nav-menu a {
   padding: 0.5em;
 }
@@ -1871,12 +1983,11 @@ h2 a:visited,
 /* line 59, ../sass/component/_header.scss */
 #subnav .email-list {
   font-size: .85em;
-  vertical-align: 35%;
 }
-/* line 63, ../sass/component/_header.scss */
+/* line 62, ../sass/component/_header.scss */
 #subnav .email-list:after {
   content: " ";
-  left: 69%;
+  left: 90%;
   top: 50%;
   border: solid transparent;
   height: 0;
@@ -1888,7 +1999,7 @@ h2 a:visited,
   border-width: 6px;
   margin-top: -6px;
 }
-/* line 78, ../sass/component/_header.scss */
+/* line 77, ../sass/component/_header.scss */
 #subnav .email-list a {
   background-color: #3fa02c;
   -webkit-border-radius: 5px;
@@ -1898,14 +2009,22 @@ h2 a:visited,
   border-radius: 5px;
   padding: 0.5em 2em 0.5em 1em;
 }
-/* line 84, ../sass/component/_header.scss */
+/* line 83, ../sass/component/_header.scss */
 #subnav .donate {
   vertical-align: 30%;
 }
-/* line 87, ../sass/component/_header.scss */
+/* line 86, ../sass/component/_header.scss */
 #subnav .donate a {
   color: #c44c18;
   padding: 1em;
   background: transparent url('../images/donate_bg.png?1397427075') no-repeat left top;
   background-size: cover;
+}
+
+/**********************
+  Widgets
+***********************/
+/* line 5, ../sass/component/_sidebar.scss */
+.sidebar .widget {
+  border: none;
 }

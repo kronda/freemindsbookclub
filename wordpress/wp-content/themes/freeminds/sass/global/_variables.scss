@@ -39,17 +39,15 @@ $font_family: Montserrat, sans-serif;
 $font_headers: 'Arvo', sans-serif;
 
 // Headers
-$h1_color: #004f5b;
-$h2_color: #3d9baa;
-$h3_color: #3fa02c;
-$h4_color: #036978; //(same as hover: Change)
-$h5_color: #3d9baa;
+$h1_color: #004f5b; // dark green
+$h2_color: #3d9baa; // blue green
+$h3_color: #3fa02c; // bright green
 
 /* ***************
  * Header Sizes
 ******************/
 
-$h1_size: 32px; // 24pt
+$h1_size: 30px; // 24pt
 $h2_size: 28px; // 22pt
 $h3_size: 24px; // 20pt
 $h4_size: 20px; // 18pt

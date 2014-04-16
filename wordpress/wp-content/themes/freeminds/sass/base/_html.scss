@@ -22,13 +22,18 @@ body {
 body {
   color: $body_text;
 }
-a:hover,
+a {
+  color: $links;
+  text-decoration: none;
+}
+a:hover {
+  color: $link_hover;
+}
 h2 a,
 h2 a:visited,
 h4.widgettitle a,
 input,
 .author,
-.date,
 .genesis-nav-menu a,
 .genesis-nav-menu li li a,
 .genesis-nav-menu li li a:link,
@@ -39,7 +44,6 @@ input,
   color: $links;
 }
 
-a,
 h2 a:hover,
 .genesis-nav-menu li a:hover,
 .genesis-nav-menu li:hover a,
@@ -74,6 +78,25 @@ input[type="submit"],
   color: $links;
 }
 
+button,
+input[type="button"],
+input[type="submit"] {
+  color: #FFF;
+  background: $h3_color;
+}
+
+.comment-meta a,
+.comment-author a,
+.comment-reply-link {
+  color: $h3_color
+}
+
+.comment {
+  background-color: #FFF;
+  border: 1px solid #ddd;
+  @include box-shadow(0 0 5px #ddd inset);
+}
+
 /* 03b - Font Family ----------- */
 
 body,
@@ -94,33 +117,36 @@ h6,
   font-family: $font_headers;
 }
 
-/* 03c - Font Size ----------- */
+/* 03c - Font Size & Header colors----------- */
 
 #title {
-  font-size: 42px;
-  font-size: 2.625rem;
+  font-size: 30px;
+  font-size: 1.25rem;
 }
 
 h1,
 .entry-title,
 .entry-title a {
-  font-size: 36px;
-  font-size: 2.25rem;
+  font-size: 30px;
+  font-size: 1.875rem;
+  color: $h1_color;
 }
 
 blockquote::before {
-  font-size: 32px;
-  font-size: 2rem;
+  font-size: 30px;
+  font-size: 1.5rem;
 }
 
 h2 {
-  font-size: 30px;
-  font-size: 1.875rem;
+  font-size: 24px;
+  font-size: 1.5rem;
+  color: $h2_color;
 }
 
 h3 {
-  font-size: 24px;
-  font-size: 1.5rem;
+  font-size: 22px;
+  font-size: 1.375rem;
+  color: $h3_color;
 }
 
 h4,
@@ -129,11 +155,13 @@ h4,
 .widgettitle {
   font-size: 20px;
   font-size: 1.25rem;
+  color: $h1_color;
 }
 
 h5 {
   font-size: 18px;
   font-size: 1.125rem;
+  color: $h2_color;
 }
 
 h6,
@@ -141,6 +169,7 @@ h6,
 .sidebar h2 a {
   font-size: 16px;
   font-size: 1rem;
+  color: $h3_color;
 }
 
 input,
@@ -200,3 +229,24 @@ h2 a:visited,
   text-decoration: none;
 }
 
+#comments h3,
+.comment-reply-title {
+  color: $h2_color;
+}
+
+/**********************
+  Footer
+***********************/
+#footer {
+  background: $nav_bg;
+  color: #FFF;
+
+  a {
+    color: #FFF;
+  }
+
+  .wrap {
+    border: none;
+  }
+
+}

@@ -1,3 +1,6 @@
+#wrap {
+  position: relative;
+}
 #header {
   padding-bottom: 0;
   position: relative;
@@ -20,3 +23,17 @@
   }
 }
 
+#inner {
+  padding: 1.5em;
+}
+
+.entry, 
+.page .post.entry {
+  margin-bottom: 24px;
+  margin-bottom: 2em;
+}
+#footer {
+  .wrap {
+    padding: 0 1.5em;
+  }
+}

@@ -24,14 +24,38 @@
 #subnav {
   width: 100%;
   position: absolute;
-  top: 50px;
+  top: 5px;
   left: 0; 
 
+  @include media($tablet) {
+    width: auto;
+    left: auto;
+    right: 10px;
+
+    .donate {
+      clear: both;
+      margin-left: 38%;
+      width: 154px;
+      text-align: center;
+    }
+  }
+
+  .email-list {
+    position: relative;
+    @include media($mobile) {
+      vertical-align: 35%;
+    }
+    @include media($tablet) {
+      margin-top: 5px;
+    }
+  }
   .genesis-nav-menu a {
     padding: 0.5em;
   }
   .fontawesome-text {
     @extend %visuallyhidden;
   }
+
+
 }
 
