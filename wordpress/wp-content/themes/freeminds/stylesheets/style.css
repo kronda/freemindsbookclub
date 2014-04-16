@@ -1803,41 +1803,59 @@ h2 a:visited,
   padding-bottom: 0;
   position: relative;
 }
-/* line 8, ../sass/layout/_base.scss */
+@media screen and (min-width: 768px) {
+  /* line 7, ../sass/layout/_base.scss */
+  #header #title {
+    margin-top: 0;
+  }
+}
+/* line 12, ../sass/layout/_base.scss */
 #header .wrap {
   margin-top: 50px;
 }
-/* line 11, ../sass/layout/_base.scss */
+@media screen and (min-width: 768px) {
+  /* line 12, ../sass/layout/_base.scss */
+  #header .wrap {
+    margin-top: 0;
+  }
+}
+/* line 19, ../sass/layout/_base.scss */
 #header #title-area {
   width: 50%;
 }
 @media screen and (min-width: 768px) {
-  /* line 11, ../sass/layout/_base.scss */
+  /* line 19, ../sass/layout/_base.scss */
   #header #title-area {
     width: 100%;
   }
 }
-/* line 18, ../sass/layout/_base.scss */
+/* line 26, ../sass/layout/_base.scss */
 #header #description {
   position: absolute;
   right: 15px;
   bottom: 15px;
   width: 40%;
 }
+@media screen and (min-width: 768px) {
+  /* line 26, ../sass/layout/_base.scss */
+  #header #description {
+    width: 50%;
+  }
+}
 
-/* line 26, ../sass/layout/_base.scss */
+/* line 38, ../sass/layout/_base.scss */
 #inner {
   padding: 1.5em;
 }
 
-/* line 31, ../sass/layout/_base.scss */
+/* line 43, ../sass/layout/_base.scss */
 .entry,
 .page .post.entry {
   margin-bottom: 24px;
   margin-bottom: 2em;
 }
 
-/* line 36, ../sass/layout/_base.scss */
+/* line 48, ../sass/layout/_base.scss */
 #footer .wrap {
   padding: 0 1.5em;
 }
@@ -1889,24 +1907,28 @@ h2 a:visited,
     width: 154px;
     text-align: center;
   }
+  /* line 41, ../sass/layout/_components.scss */
+  #subnav .donate a {
+    min-height: 55px;
+  }
 }
-/* line 43, ../sass/layout/_components.scss */
+/* line 47, ../sass/layout/_components.scss */
 #subnav .email-list {
   position: relative;
 }
-@media screen and (max-width: 480px) {
-  /* line 43, ../sass/layout/_components.scss */
+@media screen and (max-width: 767px) {
+  /* line 47, ../sass/layout/_components.scss */
   #subnav .email-list {
     vertical-align: 35%;
   }
 }
 @media screen and (min-width: 768px) {
-  /* line 43, ../sass/layout/_components.scss */
+  /* line 47, ../sass/layout/_components.scss */
   #subnav .email-list {
     margin-top: 5px;
   }
 }
-/* line 52, ../sass/layout/_components.scss */
+/* line 56, ../sass/layout/_components.scss */
 #subnav .genesis-nav-menu a {
   padding: 0.5em;
 }
@@ -2019,6 +2041,12 @@ h2 a:visited,
   padding: 1em;
   background: transparent url('../images/donate_bg.png?1397427075') no-repeat left top;
   background-size: cover;
+}
+
+/* line 3, ../sass/component/_blog.scss */
+#content .navigation a {
+  color: #FFF;
+  background-color: #3fa02c;
 }
 
 /**********************
