@@ -14,6 +14,7 @@ function sample_viewport_meta_tag() {
 
 // Add support for custom background
 add_theme_support( 'custom-background' );
+add_theme_support( 'post-thumbnail');
 
 // Add support for custom header
 // add_theme_support( 'genesis-custom-header', array(
