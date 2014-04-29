@@ -73,6 +73,17 @@ register_sidebar( array(
   'after_title' => '</h3>',
 ));
 
+//* Register after post widget area
+genesis_register_sidebar( array(
+  'id'            => 'featured-success-story',
+  'name'          => __( 'Featured Success Story', 'freeminds' ),
+  'description'   => __( 'Featured success story on home page', 'freeminds' ),
+  'before_widget' => '<div id="%1$s" class="%2$s">',
+  'after_widget' => '</div>',
+  'before_title' => '<h3 class="featured-img">',
+  'after_title' => '</h3>',
+) );
+
 /** Exclude Audio Video category from posts */
 add_action( 'pre_get_posts', 'freeminds_exclude_category_from_blog' );
 function freeminds_exclude_category_from_blog( $query ) {
