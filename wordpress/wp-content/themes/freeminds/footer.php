@@ -14,8 +14,8 @@
 genesis_structural_wrap( 'footer', 'close' );
 echo '</div>'; //* end .site-inner or #inner
 
-echo '<footer class="site-footer">';
-
+echo '<div id="footer" class="footer">';
+  genesis_structural_wrap( 'footer-widgets', 'open' );
   echo '<div class="footer-1 two-thirds first">';
     if ( dynamic_sidebar('Footer 1') ) : 
     endif;
@@ -26,7 +26,7 @@ echo '<footer class="site-footer">';
     endif;
   echo '</div>';
 
-echo '</footer>';
+echo '</div>';
 
 echo '</div>'; //* end .site-container or #wrap
 
