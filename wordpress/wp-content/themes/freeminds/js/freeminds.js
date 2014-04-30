@@ -15,5 +15,6 @@ jQuery( document ).ready( function( $ ) {
 
   });
 
-
+  // Wrap the text elements in the home page featured success story so we can make it look like like a widget
+  $('#featured-post-4 div > a').nextAll().wrapAll('<div id="featured-post-teaser" />');
 });
