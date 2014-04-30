@@ -1803,23 +1803,22 @@ h2 a:visited,
 .more-link {
   font-weight: bold;
   position: relative;
-  float: right;
   padding-right: 30px;
 }
 
 /**********************
   Footer
 ***********************/
-/* line 258, ../sass/base/_html.scss */
+/* line 257, ../sass/base/_html.scss */
 #footer {
   background: #004f5b;
   color: #FFF;
 }
-/* line 262, ../sass/base/_html.scss */
+/* line 261, ../sass/base/_html.scss */
 #footer a {
   color: #FFF;
 }
-/* line 266, ../sass/base/_html.scss */
+/* line 265, ../sass/base/_html.scss */
 #footer .wrap {
   border: none;
 }
@@ -1980,17 +1979,33 @@ img {
   border: 1px solid green;
 }
 
-/* line 5, ../sass/layout/_home.scss */
+/* line 4, ../sass/layout/_home.scss */
+#featured-post-teaser {
+  *zoom: 1;
+  clear: right;
+  padding: 1.5em;
+}
+/* line 18, ../sass/bourbon/addons/_clearfix.scss */
+#featured-post-teaser:before, #featured-post-teaser:after {
+  content: " ";
+  display: table;
+}
+/* line 23, ../sass/bourbon/addons/_clearfix.scss */
+#featured-post-teaser:after {
+  clear: both;
+}
+
+/* line 9, ../sass/layout/_home.scss */
 .poetry-teaser {
   border: 1px solid blue;
 }
 
-/* line 9, ../sass/layout/_home.scss */
+/* line 13, ../sass/layout/_home.scss */
 .news-teaser {
   border: 1px solid red;
 }
 
-/* line 13, ../sass/layout/_home.scss */
+/* line 17, ../sass/layout/_home.scss */
 .home-feature-quote {
   border: 1px solid yellow;
   clear: both;

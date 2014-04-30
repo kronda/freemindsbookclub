@@ -1,7 +1,11 @@
 .home-feature-wrap {
   border: 1px solid green;
 }
-
+#featured-post-teaser {
+  @include clearfix();
+  clear: right;
+  padding: 1.5em;
+}
 .poetry-teaser {
   border: 1px solid blue;
 }
