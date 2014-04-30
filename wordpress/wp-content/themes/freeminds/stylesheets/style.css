@@ -35,6 +35,21 @@
   height: 1px;
 }
 
+/* line 12, ../sass/global/_mixins.scss */
+.more-link:after {
+  content: " ";
+  position: absolute;
+  left: 80%;
+  top: 15%;
+  border: solid transparent;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+  border-color: rgba(0, 79, 91, 0);
+  border-left-color: #004f5b;
+  border-width: 8px;
+}
+
 /* Table of Contents
 
   01 Import Fonts
@@ -1550,7 +1565,7 @@ a:hover {
   color: #036978;
 }
 
-/* line 43, ../sass/base/_html.scss */
+/* line 44, ../sass/base/_html.scss */
 h2 a,
 h2 a:visited,
 h4.widgettitle a,
@@ -1562,11 +1577,12 @@ input,
 .genesis-nav-menu li li a:visited,
 .post-comments,
 #title a,
+#title a:visited,
 #title a:hover {
-  color: #c44c18;
+  color: #004f5b;
 }
 
-/* line 51, ../sass/base/_html.scss */
+/* line 52, ../sass/base/_html.scss */
 h2 a:hover,
 .genesis-nav-menu li a:hover,
 .genesis-nav-menu li:hover a,
@@ -1575,13 +1591,13 @@ h2 a:hover,
   color: #036978;
 }
 
-/* line 56, ../sass/base/_html.scss */
+/* line 57, ../sass/base/_html.scss */
 .post-info,
 .post-meta {
   color: #363a3b;
 }
 
-/* line 64, ../sass/base/_html.scss */
+/* line 65, ../sass/base/_html.scss */
 blockquote::before,
 blockquote p,
 input,
@@ -1590,7 +1606,7 @@ textarea {
   color: #363a3b;
 }
 
-/* line 77, ../sass/base/_html.scss */
+/* line 78, ../sass/base/_html.scss */
 button,
 input[type="button"],
 input[type="submit"],
@@ -1604,7 +1620,7 @@ input[type="submit"],
   color: #c44c18;
 }
 
-/* line 83, ../sass/base/_html.scss */
+/* line 84, ../sass/base/_html.scss */
 button,
 input[type="button"],
 input[type="submit"] {
@@ -1612,50 +1628,30 @@ input[type="submit"] {
   background: #3fa02c;
 }
 
-/* line 90, ../sass/base/_html.scss */
+/* line 91, ../sass/base/_html.scss */
 .comment-meta a,
 .comment-author a,
 .comment-reply-link {
   color: #3fa02c;
 }
 
-/* line 94, ../sass/base/_html.scss */
+/* line 95, ../sass/base/_html.scss */
 .comment {
   background-color: #FFF;
   border: 1px solid #ddd;
   box-shadow: 0 0 5px #dddddd inset;
 }
 
-/* 03b - Font Family ----------- */
-/* line 105, ../sass/base/_html.scss */
-body,
-input,
-textarea,
-.author-box h1 {
-  font-family: Montserrat, sans-serif;
-}
-
-/* line 116, ../sass/base/_html.scss */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.entry-title a,
-#title {
-  font-family: "Arvo", sans-serif;
-}
-
 /* 03c - Font Size & Header colors----------- */
-/* line 122, ../sass/base/_html.scss */
+/* line 103, ../sass/base/_html.scss */
 #title {
   font-size: 30px;
   font-size: 1.25rem;
 }
 
-/* line 129, ../sass/base/_html.scss */
+/* line 111, ../sass/base/_html.scss */
 h1,
+.h1 a,
 .entry-title,
 .entry-title a {
   font-size: 30px;
@@ -1663,28 +1659,25 @@ h1,
   color: #004f5b;
 }
 
-/* line 135, ../sass/base/_html.scss */
-blockquote::before {
-  font-size: 30px;
-  font-size: 1.5rem;
-}
-
-/* line 140, ../sass/base/_html.scss */
-h2 {
+/* line 118, ../sass/base/_html.scss */
+h2,
+h2 a {
   font-size: 24px;
   font-size: 1.5rem;
   color: #3d9baa;
 }
 
-/* line 146, ../sass/base/_html.scss */
-h3 {
+/* line 125, ../sass/base/_html.scss */
+h3,
+h3 a {
   font-size: 22px;
   font-size: 1.375rem;
   color: #3fa02c;
 }
 
-/* line 155, ../sass/base/_html.scss */
+/* line 135, ../sass/base/_html.scss */
 h4,
+h4 a,
 .archive-title,
 .taxonomy-description h1,
 .widgettitle {
@@ -1693,15 +1686,17 @@ h4,
   color: #004f5b;
 }
 
-/* line 161, ../sass/base/_html.scss */
-h5 {
+/* line 142, ../sass/base/_html.scss */
+h5,
+h5 a {
   font-size: 18px;
   font-size: 1.125rem;
   color: #3d9baa;
 }
 
-/* line 169, ../sass/base/_html.scss */
+/* line 151, ../sass/base/_html.scss */
 h6,
+h6 a,
 .author-box h1,
 .sidebar h2 a {
   font-size: 16px;
@@ -1709,7 +1704,7 @@ h6,
   color: #3fa02c;
 }
 
-/* line 182, ../sass/base/_html.scss */
+/* line 164, ../sass/base/_html.scss */
 input,
 select,
 textarea,
@@ -1722,18 +1717,46 @@ textarea,
   font-size: 0.875rem;
 }
 
+/* 03b - Font Family ----------- */
+/* line 174, ../sass/base/_html.scss */
+body,
+input,
+textarea,
+.author-box h1 {
+  font-family: Montserrat, sans-serif;
+}
+
+/* line 185, ../sass/base/_html.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.entry-title a,
+#title {
+  font-family: "Arvo", sans-serif;
+  line-height: 1.5;
+}
+
 /* 03d - Font Miscellaneous ----------- */
-/* line 190, ../sass/base/_html.scss */
+/* line 192, ../sass/base/_html.scss */
+blockquote::before {
+  font-size: 30px;
+  font-size: 1.5rem;
+}
+
+/* line 197, ../sass/base/_html.scss */
 blockquote p {
   font-style: italic;
 }
 
-/* line 194, ../sass/base/_html.scss */
+/* line 201, ../sass/base/_html.scss */
 cite {
   font-style: normal;
 }
 
-/* line 215, ../sass/base/_html.scss */
+/* line 222, ../sass/base/_html.scss */
 button,
 input[type="button"],
 input[type="submit"],
@@ -1755,12 +1778,12 @@ h6,
   font-weight: 700;
 }
 
-/* line 219, ../sass/base/_html.scss */
+/* line 226, ../sass/base/_html.scss */
 .wp-caption {
   text-align: center;
 }
 
-/* line 228, ../sass/base/_html.scss */
+/* line 235, ../sass/base/_html.scss */
 h2 a,
 h2 a:visited,
 .genesis-nav-menu a,
@@ -1770,66 +1793,85 @@ h2 a:visited,
   text-decoration: none;
 }
 
-/* line 233, ../sass/base/_html.scss */
+/* line 240, ../sass/base/_html.scss */
 #comments h3,
 .comment-reply-title {
   color: #3d9baa;
 }
 
+/* line 244, ../sass/base/_html.scss */
+.more-link {
+  font-weight: bold;
+  position: relative;
+  float: right;
+  padding-right: 30px;
+}
+
 /**********************
   Footer
 ***********************/
-/* line 240, ../sass/base/_html.scss */
+/* line 258, ../sass/base/_html.scss */
 #footer {
   background: #004f5b;
   color: #FFF;
 }
-/* line 244, ../sass/base/_html.scss */
+/* line 262, ../sass/base/_html.scss */
 #footer a {
   color: #FFF;
 }
-/* line 248, ../sass/base/_html.scss */
+/* line 266, ../sass/base/_html.scss */
 #footer .wrap {
   border: none;
 }
 
 /* line 1, ../sass/layout/_base.scss */
+p {
+  margin-bottom: 1.5em;
+  line-height: 1.5;
+}
+
+/* line 6, ../sass/layout/_base.scss */
+img {
+  margin-bottom: 1em;
+}
+
+/* line 9, ../sass/layout/_base.scss */
 #wrap {
   position: relative;
 }
 
-/* line 4, ../sass/layout/_base.scss */
+/* line 12, ../sass/layout/_base.scss */
 #header {
   padding-bottom: 0;
   position: relative;
 }
 @media screen and (min-width: 768px) {
-  /* line 7, ../sass/layout/_base.scss */
+  /* line 15, ../sass/layout/_base.scss */
   #header #title {
     margin-top: 0;
   }
 }
-/* line 12, ../sass/layout/_base.scss */
+/* line 20, ../sass/layout/_base.scss */
 #header .wrap {
   margin-top: 50px;
 }
 @media screen and (min-width: 768px) {
-  /* line 12, ../sass/layout/_base.scss */
+  /* line 20, ../sass/layout/_base.scss */
   #header .wrap {
     margin-top: 0;
   }
 }
-/* line 19, ../sass/layout/_base.scss */
+/* line 27, ../sass/layout/_base.scss */
 #header #title-area {
   width: 50%;
 }
 @media screen and (min-width: 768px) {
-  /* line 19, ../sass/layout/_base.scss */
+  /* line 27, ../sass/layout/_base.scss */
   #header #title-area {
     width: 100%;
   }
 }
-/* line 26, ../sass/layout/_base.scss */
+/* line 34, ../sass/layout/_base.scss */
 #header #description {
   position: absolute;
   right: 15px;
@@ -1837,25 +1879,25 @@ h2 a:visited,
   width: 40%;
 }
 @media screen and (min-width: 768px) {
-  /* line 26, ../sass/layout/_base.scss */
+  /* line 34, ../sass/layout/_base.scss */
   #header #description {
     width: 50%;
   }
 }
 
-/* line 38, ../sass/layout/_base.scss */
+/* line 46, ../sass/layout/_base.scss */
 #inner {
   padding: 1.5em;
 }
 
-/* line 43, ../sass/layout/_base.scss */
+/* line 51, ../sass/layout/_base.scss */
 .entry,
 .page .post.entry {
   margin-bottom: 24px;
   margin-bottom: 2em;
 }
 
-/* line 48, ../sass/layout/_base.scss */
+/* line 56, ../sass/layout/_base.scss */
 #footer .wrap {
   padding: 0 1.5em;
 }
@@ -1931,6 +1973,27 @@ h2 a:visited,
 /* line 56, ../sass/layout/_components.scss */
 #subnav .genesis-nav-menu a {
   padding: 0.5em;
+}
+
+/* line 1, ../sass/layout/_home.scss */
+.home-feature-wrap {
+  border: 1px solid green;
+}
+
+/* line 5, ../sass/layout/_home.scss */
+.poetry-teaser {
+  border: 1px solid blue;
+}
+
+/* line 9, ../sass/layout/_home.scss */
+.news-teaser {
+  border: 1px solid red;
+}
+
+/* line 13, ../sass/layout/_home.scss */
+.home-feature-quote {
+  border: 1px solid yellow;
+  clear: both;
 }
 
 /**********************
@@ -2009,19 +2072,19 @@ h2 a:visited,
 /* line 62, ../sass/component/_header.scss */
 #subnav .email-list:after {
   content: " ";
+  position: absolute;
   left: 90%;
   top: 50%;
   border: solid transparent;
   height: 0;
   width: 0;
-  position: absolute;
   pointer-events: none;
   border-color: rgba(176, 207, 212, 0);
   border-left-color: #b0cfd4;
   border-width: 6px;
   margin-top: -6px;
 }
-/* line 77, ../sass/component/_header.scss */
+/* line 66, ../sass/component/_header.scss */
 #subnav .email-list a {
   background-color: #3fa02c;
   -webkit-border-radius: 5px;
@@ -2031,16 +2094,21 @@ h2 a:visited,
   border-radius: 5px;
   padding: 0.5em 2em 0.5em 1em;
 }
-/* line 83, ../sass/component/_header.scss */
+/* line 72, ../sass/component/_header.scss */
 #subnav .donate {
   vertical-align: 30%;
 }
-/* line 86, ../sass/component/_header.scss */
+/* line 75, ../sass/component/_header.scss */
 #subnav .donate a {
   color: #c44c18;
   padding: 1em;
   background: transparent url('../images/donate_bg.png?1397427075') no-repeat left top;
   background-size: cover;
+}
+
+/* line 5, ../sass/component/_home.scss */
+#featured-post-teaser {
+  background: #f8f5f5;
 }
 
 /* line 3, ../sass/component/_blog.scss */

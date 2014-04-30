@@ -8,4 +8,32 @@
   width: 1px;
   height: 1px;
 }
-  
+
+%more_link {
+  content: " ";
+  position: absolute;
+  left: 80%;
+  top: 15%;
+  border: solid transparent;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+  border-color: $link_title_rgba;
+  border-left-color: $link_title;
+  border-width: 8px; 
+}
+
+@mixin email_arrow_after( $color, $color_rgba ) {
+  content: " ";
+  position: absolute;
+  left: 90%;
+  top: 50%;
+  border: solid transparent;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+  border-color: $color_rgba;
+  border-left-color: $color;
+  border-width: 6px;
+  margin-top: -6px;
+}
