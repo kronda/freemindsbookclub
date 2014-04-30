@@ -26,7 +26,17 @@ add_theme_support( 'post-thumbnail');
 //add_theme_support( 'genesis-footer-widgets', 3 );
 
 // Remove default footer widgets
-remove_action( 'genesis_footer', 'genesis_do_footer');
+//remove_action( 'genesis_footer', 'genesis_do_footer');
+
+//* Add support for structural wraps
+add_theme_support( 'genesis-structural-wraps', array(
+  'header',
+  'nav',
+  'subnav',
+  'site-inner',
+  'footer-widgets',
+  'footer'
+) );
 
 // Add image size for home page featured image
 add_image_size('home-featured', 600, 325, TRUE);
@@ -119,6 +129,26 @@ function freeminds_widgets_init() {
     'after_widget' => '</div>',
     'before_title' => '<h5 class="home-page-quote">',
     'after_title' => '</h5>',
+  ));
+
+  genesis_register_sidebar( array(
+    'name' => 'Footer 1',
+    'id'  => 'footer-one',
+    'description' => 'Use this area for the footer site description',
+    'before_widget' => '<div id="%1$s" class="%2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h3 class="footer-widget footer-widget-one">',
+    'after_title' => '</h3>',
+  ));
+
+  genesis_register_sidebar( array(
+    'name' => 'Footer 2',
+    'id'  => 'footer-two',
+    'description' => 'Use this area to add site contact info',
+    'before_widget' => '<div id="%1$s" class="%2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h3 class="footer-widget footer-widget-two">',
+    'after_title' => '</h3>',
   ));
 }
 
