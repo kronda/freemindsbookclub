@@ -2123,7 +2123,19 @@ img {
 
 /* line 5, ../sass/component/_home.scss */
 #featured-post-teaser {
-  background: #f8f5f5;
+  border: 1px solid red;
+  background-color: #f8f5f5;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF8F5F5', endColorstr='#FFF8F5F5');
+  background-image: -webkit-linear-gradient(top, #f8f5f5 0%, rgba(248, 245, 245, 0.71) 63%, rgba(248, 245, 245, 0) 100%);
+  background-image: linear-gradient(to bottom, #f8f5f5 0%, rgba(248, 245, 245, 0.71) 63%, rgba(248, 245, 245, 0) 100%);
+}
+
+/* line 12, ../sass/component/_home.scss */
+.multiplebgs #featured-post-teaser {
+  background: url('../images/widget_top_bg.png?1397427075') no-repeat center -3px, url('../images/widget_bottom_bg.png?1397427075') no-repeat center 100%;
+  background-size: 100%;
+  padding-bottom: 30px;
 }
 
 /* line 3, ../sass/component/_blog.scss */

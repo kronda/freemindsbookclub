@@ -3,7 +3,18 @@
 }
 
 #featured-post-teaser {
-  background: $widget_bg;
+  border: 1px solid red;
+  background-color: rgba(248,245,245,1);
+  @include filter-gradient(#f8f5f5, #f8f5f5, vertical);
+  @include background-image(linear-gradient( top, rgba(248,245,245,1) 0%, rgba(248,245,245,0.71) 63%, rgba(248,245,245,0) 100%));
+}
+
+.multiplebgs #featured-post-teaser {
+  background: 
+    image-url('widget_top_bg.png') no-repeat center -3px,
+    image-url('widget_bottom_bg.png') no-repeat center 100%;
+  background-size: 100%;
+  padding-bottom: 30px;
 }
 
 
