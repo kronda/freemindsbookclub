@@ -27,6 +27,7 @@ add_theme_support( 'genesis-footer-widgets', 3 );
 
 // Add image size for home page featured image
 add_image_size('home-featured', 600, 325, TRUE);
+add_image_size('news-featured', 175, 130, TRUE);
 
 /**
  * Add Google fonts to the header
