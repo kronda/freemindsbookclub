@@ -25,6 +25,9 @@ add_theme_support( 'post-thumbnail');
 // Add support for 3-column footer widgets
 add_theme_support( 'genesis-footer-widgets', 3 );
 
+// Add image size for home page featured image
+add_image_size('home-featured', 600, 325, TRUE);
+
 /**
  * Add Google fonts to the header
  */
@@ -61,30 +64,43 @@ function freeminds_scripts() {
 add_action( 'wp_enqueue_scripts', 'freeminds_scripts' );
 
 /**
- * Register custom widgets
+ * Register widgetized area and update sidebar with default widgets
  */
-register_sidebar( array(
-  'name' => 'Home Page Featured Image',
-  'id'  => 'home-page-featured-img',
-  'description' => 'Use this area to add a featured image',
-  'before_widget' => '<div id="%1$s" class="%2$s">',
-  'after_widget' => '</div>',
-  'before_title' => '<h3 class="featured-img">',
-  'after_title' => '</h3>',
-));
-
-//* Register after post widget area
-genesis_register_sidebar( array(
-  'id'            => 'featured-success-story',
+function freeminds_widgets_init() {
+  genesis_register_sidebar( array(
   'name'          => __( 'Featured Success Story', 'freeminds' ),
+  'id'            => 'featured-success-story',
   'description'   => __( 'Featured success story on home page', 'freeminds' ),
   'before_widget' => '<div id="%1$s" class="%2$s">',
   'after_widget' => '</div>',
-  'before_title' => '<h3 class="featured-img">',
+  'before_title' => '<h3 class="featured-success-story">',
   'after_title' => '</h3>',
 ) );
 
-/** Exclude Audio Video category from posts */
+  register_sidebar( array(
+    'name' => 'Featured Poetry Blog',
+    'id'  => 'featured-poetry-blog',
+    'description' => 'Use this area to add a featured poetry blog',
+    'before_widget' => '<div id="%1$s" class="%2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h3 class="featured-poetry">',
+    'after_title' => '</h3>',
+  ));
+
+  register_sidebar( array(
+    'name' => 'Featured News Stories',
+    'id'  => 'featured-news-stories',
+    'description' => 'Use this area to add featured news stories',
+    'before_widget' => '<div id="%1$s" class="%2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h3 class="featured-poetry">',
+    'after_title' => '</h3>',
+  ));
+}
+add_action( 'widgets_init', 'freeminds_widgets_init' );
+
+
+/** Exclude Success Story & News / Events category from posts */
 add_action( 'pre_get_posts', 'freeminds_exclude_category_from_blog' );
 function freeminds_exclude_category_from_blog( $query ) {
 

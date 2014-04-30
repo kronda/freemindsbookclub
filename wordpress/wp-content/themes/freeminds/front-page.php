@@ -15,6 +15,16 @@ add_action( 'genesis_loop', 'freeminds_success_loop');
 function freeminds_success_loop() {
   if ( dynamic_sidebar('Featured Success Story') ) : 
   endif;
+
+  echo '<div class="one-half first">';
+  if ( dynamic_sidebar('Featured Poetry Blog') ) : 
+  endif;
+  echo '</div>';
+
+  echo '<div class="one-half">';
+    if ( dynamic_sidebar('Featured News Stories') ) : 
+    endif;
+  echo '</div>';
 }
 
 
