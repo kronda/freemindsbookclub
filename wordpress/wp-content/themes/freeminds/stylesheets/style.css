@@ -23,7 +23,7 @@
 /* ***************
  * Header Sizes
 ******************/
-/* line 1, ../sass/global/_mixins.scss */
+/* line 3, ../sass/global/_extends.scss */
 #subnav .fontawesome-text {
   border: 0;
   clip: rect(0 0 0 0);
@@ -35,7 +35,7 @@
   height: 1px;
 }
 
-/* line 12, ../sass/global/_mixins.scss */
+/* line 14, ../sass/global/_extends.scss */
 .more-link:after {
   content: " ";
   position: absolute;
@@ -48,6 +48,26 @@
   border-color: rgba(0, 79, 91, 0);
   border-left-color: #004f5b;
   border-width: 8px;
+}
+
+/* line 28, ../sass/global/_extends.scss */
+.featured-post-inner,
+.multiplebgs #featured-post-3 {
+  border-left: 2px solid rgba(205, 205, 205, 0.5);
+  border-right: 2px solid rgba(205, 205, 205, 0.5);
+  background-color: rgba(248, 245, 245, 0);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF8F5F5', endColorstr='#FFF8F5F5');
+  background-image: -webkit-linear-gradient(top, rgba(248, 245, 245, 0) 0%, rgba(248, 245, 245, 0.5) 20%, rgba(248, 245, 245, 0.59) 26%, #f8f5f5 52%, rgba(248, 245, 245, 0.85) 76%, rgba(248, 245, 245, 0.83) 80%, rgba(247, 244, 244, 0) 100%);
+  background-image: linear-gradient(to bottom, rgba(248, 245, 245, 0) 0%, rgba(248, 245, 245, 0.5) 20%, rgba(248, 245, 245, 0.59) 26%, #f8f5f5 52%, rgba(248, 245, 245, 0.85) 76%, rgba(248, 245, 245, 0.83) 80%, rgba(247, 244, 244, 0) 100%);
+}
+
+/* line 36, ../sass/global/_extends.scss */
+#featured-post-teaser .featured-post-inner, #featured-post-3 {
+  padding: 1.5em 1.5em 0 1.5em;
+  margin-left: 5px;
+  margin-bottom: 0;
+  margin-right: 3px;
 }
 
 /* Table of Contents
@@ -1809,16 +1829,16 @@ h2 a:visited,
 /**********************
   Footer
 ***********************/
-/* line 257, ../sass/base/_html.scss */
+/* line 258, ../sass/base/_html.scss */
 #footer {
   background: #004f5b;
   color: #FFF;
 }
-/* line 261, ../sass/base/_html.scss */
+/* line 262, ../sass/base/_html.scss */
 #footer a {
   color: #FFF;
 }
-/* line 265, ../sass/base/_html.scss */
+/* line 266, ../sass/base/_html.scss */
 #footer .wrap {
   border: none;
 }
@@ -2023,18 +2043,6 @@ img {
     float: left;
   }
 }
-/* line 35, ../sass/layout/_home.scss */
-#featured-post-teaser .featured-post-inner {
-  padding: 1.5em;
-  margin-left: 5px;
-  margin-bottom: 1.5em;
-  margin-right: 3px;
-}
-
-/* line 43, ../sass/layout/_home.scss */
-.poetry-teaser {
-  border: 1px solid blue;
-}
 
 /* line 47, ../sass/layout/_home.scss */
 .news-teaser {
@@ -2157,19 +2165,21 @@ img {
   background-size: cover;
 }
 
-/* line 1, ../sass/component/_home.scss */
-.featured-post-inner {
-  border-left: 2px solid rgba(205, 205, 205, 0.5);
-  border-right: 2px solid rgba(205, 205, 205, 0.5);
-  background-color: rgba(248, 245, 245, 0);
-  *zoom: 1;
-  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF8F5F5', endColorstr='#FFF8F5F5');
-  background-image: -webkit-linear-gradient(top, rgba(248, 245, 245, 0) 0%, rgba(248, 245, 245, 0.5) 20%, rgba(248, 245, 245, 0.59) 26%, #f8f5f5 52%, rgba(248, 245, 245, 0.85) 76%, rgba(248, 245, 245, 0.83) 80%, rgba(248, 245, 245, 0) 100%);
-  background-image: linear-gradient(to bottom, rgba(248, 245, 245, 0) 0%, rgba(248, 245, 245, 0.5) 20%, rgba(248, 245, 245, 0.59) 26%, #f8f5f5 52%, rgba(248, 245, 245, 0.85) 76%, rgba(248, 245, 245, 0.83) 80%, rgba(248, 245, 245, 0) 100%);
+/* line 3, ../sass/component/_home.scss */
+#featured-post-teaser,
+#featured-post-3 {
+  background: #f8f6f7 url('../images/widget_top_bg.png?1397427075') no-repeat center -3px;
 }
 
-/* line 9, ../sass/component/_home.scss */
+/* line 6, ../sass/component/_home.scss */
 .multiplebgs #featured-post-teaser {
+  background: url('../images/widget_top_bg.png?1397427075') no-repeat center -3px, url('../images/widget_bottom_bg2.png') no-repeat center 100%;
+  background-size: 100%;
+  padding-bottom: 30px;
+}
+
+/* line 16, ../sass/component/_home.scss */
+.poetry-teaser {
   background: url('../images/widget_top_bg.png?1397427075') no-repeat center -3px, url('../images/widget_bottom_bg.png?1397427075') no-repeat center 100%;
   background-size: 100%;
   padding-bottom: 30px;

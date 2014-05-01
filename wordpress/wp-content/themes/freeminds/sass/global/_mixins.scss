@@ -1,27 +1,4 @@
-%visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  position: absolute;
-  overflow: hidden;
-  margin: -1px;
-  padding: 0;
-  width: 1px;
-  height: 1px;
-}
-
-%more_link {
-  content: " ";
-  position: absolute;
-  left: 80%;
-  top: 15%;
-  border: solid transparent;
-  height: 0;
-  width: 0;
-  pointer-events: none;
-  border-color: $link_title_rgba;
-  border-left-color: $link_title;
-  border-width: 8px; 
-}
+// Mixins @include mixinname( $args );
 
 @mixin email_arrow_after( $color, $color_rgba ) {
   content: " ";
@@ -36,4 +13,12 @@
   border-left-color: $color;
   border-width: 6px;
   margin-top: -6px;
+}
+
+@mixin widget_bottom_bg( $widget_bottom_img ) {
+  background: 
+    image-url('widget_top_bg.png') no-repeat center -3px,
+    image-url($widget_bottom_img) no-repeat center 100%;
+  background-size: 100%;
+  padding-bottom: 30px;
 }

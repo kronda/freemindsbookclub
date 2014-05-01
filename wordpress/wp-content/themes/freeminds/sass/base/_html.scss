@@ -245,9 +245,10 @@ h2 a:visited,
   font-weight: bold;
   position: relative;
   padding-right: 30px;
+  //display: block;
   
   &:after {
-    @extend %more_link;
+    @extend %more_link_arrow;
   }
 }
 

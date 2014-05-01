@@ -33,15 +33,15 @@
   }
   
   .featured-post-inner {
-    padding: 1.5em;
-    margin-left: 5px;
-    margin-bottom: 1.5em;
-    margin-right: 3px;
+    @extend %widget_inner;
   }
   
 }
 .poetry-teaser {
-  border: 1px solid blue;
+
+}
+#featured-post-3 {
+  @extend %widget_inner;
 }
 
 .news-teaser {
