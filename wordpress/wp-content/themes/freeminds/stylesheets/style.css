@@ -1981,18 +1981,23 @@ img {
   }
 }
 
+/* line 11, ../sass/layout/_home.scss */
+#featured-post-4 div > a img {
+  border: 10px solid #f8f6f7;
+  box-shadow: 0px 0px 5px #333333;
+}
 @media screen and (min-width: 768px) {
   /* line 10, ../sass/layout/_home.scss */
   #featured-post-4 div > a {
-    width: 65.277777777%;
+    width: 65.27778%;
   }
-  /* line 14, ../sass/layout/_home.scss */
+  /* line 18, ../sass/layout/_home.scss */
   #featured-post-4 div > a img {
     width: 100%;
   }
 }
 
-/* line 19, ../sass/layout/_home.scss */
+/* line 23, ../sass/layout/_home.scss */
 #featured-post-teaser {
   *zoom: 1;
 }
@@ -2006,19 +2011,19 @@ img {
   clear: both;
 }
 @media screen and (max-width: 480px) {
-  /* line 19, ../sass/layout/_home.scss */
+  /* line 23, ../sass/layout/_home.scss */
   #featured-post-teaser {
     clear: right;
   }
 }
 @media screen and (min-width: 768px) {
-  /* line 19, ../sass/layout/_home.scss */
+  /* line 23, ../sass/layout/_home.scss */
   #featured-post-teaser {
-    width: 30.555555555%;
+    width: 30.55556%;
     float: left;
   }
 }
-/* line 31, ../sass/layout/_home.scss */
+/* line 35, ../sass/layout/_home.scss */
 #featured-post-teaser .featured-post-inner {
   padding: 1.5em;
   margin-left: 5px;
@@ -2026,17 +2031,17 @@ img {
   margin-right: 3px;
 }
 
-/* line 39, ../sass/layout/_home.scss */
+/* line 43, ../sass/layout/_home.scss */
 .poetry-teaser {
   border: 1px solid blue;
 }
 
-/* line 43, ../sass/layout/_home.scss */
+/* line 47, ../sass/layout/_home.scss */
 .news-teaser {
   border: 1px solid red;
 }
 
-/* line 47, ../sass/layout/_home.scss */
+/* line 51, ../sass/layout/_home.scss */
 .home-feature-quote {
   border: 1px solid yellow;
   clear: both;
@@ -2152,7 +2157,7 @@ img {
   background-size: cover;
 }
 
-/* line 7, ../sass/component/_home.scss */
+/* line 1, ../sass/component/_home.scss */
 .featured-post-inner {
   border-left: 2px solid rgba(205, 205, 205, 0.5);
   border-right: 2px solid rgba(205, 205, 205, 0.5);
@@ -2163,7 +2168,7 @@ img {
   background-image: linear-gradient(to bottom, rgba(248, 245, 245, 0) 0%, rgba(248, 245, 245, 0.5) 20%, rgba(248, 245, 245, 0.59) 26%, #f8f5f5 52%, rgba(248, 245, 245, 0.85) 76%, rgba(248, 245, 245, 0.83) 80%, rgba(248, 245, 245, 0) 100%);
 }
 
-/* line 15, ../sass/component/_home.scss */
+/* line 9, ../sass/component/_home.scss */
 .multiplebgs #featured-post-teaser {
   background: url('../images/widget_top_bg.png?1397427075') no-repeat center -3px, url('../images/widget_bottom_bg.png?1397427075') no-repeat center 100%;
   background-size: 100%;

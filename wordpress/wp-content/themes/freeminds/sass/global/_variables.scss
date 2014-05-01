@@ -10,6 +10,10 @@ $tablet: new-breakpoint(min-width 768px 12);
 $ipad: new-breakpoint(max-width 767px 12);
 $desktop: new-breakpoint(min-width 1024px 12);
 
+// Columns
+$one_column: 30.555555555%;
+$two_column: 65.277777777%;
+
 /* ***********
  * Colors
 **************/
@@ -19,7 +23,7 @@ $body_bg: #6a979e; //(aqua)
 $body_border: #b0cfd4;
 $header_fade: #b3d1d6; // (aqua)
 $wrap_bg: #f0eeeb; // cream
-$widget_bg: #f8f5f5;
+$widget_bg: #f8f6f7;
 
 // Navigation
 $nav_bg: #004f5b; // (#036978 pick one, Tagline or background)

@@ -8,8 +8,12 @@
   
 }
 #featured-post-4 div > a {
+  img {
+    border: 10px solid $widget_bg;
+    @include single-box-shadow();
+  }
   @include media($tablet) {
-    width: 65.277777777%;
+    width: $two_column;
 
     img {
       width: 100%;
@@ -24,7 +28,7 @@
   }
 
   @include media($tablet) {
-    width: 30.555555555%;
+    width: $one_column;
     float: left;
   }
   
