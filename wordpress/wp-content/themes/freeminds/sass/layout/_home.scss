@@ -1,11 +1,31 @@
 .home-feature-wrap {
 
 }
+.home #inner {
+  @include media($tablet) {
+    padding-top: 0;
+  }
+  
+}
+#featured-post-4 div > a {
+  @include media($tablet) {
+    width: 65.277777777%;
+
+    img {
+      width: 100%;
+    }
+  }
+}
 #featured-post-teaser {
   @include clearfix();
 
   @include media($mobile) {
     clear: right;
+  }
+
+  @include media($tablet) {
+    width: 30.555555555%;
+    float: left;
   }
   
   .featured-post-inner {
