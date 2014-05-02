@@ -57,3 +57,7 @@ img {
     padding: 1.5em;
   }
 }
+#sponsor-logos {
+  width: 100%;
+  @include clearfix();
+}

@@ -1922,6 +1922,21 @@ img {
   padding: 1.5em;
 }
 
+/* line 60, ../sass/layout/_base.scss */
+#sponsor-logos {
+  width: 100%;
+  *zoom: 1;
+}
+/* line 18, ../sass/bourbon/addons/_clearfix.scss */
+#sponsor-logos:before, #sponsor-logos:after {
+  content: " ";
+  display: table;
+}
+/* line 23, ../sass/bourbon/addons/_clearfix.scss */
+#sponsor-logos:after {
+  clear: both;
+}
+
 @media screen and (max-width: 480px) {
   /* line 2, ../sass/layout/_components.scss */
   #nav .genesis-nav-menu > li {
