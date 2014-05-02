@@ -137,8 +137,8 @@ function freeminds_widgets_init() {
     'description' => 'Use this area for the footer site description',
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => '</div>',
-    'before_title' => '<h3 class="footer-widget footer-widget-one">',
-    'after_title' => '</h3>',
+    'before_title' => '<h6 class="footer-widget footer-widget-one">',
+    'after_title' => '</h6>',
   ));
 
   genesis_register_sidebar( array(
