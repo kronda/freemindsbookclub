@@ -18,4 +18,8 @@ jQuery( document ).ready( function( $ ) {
   // Wrap the text elements in the home page featured success story so we can make it look like like a widget
   $('#featured-post-4 div > a').nextAll().wrapAll('<div id="featured-post-teaser" />').wrapAll('<div class="featured-post-inner" />');
 
+  // add align class to images in the home page news stories
+  $('.home .news-teaser a.alignleft img').addClass('alignleft');
+  $('.home .news-teaser a.alignright img').addClass('alignright');
+
 });

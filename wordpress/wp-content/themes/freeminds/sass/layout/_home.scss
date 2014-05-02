@@ -1,5 +1,6 @@
 .home-feature-wrap {
-
+  @include clearfix();
+  margin-bottom: 1em;
 }
 .home #inner {
   @include media($tablet) {
@@ -45,8 +46,39 @@
 }
 
 .news-teaser {
-  border: 1px solid red;
-}
+  .more-link {
+    float: right;
+  }
+  .more-from-category {
+    display: inline;
+    position: relative;
+    padding-right: 30px;
+    &:after {
+      @extend %more_link_arrow;
+    }
+
+    a {
+      font-weight: bold;
+    }
+  }
+  @include media($mobile) {
+    a {
+      float: none;
+
+      img {
+        float: none;
+        width: 100%;
+      }
+    }
+    
+  }
+
+  @include media($tablet) {
+    p {
+      margin-left: 200px;
+    }
+  }
+} // end news-teaser
 
 .home-feature-quote {
   border: 1px solid yellow;

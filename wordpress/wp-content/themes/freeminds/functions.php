@@ -107,8 +107,8 @@ function freeminds_widgets_init() {
     'description' => 'Use this area to add a featured poetry blog',
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => '</div>',
-    'before_title' => '<h3 class="featured-poetry">',
-    'after_title' => '</h3>',
+    'before_title' => '<h2 class="featured-poetry">',
+    'after_title' => '</h2>',
   ));
 
   genesis_register_sidebar( array(
