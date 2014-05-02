@@ -1919,7 +1919,7 @@ img {
 
 /* line 56, ../sass/layout/_base.scss */
 #footer .wrap {
-  padding: 0 1.5em;
+  padding: 1.5em;
 }
 
 @media screen and (max-width: 480px) {
@@ -2060,42 +2060,54 @@ img {
   }
 }
 
-/* line 49, ../sass/layout/_home.scss */
+/* line 48, ../sass/layout/_home.scss */
+.news-teaser {
+  margin-bottom: 1.5em;
+}
+/* line 52, ../sass/layout/_home.scss */
 .news-teaser .more-link {
   float: right;
 }
-/* line 52, ../sass/layout/_home.scss */
+/* line 55, ../sass/layout/_home.scss */
 .news-teaser .more-from-category {
   display: inline;
   position: relative;
   padding-right: 30px;
 }
-/* line 60, ../sass/layout/_home.scss */
+/* line 63, ../sass/layout/_home.scss */
 .news-teaser .more-from-category a {
   font-weight: bold;
 }
 @media screen and (max-width: 480px) {
-  /* line 65, ../sass/layout/_home.scss */
+  /* line 68, ../sass/layout/_home.scss */
   .news-teaser a {
     float: none;
   }
-  /* line 68, ../sass/layout/_home.scss */
+  /* line 71, ../sass/layout/_home.scss */
   .news-teaser a img {
     float: none;
     width: 100%;
   }
 }
 @media screen and (min-width: 768px) {
-  /* line 77, ../sass/layout/_home.scss */
+  /* line 80, ../sass/layout/_home.scss */
   .news-teaser p {
     margin-left: 200px;
   }
 }
 
-/* line 83, ../sass/layout/_home.scss */
+/* line 86, ../sass/layout/_home.scss */
 .home-feature-quote {
-  border: 1px solid yellow;
   clear: both;
+}
+/* line 89, ../sass/layout/_home.scss */
+.home-feature-quote p {
+  float: right;
+}
+
+/* line 94, ../sass/layout/_home.scss */
+.home #inner {
+  padding-bottom: 6em;
 }
 
 /**********************
@@ -2228,6 +2240,11 @@ img {
   padding-bottom: 30px;
 }
 
+/* line 31, ../sass/component/_home.scss */
+.home #inner {
+  background: url('../images/book_bg.png?1398831879') repeat-x left bottom;
+}
+
 /* line 3, ../sass/component/_blog.scss */
 #content .navigation a {
   color: #FFF;
@@ -2240,4 +2257,34 @@ img {
 /* line 5, ../sass/component/_sidebar.scss */
 .sidebar .widget {
   border: none;
+}
+
+/**********************
+  Footer
+***********************/
+/* line 5, ../sass/component/_footer.scss */
+#footer {
+  color: #FFF;
+}
+/* line 8, ../sass/component/_footer.scss */
+#footer a {
+  color: #FFF;
+}
+/* line 12, ../sass/component/_footer.scss */
+#footer .wrap {
+  border: none;
+}
+/* line 21, ../sass/component/_footer.scss */
+#footer h1,
+#footer h2,
+#footer h3,
+#footer h4,
+#footer h5,
+#footer h6 {
+  color: #FFF;
+}
+/* line 25, ../sass/component/_footer.scss */
+#footer p {
+  font-size: 0.8em;
+  font-weight: normal;
 }
