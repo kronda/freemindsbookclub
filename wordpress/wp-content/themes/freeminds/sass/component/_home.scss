@@ -6,7 +6,6 @@
 .multiplebgs #featured-post-teaser {
   @include widget_bottom_bg($widget_bottom_center);
 }
-
 .featured-post-inner,
 .multiplebgs #featured-post-3 {
   @extend %widget_gradient_bg;
@@ -16,18 +15,9 @@
 .poetry-teaser {
   @include widget_bottom_bg($widget_bottom_left);
 }
-.multiplebgs #featured-post-3 {
-  
-}
-// Featured news posts
-.news-teaser {
-  
-}
-
-.home-feature-quote {
-  
-}
-
 .home #inner {
   background: image-url('book_bg.png') repeat-x left bottom;
+}
+.home-page-quote {
+  font-size: 1.5em;
 }

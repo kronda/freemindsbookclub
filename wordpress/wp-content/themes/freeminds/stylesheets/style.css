@@ -1585,8 +1585,9 @@ a:hover {
   color: #036978;
 }
 
-/* line 44, ../sass/base/_html.scss */
-h2 a,
+/* line 45, ../sass/base/_html.scss */
+h2,
+.home h2 a,
 h2 a:visited,
 h4.widgettitle a,
 input,
@@ -1602,7 +1603,7 @@ input,
   color: #004f5b;
 }
 
-/* line 52, ../sass/base/_html.scss */
+/* line 53, ../sass/base/_html.scss */
 h2 a:hover,
 .genesis-nav-menu li a:hover,
 .genesis-nav-menu li:hover a,
@@ -1611,13 +1612,13 @@ h2 a:hover,
   color: #036978;
 }
 
-/* line 57, ../sass/base/_html.scss */
+/* line 58, ../sass/base/_html.scss */
 .post-info,
 .post-meta {
   color: #363a3b;
 }
 
-/* line 65, ../sass/base/_html.scss */
+/* line 66, ../sass/base/_html.scss */
 blockquote::before,
 blockquote p,
 input,
@@ -1626,7 +1627,7 @@ textarea {
   color: #363a3b;
 }
 
-/* line 78, ../sass/base/_html.scss */
+/* line 79, ../sass/base/_html.scss */
 button,
 input[type="button"],
 input[type="submit"],
@@ -1640,7 +1641,7 @@ input[type="submit"],
   color: #c44c18;
 }
 
-/* line 84, ../sass/base/_html.scss */
+/* line 85, ../sass/base/_html.scss */
 button,
 input[type="button"],
 input[type="submit"] {
@@ -1648,14 +1649,14 @@ input[type="submit"] {
   background: #3fa02c;
 }
 
-/* line 91, ../sass/base/_html.scss */
+/* line 92, ../sass/base/_html.scss */
 .comment-meta a,
 .comment-author a,
 .comment-reply-link {
   color: #3fa02c;
 }
 
-/* line 95, ../sass/base/_html.scss */
+/* line 96, ../sass/base/_html.scss */
 .comment {
   background-color: #FFF;
   border: 1px solid #ddd;
@@ -1663,13 +1664,13 @@ input[type="submit"] {
 }
 
 /* 03c - Font Size & Header colors----------- */
-/* line 103, ../sass/base/_html.scss */
+/* line 104, ../sass/base/_html.scss */
 #title {
   font-size: 30px;
   font-size: 1.25rem;
 }
 
-/* line 112, ../sass/base/_html.scss */
+/* line 113, ../sass/base/_html.scss */
 h1,
 h1 a,
 .h1 a,
@@ -1680,7 +1681,7 @@ h1 a,
   color: #004f5b;
 }
 
-/* line 119, ../sass/base/_html.scss */
+/* line 120, ../sass/base/_html.scss */
 h2,
 h2 a {
   font-size: 24px;
@@ -1688,7 +1689,7 @@ h2 a {
   color: #3d9baa;
 }
 
-/* line 126, ../sass/base/_html.scss */
+/* line 127, ../sass/base/_html.scss */
 h3,
 h3 a {
   font-size: 22px;
@@ -1696,7 +1697,7 @@ h3 a {
   color: #3fa02c;
 }
 
-/* line 136, ../sass/base/_html.scss */
+/* line 137, ../sass/base/_html.scss */
 h4,
 h4 a,
 .archive-title,
@@ -1707,7 +1708,7 @@ h4 a,
   color: #004f5b;
 }
 
-/* line 143, ../sass/base/_html.scss */
+/* line 144, ../sass/base/_html.scss */
 h5,
 h5 a {
   font-size: 18px;
@@ -1715,7 +1716,7 @@ h5 a {
   color: #3d9baa;
 }
 
-/* line 152, ../sass/base/_html.scss */
+/* line 153, ../sass/base/_html.scss */
 h6,
 h6 a,
 .author-box h1,
@@ -1725,7 +1726,7 @@ h6 a,
   color: #3fa02c;
 }
 
-/* line 165, ../sass/base/_html.scss */
+/* line 166, ../sass/base/_html.scss */
 input,
 select,
 textarea,
@@ -1739,7 +1740,7 @@ textarea,
 }
 
 /* 03b - Font Family ----------- */
-/* line 175, ../sass/base/_html.scss */
+/* line 176, ../sass/base/_html.scss */
 body,
 input,
 textarea,
@@ -1747,7 +1748,7 @@ textarea,
   font-family: Montserrat, sans-serif;
 }
 
-/* line 186, ../sass/base/_html.scss */
+/* line 187, ../sass/base/_html.scss */
 h1,
 h2,
 h3,
@@ -1761,23 +1762,23 @@ h6,
 }
 
 /* 03d - Font Miscellaneous ----------- */
-/* line 193, ../sass/base/_html.scss */
+/* line 194, ../sass/base/_html.scss */
 blockquote::before {
   font-size: 30px;
   font-size: 1.5rem;
 }
 
-/* line 198, ../sass/base/_html.scss */
+/* line 199, ../sass/base/_html.scss */
 blockquote p {
   font-style: italic;
 }
 
-/* line 202, ../sass/base/_html.scss */
+/* line 203, ../sass/base/_html.scss */
 cite {
   font-style: normal;
 }
 
-/* line 223, ../sass/base/_html.scss */
+/* line 224, ../sass/base/_html.scss */
 button,
 input[type="button"],
 input[type="submit"],
@@ -1799,12 +1800,12 @@ h6,
   font-weight: 700;
 }
 
-/* line 227, ../sass/base/_html.scss */
+/* line 228, ../sass/base/_html.scss */
 .wp-caption {
   text-align: center;
 }
 
-/* line 236, ../sass/base/_html.scss */
+/* line 237, ../sass/base/_html.scss */
 h2 a,
 h2 a:visited,
 .genesis-nav-menu a,
@@ -1814,13 +1815,13 @@ h2 a:visited,
   text-decoration: none;
 }
 
-/* line 241, ../sass/base/_html.scss */
+/* line 242, ../sass/base/_html.scss */
 #comments h3,
 .comment-reply-title {
   color: #3d9baa;
 }
 
-/* line 245, ../sass/base/_html.scss */
+/* line 246, ../sass/base/_html.scss */
 .more-link {
   font-weight: bold;
   position: relative;
@@ -1830,16 +1831,16 @@ h2 a:visited,
 /**********************
   Footer
 ***********************/
-/* line 259, ../sass/base/_html.scss */
+/* line 260, ../sass/base/_html.scss */
 #footer {
   background: #004f5b;
   color: #FFF;
 }
-/* line 263, ../sass/base/_html.scss */
+/* line 264, ../sass/base/_html.scss */
 #footer a {
   color: #FFF;
 }
-/* line 267, ../sass/base/_html.scss */
+/* line 268, ../sass/base/_html.scss */
 #footer .wrap {
   border: none;
 }
@@ -2243,21 +2244,26 @@ img {
 
 /* line 6, ../sass/component/_home.scss */
 .multiplebgs #featured-post-teaser {
-  background: url('../images/widget_top_bg.png?1397427075') no-repeat center -3px, url('../images/widget_bottom_bg2.png') no-repeat center 100%;
+  background: url('../images/widget_top_bg.png?1397427075') no-repeat center -3px, url('../images/widget_bottom_bg2.png?1398974151') no-repeat center 100%;
   background-size: 100%;
   padding-bottom: 30px;
 }
 
-/* line 16, ../sass/component/_home.scss */
+/* line 15, ../sass/component/_home.scss */
 .poetry-teaser {
   background: url('../images/widget_top_bg.png?1397427075') no-repeat center -3px, url('../images/widget_bottom_bg.png?1397427075') no-repeat center 100%;
   background-size: 100%;
   padding-bottom: 30px;
 }
 
-/* line 31, ../sass/component/_home.scss */
+/* line 18, ../sass/component/_home.scss */
 .home #inner {
   background: url('../images/book_bg.png?1398831879') repeat-x left bottom;
+}
+
+/* line 21, ../sass/component/_home.scss */
+.home-page-quote {
+  font-size: 1.5em;
 }
 
 /* line 3, ../sass/component/_blog.scss */
