@@ -1918,12 +1918,12 @@ img {
   margin-bottom: 2em;
 }
 
-/* line 56, ../sass/layout/_base.scss */
+/* line 58, ../sass/layout/_base.scss */
 #footer .wrap {
   padding: 1.5em;
 }
 
-/* line 60, ../sass/layout/_base.scss */
+/* line 62, ../sass/layout/_base.scss */
 #sponsor-logos {
   width: 100%;
   *zoom: 1;
@@ -1936,6 +1936,15 @@ img {
 /* line 23, ../sass/bourbon/addons/_clearfix.scss */
 #sponsor-logos:after {
   clear: both;
+}
+@media screen and (max-width: 767px) {
+  /* line 66, ../sass/layout/_base.scss */
+  #sponsor-logos img {
+    width: 30.55556%;
+    float: left;
+    margin-right: 2%;
+    margin-bottom: 1em;
+  }
 }
 
 @media screen and (max-width: 480px) {

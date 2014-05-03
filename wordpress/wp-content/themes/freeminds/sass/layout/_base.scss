@@ -52,6 +52,8 @@ img {
   margin-bottom: 24px;
   margin-bottom: 2em;
 }
+
+// Footer 
 #footer {
   .wrap {
     padding: 1.5em;
@@ -60,4 +62,14 @@ img {
 #sponsor-logos {
   width: 100%;
   @include clearfix();
+
+  img {
+      @include media($ipad) {
+      width: $one_column;
+      float: left;
+      margin-right:2%;
+      margin-bottom: 1em;
+    }
+  }
+
 }
