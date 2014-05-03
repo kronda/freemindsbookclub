@@ -140,8 +140,8 @@ namespace :db do
       filename = "#{domain}_#{stage}.sql"
       temp = "/tmp/#{release_name}_#{application}_#{filename}"
       run "touch #{temp} && chmod 600 #{temp}"
-      if "#{stage}" == "prod"
-        replace = "#{application}.com"
+      if "#{stage}" == "dev"
+        replace = "#{application}.karveldigital.com"
       else
         replace = "#{stage}.#{application}.com"
       end
