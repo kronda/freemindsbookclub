@@ -2115,13 +2115,15 @@ img {
 /* line 86, ../sass/layout/_home.scss */
 .home-feature-quote {
   clear: both;
+  margin: 0 auto;
+  width: 90%;
 }
-/* line 89, ../sass/layout/_home.scss */
+/* line 91, ../sass/layout/_home.scss */
 .home-feature-quote p {
   float: right;
 }
 
-/* line 94, ../sass/layout/_home.scss */
+/* line 96, ../sass/layout/_home.scss */
 .home #inner {
   padding-bottom: 6em;
 }
