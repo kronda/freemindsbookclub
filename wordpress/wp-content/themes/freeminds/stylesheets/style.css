@@ -1937,7 +1937,7 @@ img {
 #sponsor-logos:after {
   clear: both;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 480px) {
   /* line 66, ../sass/layout/_base.scss */
   #sponsor-logos img {
     width: 30.55556%;

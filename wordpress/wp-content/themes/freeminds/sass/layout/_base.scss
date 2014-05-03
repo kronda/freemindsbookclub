@@ -64,7 +64,7 @@ img {
   @include clearfix();
 
   img {
-      @include media($ipad) {
+      @include media($mobile) {
       width: $one_column;
       float: left;
       margin-right:2%;
