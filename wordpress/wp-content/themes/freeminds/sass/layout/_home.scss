@@ -24,8 +24,13 @@
 #featured-post-teaser {
   @include clearfix();
 
+
   @include media($mobile) {
     clear: right;
+  }
+
+  @include media(new-breakpoint(min-width 480 6)) {
+    clear: both;
   }
 
   @include media($tablet) {
