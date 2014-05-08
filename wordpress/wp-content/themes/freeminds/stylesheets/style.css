@@ -52,7 +52,7 @@
 
 /* line 28, ../sass/global/_extends.scss */
 .featured-post-inner,
-.multiplebgs #featured-post-3 {
+.multiplebgs #featured-post-3, .widgets-archive-tags {
   border-left: 2px solid rgba(205, 205, 205, 0.5);
   border-right: 2px solid rgba(205, 205, 205, 0.5);
   background-color: rgba(248, 245, 245, 0);
@@ -2259,26 +2259,20 @@ img {
   background: #f8f6f7 url('../images/widget_top_bg.png?1397427075') no-repeat center -3px;
 }
 
-/* line 6, ../sass/component/_home.scss */
-.multiplebgs #featured-post-teaser {
+/* line 8, ../sass/component/_home.scss */
+.multiplebgs #featured-post-teaser,
+.multiplebgs .poetry-teaser {
   background: url('../images/widget_top_bg.png?1397427075') no-repeat center -3px, url('../images/widget_bottom_bg2.png?1398974151') no-repeat center 100%;
   background-size: 100%;
   padding-bottom: 30px;
 }
 
-/* line 15, ../sass/component/_home.scss */
-.poetry-teaser {
-  background: url('../images/widget_top_bg.png?1397427075') no-repeat center -3px, url('../images/widget_bottom_bg.png?1397427075') no-repeat center 100%;
-  background-size: 100%;
-  padding-bottom: 30px;
-}
-
-/* line 18, ../sass/component/_home.scss */
+/* line 17, ../sass/component/_home.scss */
 .home #inner {
   background: url('../images/book_bg.png?1398831879') repeat-x left bottom;
 }
 
-/* line 21, ../sass/component/_home.scss */
+/* line 20, ../sass/component/_home.scss */
 .home-page-quote {
   font-size: 1.5em;
 }
@@ -2292,9 +2286,36 @@ img {
 /**********************
   Widgets
 ***********************/
-/* line 5, ../sass/component/_sidebar.scss */
-.sidebar .widget {
+/* line 4, ../sass/component/_sidebar.scss */
+#sidebar {
+  background: transparent url('../images/widget_top_bg.png?1397427075') no-repeat center -3px;
+}
+/* line 7, ../sass/component/_sidebar.scss */
+#sidebar .widget {
   border: none;
+  padding: 1em;
+}
+
+/* line 13, ../sass/component/_sidebar.scss */
+.widget_tag_cloud .fa-tag {
+  display: inline;
+  float: left;
+  margin-top: 5px;
+  margin-right: 10px;
+  color: #3fa02c;
+  font-size: 1.5em;
+}
+
+/* line 21, ../sass/component/_sidebar.scss */
+.widgets-archive-tags {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* line 27, ../sass/component/_sidebar.scss */
+.widgets-archive-tags-inner {
+  background: url('../images/widget_bottom_bg.png?1397427075') no-repeat center 100%;
+  padding-bottom: 30px;
 }
 
 /**********************

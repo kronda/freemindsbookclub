@@ -15,7 +15,7 @@
   margin-top: -6px;
 }
 
-@mixin widget_bottom_bg( $widget_bottom_img ) {
+@mixin widget_top_bottom_bg( $widget_bottom_img ) {
   background: 
     image-url('widget_top_bg.png') no-repeat center -3px,
     image-url($widget_bottom_img) no-repeat center 100%;

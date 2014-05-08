@@ -1,8 +1,30 @@
 /**********************
   Widgets
 ***********************/
-.sidebar {
+#sidebar {
+  background: transparent image-url('widget_top_bg.png') no-repeat center -3px;
+
   .widget {
     border: none;
+    padding: 1em;
   }
+}
+
+.widget_tag_cloud .fa-tag {
+  display: inline;
+  float: left;
+  margin-top: 5px;
+  margin-right: 10px;
+  color: $h3_color;
+  font-size: 1.5em;
+}
+.widgets-archive-tags {
+  @extend %widget_gradient_bg;
+  margin-left: 10px;
+  margin-right: 10px;
+} 
+
+.widgets-archive-tags-inner {
+  background: image-url('widget_bottom_bg.png') no-repeat center 100%;
+  padding-bottom: 30px;
 }
