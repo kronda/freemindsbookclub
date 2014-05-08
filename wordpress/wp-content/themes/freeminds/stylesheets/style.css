@@ -1845,6 +1845,17 @@ h2 a:visited,
   border: none;
 }
 
+/* line 5, ../sass/base/_page.scss */
+.page-quote {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+/* line 10, ../sass/base/_page.scss */
+.quote-attr {
+  float: right;
+}
+
 /* line 1, ../sass/layout/_base.scss */
 p {
   margin-bottom: 1.5em;
