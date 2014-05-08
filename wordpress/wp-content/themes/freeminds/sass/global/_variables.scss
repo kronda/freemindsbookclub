@@ -10,6 +10,10 @@ $tablet: new-breakpoint(min-width 768px 12);
 $ipad: new-breakpoint(max-width 767px 12);
 $desktop: new-breakpoint(min-width 1024px 12);
 
+// Columns
+$one_column: 30.555555555%;
+$two_column: 65.277777777%;
+
 /* ***********
  * Colors
 **************/
@@ -19,7 +23,9 @@ $body_bg: #6a979e; //(aqua)
 $body_border: #b0cfd4;
 $header_fade: #b3d1d6; // (aqua)
 $wrap_bg: #f0eeeb; // cream
-$widget_bg: #f8f5f5;
+$widget_bg: #f8f6f7;
+$widget_bottom_left: 'widget_bottom_bg.png';
+$widget_bottom_center: 'widget_bottom_bg2.png';
 
 // Navigation
 $nav_bg: #004f5b; // (#036978 pick one, Tagline or background)
@@ -27,9 +33,12 @@ $nav_dropdown_bg: #004f5b;
 $nav_link_hover: #b0cfd4;
 $nav_link_current: #b0cfd4;
 $links: #c44c18;
+$link_title: #004f5b; // dark green
+$link_title_rgba: rgba(0, 79, 91, 0);
 $link_hover: #036978; 
 $read_more_arrow: #44818b; // (consolidate)
 $email_list_bg: #3fa02c;
+$email_list_arrow_border: rgba(176, 207, 212, 0);
 $email_list_arrow: #b0cfd4;
 
 // Text

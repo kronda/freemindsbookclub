@@ -1,3 +1,11 @@
+p {
+  margin-bottom: 1.5em;
+  line-height: 1.5;
+}
+
+img {
+  margin-bottom: 1em;
+}
 #wrap {
   position: relative;
 }
@@ -44,8 +52,24 @@
   margin-bottom: 24px;
   margin-bottom: 2em;
 }
+
+// Footer 
 #footer {
   .wrap {
-    padding: 0 1.5em;
+    padding: 1.5em;
   }
+}
+#sponsor-logos {
+  width: 100%;
+  @include clearfix();
+
+  img {
+      @include media($mobile) {
+      width: $one_column;
+      float: left;
+      margin-right:2%;
+      margin-bottom: 1em;
+    }
+  }
+
 }

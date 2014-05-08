@@ -29,7 +29,8 @@ a {
 a:hover {
   color: $link_hover;
 }
-h2 a,
+h2,
+.home h2 a,
 h2 a:visited,
 h4.widgettitle a,
 input,
@@ -40,8 +41,9 @@ input,
 .genesis-nav-menu li li a:visited,
 .post-comments,
 #title a,
+#title a:visited,
 #title a:hover {
-  color: $links;
+  color: $link_title;
 }
 
 h2 a:hover,
@@ -97,26 +99,6 @@ input[type="submit"] {
   @include box-shadow(0 0 5px #ddd inset);
 }
 
-/* 03b - Font Family ----------- */
-
-body,
-input,
-textarea,
-.author-box h1 {
-  font-family: $font_family;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.entry-title a,
-#title {
-  font-family: $font_headers;
-}
-
 /* 03c - Font Size & Header colors----------- */
 
 #title {
@@ -125,6 +107,8 @@ h6,
 }
 
 h1,
+h1 a,
+.h1 a,
 .entry-title,
 .entry-title a {
   font-size: 30px;
@@ -132,24 +116,22 @@ h1,
   color: $h1_color;
 }
 
-blockquote::before {
-  font-size: 30px;
-  font-size: 1.5rem;
-}
-
-h2 {
+h2,
+h2 a {
   font-size: 24px;
   font-size: 1.5rem;
   color: $h2_color;
 }
 
-h3 {
+h3,
+h3 a {
   font-size: 22px;
   font-size: 1.375rem;
   color: $h3_color;
 }
 
 h4,
+h4 a,
 .archive-title,
 .taxonomy-description h1,
 .widgettitle {
@@ -158,13 +140,15 @@ h4,
   color: $h1_color;
 }
 
-h5 {
+h5,
+h5 a {
   font-size: 18px;
   font-size: 1.125rem;
   color: $h2_color;
 }
 
 h6,
+h6 a,
 .author-box h1,
 .sidebar h2 a {
   font-size: 16px;
@@ -184,8 +168,33 @@ textarea,
   font-size: 0.875rem;
 }
 
+/* 03b - Font Family ----------- */
+
+body,
+input,
+textarea,
+.author-box h1 {
+  font-family: $font_family;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.entry-title a,
+#title {
+  font-family: $font_headers;
+  line-height: 1.5;
+}
 
 /* 03d - Font Miscellaneous ----------- */
+
+blockquote::before {
+  font-size: 30px;
+  font-size: 1.5rem;
+}
 
 blockquote p {
   font-style: italic;
@@ -232,6 +241,17 @@ h2 a:visited,
 #comments h3,
 .comment-reply-title {
   color: $h2_color;
+}
+
+.more-link {
+  font-weight: bold;
+  position: relative;
+  padding-right: 30px;
+  //display: block;
+  
+  &:after {
+    @extend %more_link_arrow;
+  }
 }
 
 /**********************

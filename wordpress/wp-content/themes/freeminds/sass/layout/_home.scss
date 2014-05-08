@@ -1,0 +1,103 @@
+.home-feature-wrap {
+  @include clearfix();
+  margin-bottom: 1em;
+}
+.home #inner {
+  @include media($tablet) {
+    padding-top: 0;
+  }
+  
+}
+#featured-post-4 div > a {
+  img {
+    border: 10px solid $widget_bg;
+    @include single-box-shadow();
+  }
+  @include media($tablet) {
+    width: $two_column;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+#featured-post-teaser {
+  @include clearfix();
+
+
+  @include media($mobile) {
+    clear: right;
+  }
+
+  @include media(new-breakpoint(min-width 480 6)) {
+    clear: both;
+  }
+
+  @include media($tablet) {
+    width: $one_column;
+    float: left;
+  }
+  
+  .featured-post-inner {
+    @extend %widget_inner;
+  }
+  
+}
+.poetry-teaser {
+
+}
+#featured-post-3 {
+  @extend %widget_inner;
+}
+
+.news-teaser {
+
+  margin-bottom: 1.5em;
+
+  .more-link {
+    float: right;
+  }
+  .more-from-category {
+    display: inline;
+    position: relative;
+    padding-right: 30px;
+    &:after {
+      @extend %more_link_arrow;
+    }
+
+    a {
+      font-weight: bold;
+    }
+  }
+  @include media($mobile) {
+    a {
+      float: none;
+
+      img {
+        float: none;
+        width: 100%;
+      }
+    }
+    
+  }
+
+  @include media($tablet) {
+    p {
+      margin-left: 200px;
+    }
+  }
+} // end news-teaser
+
+.home-feature-quote {
+  clear: both;
+  margin: 0 auto;
+  width: 90%;
+
+  p {
+    float: right;
+  }
+}
+
+.home #inner {
+  padding-bottom: 6em;
+}

@@ -1,0 +1,22 @@
+// Featured success story
+#featured-post-teaser,
+#featured-post-3 {
+  background: $widget_bg image-url('widget_top_bg.png') no-repeat center -3px;
+}
+.multiplebgs {
+  #featured-post-teaser,
+  .poetry-teaser {
+    @include widget_top_bottom_bg($widget_bottom_center);
+  }
+} 
+.featured-post-inner,
+.multiplebgs #featured-post-3 {
+  @extend %widget_gradient_bg;
+}
+
+.home #inner {
+  background: image-url('book_bg.png') repeat-x left bottom;
+}
+.home-page-quote {
+  font-size: 1.5em;
+}
