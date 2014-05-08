@@ -1846,12 +1846,19 @@ h2 a:visited,
 }
 
 /* line 5, ../sass/base/_page.scss */
+.breadcrumb {
+  margin-bottom: 1em;
+  padding: 1em 1em 1em 0;
+  background-color: transparent;
+}
+
+/* line 11, ../sass/base/_page.scss */
 .page-quote {
   font-size: 1.5em;
   text-align: center;
 }
 
-/* line 10, ../sass/base/_page.scss */
+/* line 16, ../sass/base/_page.scss */
 .quote-attr {
   float: right;
 }
