@@ -132,7 +132,7 @@ function freeminds_widgets_init() {
   ));
 
   genesis_register_sidebar( array(
-    'name' => 'Footer 1',
+    'name' => 'Footer 1 (Site Desc)',
     'id'  => 'footer-one',
     'description' => 'Use this area for the footer site description',
     'before_widget' => '<div id="%1$s" class="%2$s">',
@@ -142,7 +142,7 @@ function freeminds_widgets_init() {
   ));
 
   genesis_register_sidebar( array(
-    'name' => 'Footer 2',
+    'name' => 'Footer 2 (Contact)',
     'id'  => 'footer-two',
     'description' => 'Use this area to add site contact info',
     'before_widget' => '<div id="%1$s" class="%2$s">',
@@ -150,6 +150,13 @@ function freeminds_widgets_init() {
     'before_title' => '<h3 class="footer-widget footer-widget-two">',
     'after_title' => '</h3>',
   ));
+}
+
+
+//* Modify the WordPress read more link
+add_filter( 'the_content_more_link', 'fm_read_more_link' );
+function fm_read_more_link() {
+  return '<a class="more-link" href="' . get_permalink() . '">Read More</a>';
 }
 
 /** Exclude Success Story & News / Events category from posts */
