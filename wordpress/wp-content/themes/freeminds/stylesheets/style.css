@@ -58,8 +58,8 @@
   background-color: rgba(248, 245, 245, 0);
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF8F5F5', endColorstr='#FFF8F5F5');
-  background-image: -webkit-linear-gradient(top, rgba(248, 245, 245, 0) 0%, rgba(248, 245, 245, 0.5) 20%, rgba(248, 245, 245, 0.59) 26%, #f8f5f5 52%, rgba(248, 245, 245, 0.85) 76%, rgba(248, 245, 245, 0.83) 80%, rgba(247, 244, 244, 0) 100%);
-  background-image: linear-gradient(to bottom, rgba(248, 245, 245, 0) 0%, rgba(248, 245, 245, 0.5) 20%, rgba(248, 245, 245, 0.59) 26%, #f8f5f5 52%, rgba(248, 245, 245, 0.85) 76%, rgba(248, 245, 245, 0.83) 80%, rgba(247, 244, 244, 0) 100%);
+  background-image: -webkit-linear-gradient(top, rgba(248, 245, 245, 0) 0%, rgba(248, 245, 245, 0.5) 20%, rgba(248, 245, 245, 0.59) 26%, #f8f5f5 52%, rgba(248, 245, 245, 0.85) 76%, rgba(241, 241, 241, 0.83) 80%, rgba(247, 244, 244, 0) 100%);
+  background-image: linear-gradient(to bottom, rgba(248, 245, 245, 0) 0%, rgba(248, 245, 245, 0.5) 20%, rgba(248, 245, 245, 0.59) 26%, #f8f5f5 52%, rgba(248, 245, 245, 0.85) 76%, rgba(241, 241, 241, 0.83) 80%, rgba(247, 244, 244, 0) 100%);
 }
 
 /* line 36, ../sass/global/_extends.scss */
@@ -2313,8 +2313,18 @@ img {
   border: none;
   padding: 1em;
 }
+/* line 12, ../sass/component/_sidebar.scss */
+#sidebar .widgets-archive-tags .widget {
+  border-left: 2px solid rgba(205, 205, 205, 0.5);
+  border-right: 2px solid rgba(205, 205, 205, 0.5);
+}
+/* line 17, ../sass/component/_sidebar.scss */
+#sidebar .widget_archive {
+  margin-bottom: 0;
+  padding-bottom: 2em;
+}
 
-/* line 13, ../sass/component/_sidebar.scss */
+/* line 23, ../sass/component/_sidebar.scss */
 .widget_tag_cloud .fa-tag {
   display: inline;
   float: left;
@@ -2324,13 +2334,15 @@ img {
   font-size: 1.5em;
 }
 
-/* line 21, ../sass/component/_sidebar.scss */
+/* line 31, ../sass/component/_sidebar.scss */
 .widgets-archive-tags {
+  border-left: none;
+  border-right: none;
   margin-left: 10px;
   margin-right: 10px;
 }
 
-/* line 27, ../sass/component/_sidebar.scss */
+/* line 39, ../sass/component/_sidebar.scss */
 .widgets-archive-tags-inner {
   background: url('../images/widget_bottom_bg.png?1397427075') no-repeat center 100%;
   padding-bottom: 30px;
