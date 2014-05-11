@@ -132,7 +132,7 @@ function freeminds_widgets_init() {
   ));
 
   genesis_register_sidebar( array(
-    'name' => 'Footer 1 (Site Desc)',
+    'name' => 'Footer 1',
     'id'  => 'footer-one',
     'description' => 'Use this area for the footer site description',
     'before_widget' => '<div id="%1$s" class="%2$s">',
@@ -142,7 +142,7 @@ function freeminds_widgets_init() {
   ));
 
   genesis_register_sidebar( array(
-    'name' => 'Footer 2 (Contact)',
+    'name' => 'Footer 2',
     'id'  => 'footer-two',
     'description' => 'Use this area to add site contact info',
     'before_widget' => '<div id="%1$s" class="%2$s">',
