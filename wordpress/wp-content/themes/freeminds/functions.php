@@ -50,6 +50,26 @@ function freeminds_google_fonts() {
 }
 add_action( 'wp_head', 'freeminds_google_fonts', 5);
 
+
+/**
+ * HTML5 DOCTYPE
+ * removes the default Genesis doctype, adds new html5 doctype with IE8 detection
+*/
+
+function freeminds_html5_doctype() {
+?>
+<!DOCTYPE html>
+<!--[if IE 9]> <html class="ie9" <?php language_attributes( 'html' ); ?>> <![endif]-->
+<!--[if gt IE 8]><!--> <html <?php language_attributes( 'html' ); ?>> <!--<![endif]-->
+<head>
+<meta charset="<?php bloginfo( 'charset' ); ?>" />
+<?php
+}
+
+remove_action( 'genesis_doctype', 'genesis_do_doctype' );
+add_action( 'genesis_doctype', 'freeminds_html5_doctype' );
+
+
 /**
  * Filter the genesis_seo_site_title function to use an image for the logo instead of a background image
  * 
