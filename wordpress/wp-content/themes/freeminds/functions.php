@@ -91,6 +91,15 @@ add_filter( 'genesis_seo_title', 'freeminds_filter_genesis_seo_site_title', 10, 
  * Enqueue scripts and styles
  */
 function freeminds_scripts() {
+  global $wp_styles;
+
+  /**
+  * Load our IE version-specific stylesheet:
+  * <!--[if IE 9]> ... <![endif]-->
+  */
+  wp_enqueue_style( 'freeminds_ie9', get_stylesheet_directory_uri() . '/stylesheets/ie.css', array(), PARENT_THEME_VERSION );
+  $wp_styles->add_data( 'freeminds_ie9', 'conditional', 'IE 9' );
+  
   wp_enqueue_script( 'freeminds_enquire', get_stylesheet_directory_uri() . '/js/vendor/enquire.min.js', array(), '1.0.2', false );
   wp_enqueue_script( 'freeminds', get_stylesheet_directory_uri() . '/js/freeminds.js', array('jquery', 'freeminds_enquire'));
 
