@@ -1739,8 +1739,14 @@ textarea,
   font-size: 0.875rem;
 }
 
+/*  - Header Font Awesome Icon colors ----------- */
+/* line 173, ../sass/base/_html.scss */
+#subnav li a:hover {
+  background: none;
+}
+
 /* 03b - Font Family ----------- */
-/* line 176, ../sass/base/_html.scss */
+/* line 181, ../sass/base/_html.scss */
 body,
 input,
 textarea,
@@ -1748,7 +1754,7 @@ textarea,
   font-family: Montserrat, sans-serif;
 }
 
-/* line 187, ../sass/base/_html.scss */
+/* line 192, ../sass/base/_html.scss */
 h1,
 h2,
 h3,
@@ -1762,23 +1768,23 @@ h6,
 }
 
 /* 03d - Font Miscellaneous ----------- */
-/* line 194, ../sass/base/_html.scss */
+/* line 199, ../sass/base/_html.scss */
 blockquote::before {
   font-size: 30px;
   font-size: 1.5rem;
 }
 
-/* line 199, ../sass/base/_html.scss */
+/* line 204, ../sass/base/_html.scss */
 blockquote p {
   font-style: italic;
 }
 
-/* line 203, ../sass/base/_html.scss */
+/* line 208, ../sass/base/_html.scss */
 cite {
   font-style: normal;
 }
 
-/* line 224, ../sass/base/_html.scss */
+/* line 229, ../sass/base/_html.scss */
 button,
 input[type="button"],
 input[type="submit"],
@@ -1800,12 +1806,12 @@ h6,
   font-weight: 700;
 }
 
-/* line 228, ../sass/base/_html.scss */
+/* line 233, ../sass/base/_html.scss */
 .wp-caption {
   text-align: center;
 }
 
-/* line 237, ../sass/base/_html.scss */
+/* line 242, ../sass/base/_html.scss */
 h2 a,
 h2 a:visited,
 .genesis-nav-menu a,
@@ -1815,13 +1821,13 @@ h2 a:visited,
   text-decoration: none;
 }
 
-/* line 242, ../sass/base/_html.scss */
+/* line 247, ../sass/base/_html.scss */
 #comments h3,
 .comment-reply-title {
   color: #3d9baa;
 }
 
-/* line 246, ../sass/base/_html.scss */
+/* line 251, ../sass/base/_html.scss */
 .more-link {
   font-weight: bold;
   position: relative;
@@ -1831,16 +1837,16 @@ h2 a:visited,
 /**********************
   Footer
 ***********************/
-/* line 260, ../sass/base/_html.scss */
+/* line 264, ../sass/base/_html.scss */
 #footer {
   background: #004f5b;
   color: #FFF;
 }
-/* line 264, ../sass/base/_html.scss */
+/* line 268, ../sass/base/_html.scss */
 #footer a {
   color: #FFF;
 }
-/* line 268, ../sass/base/_html.scss */
+/* line 272, ../sass/base/_html.scss */
 #footer .wrap {
   border: none;
 }
