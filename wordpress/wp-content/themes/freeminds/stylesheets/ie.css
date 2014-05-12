@@ -7,3 +7,7 @@
 .ie9 .home-feature-wrap {
   margin-top: 1em;
 }
+/* line 11, ../sass/ie.scss */
+.ie9 .news-teaser h2 {
+  margin-left: 200px;
+}
