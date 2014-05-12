@@ -11,3 +11,7 @@
 .ie9 .news-teaser h2 {
   margin-left: 200px;
 }
+/* line 15, ../sass/ie.scss */
+.ie9 #sidebar {
+  background-image: none;
+}
