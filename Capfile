@@ -116,8 +116,6 @@ namespace :db do
       download("#{temp}", "db/#{filename}", :via=> :scp)
       if "#{stage}" == "prod"
         search = "#{application}.org"
-      if "#{stage}" == "staging"
-        search = "#{stage}.#{application}.org"
       else
         search = "#{application}.#{staging_domain}.com"
       end
