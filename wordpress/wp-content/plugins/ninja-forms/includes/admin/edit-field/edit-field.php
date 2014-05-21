@@ -121,10 +121,8 @@ function ninja_forms_edit_field_el_output($field_id, $type, $label = '', $name =
 				update_option( 'ninja_forms_settings', $plugin_settings );
 			}
 
-			$editor_id = str_replace( '[', '-', $name );
-			$editor_id = str_replace( ']', '-', $editor_id );
-			$args = apply_filters( 'ninja_forms_edit_field_rte', array( 'textarea_name' => $name ) );
-			wp_editor( $value, $editor_id, $args );
+			$args = apply_filters( 'ninja_forms_edit_field_rte', array() );
+			wp_editor( $value, $name, $args );
 		break;
 	}
 

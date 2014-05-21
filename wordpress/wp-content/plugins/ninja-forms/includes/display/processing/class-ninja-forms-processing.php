@@ -98,7 +98,8 @@ class Ninja_Forms_Processing {
 			return false;
 		}else{
 			$this->data['form_ID'] = $form_ID;
-			$user_ID = get_current_user_id();
+			$current_user = wp_get_current_user();
+			$user_ID = $current_user->ID;
 			if(!$user_ID){
 				$user_ID = '';
 			}
@@ -218,7 +219,6 @@ class Ninja_Forms_Processing {
 			$this->data['form'] = $cache['form_settings'];
 			$this->data['success'] = $cache['success_msgs'];
 			$this->data['errors'] = $cache['error_msgs'];
-			$this->data['extra'] = $cache['extra_values'];
 			
 		}
 
@@ -1158,30 +1158,9 @@ class Ninja_Forms_Processing {
 		}else{
 			$number = str_replace( ' ', '', $this->data['extra']['_credit_card_number'] );
 			$credit_card['number'] = $number;
-			
-			if(isset( $this->data['extra']['_credit_card_cvc'] )){
-			
-				$credit_card['cvc'] = $this->data['extra']['_credit_card_cvc'];
-				
-			}
-			
-			if(isset( $this->data['extra']['_credit_card_name'] )){
-			
-				$credit_card['name'] = $this->data['extra']['_credit_card_name'];
-				
-			}
-			
-			//$credit_card['expires'] = $this->data['extra']['_credit_card_expires'];
-
-			if(isset( $this->data['extra']['_credit_card_expires_month'] )){
-			
-				$credit_card['expires'] = $this->data['extra']['_credit_card_expires_month'] 
-					. '/' . $this->data['extra']['_credit_card_expires_year'];
-
-				$credit_card['expires_month'] = $this->data['extra']['_credit_card_expires_month'];
-				$credit_card['expires_year'] = $this->data['extra']['_credit_card_expires_year'];
-				
-			}
+			$credit_card['cvc'] = $this->data['extra']['_credit_card_cvc'];
+			$credit_card['name'] = $this->data['extra']['_credit_card_name'];
+			$credit_card['expires'] = $this->data['extra']['_credit_card_expires'];
 			return $credit_card;
 		}
 	}

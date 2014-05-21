@@ -283,8 +283,6 @@ function ninja_forms_field_list_display( $field_id, $data ){
 						$value = $option['label'];
 					}
 
-					$value = htmlspecialchars( $value, ENT_QUOTES );
-
 					if(isset($option['label'])){
 						$label = $option['label'];
 					}else{
@@ -303,7 +301,7 @@ function ninja_forms_field_list_display( $field_id, $data ){
 						$disabled = '';
 					}
 
-					$label = htmlspecialchars( $label, ENT_QUOTES );
+					$label = htmlspecialchars( $label );
 
 					$label = stripslashes( $label );
 
@@ -314,7 +312,6 @@ function ninja_forms_field_list_display( $field_id, $data ){
 					if($list_show_value == 0){
 						$value = $label;
 					}
-
 
 					if ( $selected_value == $value OR ( is_array( $selected_value ) AND in_array( $value, $selected_value ) ) ) {
 						$selected = 'selected';
@@ -347,8 +344,6 @@ function ninja_forms_field_list_display( $field_id, $data ){
 					$value = $option['label'];
 				}
 
-				$value = htmlspecialchars( $value, ENT_QUOTES );
-
 				if(isset($option['label'])){
 					$label = $option['label'];
 				}else{
@@ -360,8 +355,6 @@ function ninja_forms_field_list_display( $field_id, $data ){
 				}else{
 					$display_style = '';
 				}
-
-				$label = htmlspecialchars( $label, ENT_QUOTES );
 
 				$label = stripslashes($label);
 
@@ -393,8 +386,6 @@ function ninja_forms_field_list_display( $field_id, $data ){
 					$value = $option['label'];
 				}
 
-				$value = htmlspecialchars( $value, ENT_QUOTES );
-
 				if(isset($option['label'])){
 					$label = $option['label'];
 				}else{
@@ -407,9 +398,7 @@ function ninja_forms_field_list_display( $field_id, $data ){
 					$display_style = '';
 				}
 
-				$label = htmlspecialchars( $label, ENT_QUOTES );
-
-				$label = stripslashes( $label) ;
+				$label = stripslashes($label);
 
 				if($list_show_value == 0){
 					$value = $label;
@@ -452,8 +441,6 @@ function ninja_forms_field_list_display( $field_id, $data ){
 						$value = $option['label'];
 					}
 
-					$value = htmlspecialchars( $value, ENT_QUOTES );
-
 					if(isset($option['label'])){
 						$label = $option['label'];
 					}else{
@@ -465,8 +452,6 @@ function ninja_forms_field_list_display( $field_id, $data ){
 					}else{
 						$display_style = '';
 					}
-
-					$label = htmlspecialchars( $label, ENT_QUOTES );
 
 					$label = stripslashes($label);
 
@@ -501,8 +486,6 @@ function ninja_forms_field_list_display( $field_id, $data ){
 						$value = $option['label'];
 					}
 
-					$value = htmlspecialchars( $value, ENT_QUOTES );
-
 					if(isset($option['label'])){
 						$label = $option['label'];
 					}else{
@@ -515,9 +498,7 @@ function ninja_forms_field_list_display( $field_id, $data ){
 						$display_style = '';
 					}
 
-					$label = htmlspecialchars( $label, ENT_QUOTES );
-
-					$label = stripslashes( $label );
+					$label = stripslashes($label);
 
 					if($list_show_value == 0){
 						$value = $label;
@@ -629,12 +610,7 @@ function ninja_forms_field_filter_list_data( $form_id ){
 	if ( isset ( $ninja_forms_loading ) ) {
 		$all_fields = $ninja_forms_loading->get_all_fields();
 	} else {
-		return false;
-	}
-
-	// Make sure we have some fields before displaying them!
-	if ( ! $all_fields ) {
-		return;
+		$all_fields = $ninja_forms_processing->get_all_fields();
 	}
 	
 	// Loop through all of our fields and see if we have any list fields.
@@ -644,9 +620,9 @@ function ninja_forms_field_filter_list_data( $form_id ){
 		if ( isset ( $ninja_forms_loading ) ) {
 			$field = $ninja_forms_loading->get_field_settings( $field_id );
 		} else {
-			// $field = $ninja_forms_processing->get_field_settings( $field_id );
+			$field = $ninja_forms_processing->get_field_settings( $field_id );
 		}
-
+		
 		$field_type = $field['type'];
 		$data = $field['data'];
 		// Check to see if we are working with a list. If so, filter the default_value
@@ -674,12 +650,12 @@ function ninja_forms_field_filter_list_data( $form_id ){
 					$ninja_forms_loading->update_field_value( $field_id, $tmp_array );
 				}
 			} else {
-				// if ( !$ninja_forms_processing->get_field_value( $field_id ) ) {
-				// 	$ninja_forms_processing->update_field_value( $field_id, $tmp_array );
-				// }
+				if ( !$ninja_forms_processing->get_field_value( $field_id ) ) {
+					$ninja_forms_processing->update_field_value( $field_id, $tmp_array );
+				}
 			}			
 		}
 	}
 }
 
-add_action( 'ninja_forms_display_pre_init', 'ninja_forms_field_filter_list_data', 8 );
+add_action( 'ninja_forms_display_init', 'ninja_forms_field_filter_list_data' );

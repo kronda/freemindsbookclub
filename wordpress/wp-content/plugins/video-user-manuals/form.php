@@ -1,131 +1,130 @@
 <?php
 
-class Vum_form {
-
+class Vum_form
+{
     var $fieldList, $navList, $topLvlTabs = 0, $formTitle;
 
-    function __construct( $title = '' ) {
-        $this->formTitle = $title;
+    function  __construct($title='')
+    {
+        $this->formTitle=$title;
     }
-
-    function setPluginURL( $url = '' ) {
+    function setPluginURL($url='')
+    {
         $this->pluginURL = $url;
     }
-
-    function addTextbox( $id, $title, $desc, $default = '' ) {
-        $this->fieldList[ $id ] = $this->_array( 'textbox', $title, $id, $desc, array( ), $default );
+    function addTextbox($id,$title,$desc, $default='')
+    {
+        $this->fieldList[$id] = $this->_array( 'textbox', $title, $id, $desc, array(), $default );
         return $id;
     }
-
-    function addYesNo( $id, $title, $desc, $default = '1' ) {
-        $this->addRadioGroup( $id, $title, $desc, array( 1 => 'Yes', 0 => 'No' ), $default );
-        return $id;
+    function addYesNo($id,$title,$desc, $default = '1')
+    {
+        $this->addRadioGroup($id, $title, $desc, array(1 => 'Yes', 0 => 'No'), $default );
+        return $id;   
     }
-
-    function addDropdown( $id, $title, $desc, $options = array( ), $default = false ) {
-        $this->fieldList[ $id ] = $this->_array( 'dropdown', $title, $id, $desc, $options, $default );
+    function addDropdown($id,$title,$desc,$options=array(), $default = false )
+    {
+        $this->fieldList[$id] = $this->_array( 'dropdown', $title, $id, $desc, $options, $default );
     }
-
-    function addTextarea( $id, $title, $desc, $default = '' ) {
-        $this->fieldList[ $id ] = $this->_array( 'textarea', $title, $id, $desc, array( ), $default );
+    function addTextarea($id,$title,$desc,$default='')
+    {
+        $this->fieldList[$id] = $this->_array( 'textarea', $title, $id, $desc, array(), $default);
     }
-
-    function addRadioGroup( $id, $title, $desc, $options = array( ), $default = false ) {
-        $this->fieldList[ $id ] = $this->_array( 'radio', $title, $id, $desc, $options, $default );
+    function addRadioGroup($id,$title,$desc,$options=array(), $default=false)
+    {
+        $this->fieldList[$id] = $this->_array( 'radio', $title, $id, $desc, $options, $default );
     }
-
-    function localVideos() {
-        $this->fieldList[ 'local' ] = '';
+    function localVideos()
+    {
+        $this->fieldList['local'] ='';
     }
-
-    function addHeading( $title, $tag = 'h2' ) {
-        $this->fieldList[ ] = $this->_array( 'title', $title, $tag );
+    function addHeading($title, $tag = 'h2' )
+    {
+        $this->fieldList[] = $this->_array ('title', $title, $tag );
     }
-
-    function html( $html ) {
-        $this->fieldList[ ] = $this->_array( 'html', $html );
+    function html($html)
+    {
+        $this->fieldList[] = $this->_array('html', $html);
     }
-
-    function addClass( $fieldId, $class ) {
-        $this->fieldList[ $fieldId ] [ 'classes' ] [ ] = $class;
+    function addClass($fieldId, $class)
+    {
+        $this->fieldList[ $fieldId ] [ 'classes' ] [] = $class;
     }
-
-    function openTab( $title = '' ) {
-        $this->navList[ $this->topLvlTabs ] = $this->_array( 'sectionOpen', $title, 'tabs-' . $this->topLvlTabs );
-        $this->fieldList[ ] = $this->_array( 'sectionOpen', $title, 'tabs-' . $this->topLvlTabs );
+    function openTab($title='')
+    {
+        $this->navList[$this->topLvlTabs] = $this->_array ('sectionOpen', $title, 'tabs-'. $this->topLvlTabs );
+        $this->fieldList[] = $this->_array ('sectionOpen', $title, 'tabs-'. $this->topLvlTabs);
         $this->topLvlTabs++;
     }
-
-    function closeTab() {
+    function closeTab()
+    {
         $this->closeSection();
     }
-
-    function openSection( $title = '', $id = '' ) {
+    function openSection($title='',$id='')
+    {
         // Add item to array 
-        $this->fieldList[ ] = $this->_array( 'sectionOpen', $title, $id );
+        $this->fieldList[] = $this->_array ('sectionOpen', $title, $id );
 
         // return the ID of this item.
-        $keys = array_keys( $this->fieldList );
-        return end( $keys );
+        return end( array_keys( $this->fieldList ) );
     }
-
-    function closeSection() {
-        $this->fieldList[ ] = $this->_array( 'sectionClose' );
+    function closeSection()
+    {
+        $this->fieldList[] = $this->_array ('sectionClose');
     }
+    function fields()
+    {
+        $return = array();
 
-    function fields() {
-        $return = array( );
+        foreach( $this->fieldList as $key => $val ):
 
-        foreach ( $this->fieldList as $key => $val ):
-
-            // Fields with an integer mean they're a heading, div etc. Not an input. 
-            if ( !is_int( $key ) )
-                $return[ $key ] = $val;
-
+                // Fields with an integer mean they're a heading, div etc. Not an input. 
+                if( ! is_int($key) )
+                    $return[$key] = $val;
+                
         endforeach;
 
         return $return;
     }
-
-    function display() {
+    function display()
+    {
         Vum_form_html::openForm();
 
-        Vum_form_html::title( array( 'title' => '<img style="vertical-align: -7px;margin-right:7px" src="' . $this->pluginURL . '/images/vum-logo-32.png">' . $this->formTitle, 'id' => 'h2' ) );
+        Vum_form_html::title(array('title'=> '<img style="vertical-align: -7px;margin-right:7px" src="'.$this->pluginURL.'/images/vum-logo-32.png">' . $this->formTitle,'id' => 'h2') );
 
         Vum_form_html::tabNav( $this->navList );
 
         //var_dump($this->fieldList);die;
-
-        foreach ( $this->fieldList as $key => $item ):
-            Vum_form_html::$item[ 'type' ]( $item );
+        
+        foreach($this->fieldList as $key=>$item ):
+                Vum_form_html::$item['type']($item);
         endforeach;
 
         Vum_form_html::closeForm();
     }
-
-    function getVal( $id ) {
-        return stripslashes( get_option( 'wpm_o_' . $id, 'na' ) );
+    function getVal($id)
+    {
+        return stripslashes(get_option( 'wpm_o_' . $id , 'na' ));
     }
-
-    function _array( $type = '', $title = '', $id = 0, $desc = '', $options = array( ), $default = false ) {
+    function _array($type='', $title='', $id=0, $desc='',$options=array(),$default=false)
+    {
         $ar = array(
-            'type' => $type,
-            'title' => $title,
-            'id' => $id,
-            'desc' => $desc,
-            'value' => ( $this->getVal( $id ) == 'na' ? $default : $this->getVal( $id ) ),
-            'options' => $options,
+            'type'=>$type,
+            'title'=>$title,
+            'id'=> $id,
+            'desc'=>$desc,
+            'value'=> ( $this->getVal($id) == 'na' ? $default : $this->getVal($id) ) ,
+            'options'=>$options,
             'dbName' => 'wpm_o_' . $id,
-            'classes' => array( )
+            'classes' => array()
         );
         return $ar;
     }
-
 }
 
 Class Vum_form_html
 {
-    static function openForm($method='post')
+    function openForm($method='post')
     { ?>
     <div class="wrap">
     <form id="wpm_form" method="<?php echo $method;?>" action="<?php echo admin_url( 'admin.php?page=vum-options' ); ?>">
@@ -133,7 +132,7 @@ Class Vum_form_html
     <div id="tabs">
   <?php }
 
-    static function closeForm()
+    function closeForm()
     {
         echo '<p class="submit"><input type="submit" name="submit-button" class="button-primary" value="Save Changes" /></p>';
         echo '<input type="hidden" name="return" id="return" value="" />';
@@ -142,7 +141,7 @@ Class Vum_form_html
         echo '</form>';
         echo '</div>'; // Close #wrap
     }
-    static function tabNav($atts=array())
+    function tabNav($atts=array())
     {   ?>
       	<ul>
             <?php foreach($atts as $id=>$navItem): ?>
@@ -151,7 +150,7 @@ Class Vum_form_html
 	</ul>
         <br />
     <?php }
-    static function textbox($atts)
+    function textbox($atts)
     {
         extract($atts); ?>
             <div class="wpm_input wpm_text<?php self::applyClasses($classes);?>" id="<?php echo $id; ?>">
@@ -162,7 +161,7 @@ Class Vum_form_html
                 </div>
             </div>
     <?php }
-    static function textarea($atts)
+    function textarea($atts)
     {
         extract($atts); ?>
             <div class="wpm_input wpm_text">
@@ -173,7 +172,7 @@ Class Vum_form_html
                 </div>
             </div>
     <?php }
-     static function dropdown($atts)
+     function dropdown($atts)
     {
         extract($atts); ?>
             <div class="wpm_input wpm_text">
@@ -194,7 +193,7 @@ Class Vum_form_html
                 </div>
             </div>
     <?php }
-     static function radio($atts)
+     function radio($atts)
     {
         extract($atts); ?>
             <div class="wpm_input wpm_text" id="wpm_o_<?php echo $id; ?>">
@@ -216,33 +215,33 @@ Class Vum_form_html
             </div>
     <?php }
 
-    static function title($atts)
+    function title($atts)
     {
         extract($atts); ?>
         <<?php echo $id;?>><?php echo $title;?></<?php echo $id;?>>
     <?php
     }
 
-    static function sectionOpen($atts)
+    function sectionOpen($atts)
     {
         extract($atts); ?>
         <div class="wpm_section<?php self::applyClasses($classes);?>" <?php echo 'id="'.$id.'"';  ?>>
         <?php
     }
 
-    static function applyClasses($classArray=array())
+    function applyClasses($classArray=array())
     {
         foreach($classArray as $class):
             echo ' ' . $class ;
         endforeach;
     }
 
-    static function html($atts)
+    function html($atts)
     {
         echo $atts['title'];
     }
 
-    static function sectionClose($atts)
+    function sectionClose($atts)
     {
         echo '</div>';
     }
