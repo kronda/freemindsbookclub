@@ -1855,16 +1855,17 @@ h2 a:visited,
 .breadcrumb {
   margin-bottom: 1em;
   padding: 1em 1em 1em 0;
+  line-height: 1.5em;
   background-color: transparent;
 }
 
-/* line 11, ../sass/base/_page.scss */
+/* line 12, ../sass/base/_page.scss */
 .page-quote {
   font-size: 1.5em;
   text-align: center;
 }
 
-/* line 16, ../sass/base/_page.scss */
+/* line 17, ../sass/base/_page.scss */
 .quote-attr {
   float: right;
 }
