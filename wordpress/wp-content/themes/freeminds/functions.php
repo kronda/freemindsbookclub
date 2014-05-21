@@ -50,26 +50,6 @@ function freeminds_google_fonts() {
 }
 add_action( 'wp_head', 'freeminds_google_fonts', 5);
 
-
-/**
- * HTML5 DOCTYPE
- * removes the default Genesis doctype, adds new html5 doctype with IE8 detection
-*/
-
-function freeminds_html5_doctype() {
-?>
-<!DOCTYPE html>
-<!--[if IE 9]> <html class="ie9" <?php language_attributes( 'html' ); ?>> <![endif]-->
-<!--[if gt IE 8]><!--> <html <?php language_attributes( 'html' ); ?>> <!--<![endif]-->
-<head>
-<meta charset="<?php bloginfo( 'charset' ); ?>" />
-<?php
-}
-
-remove_action( 'genesis_doctype', 'genesis_do_doctype' );
-add_action( 'genesis_doctype', 'freeminds_html5_doctype' );
-
-
 /**
  * Filter the genesis_seo_site_title function to use an image for the logo instead of a background image
  * 
@@ -91,15 +71,6 @@ add_filter( 'genesis_seo_title', 'freeminds_filter_genesis_seo_site_title', 10, 
  * Enqueue scripts and styles
  */
 function freeminds_scripts() {
-  global $wp_styles;
-
-  /**
-  * Load our IE version-specific stylesheet:
-  * <!--[if IE 9]> ... <![endif]-->
-  */
-  wp_enqueue_style( 'freeminds_ie9', get_stylesheet_directory_uri() . '/stylesheets/ie.css', array(), PARENT_THEME_VERSION );
-  $wp_styles->add_data( 'freeminds_ie9', 'conditional', 'IE 9' );
-  
   wp_enqueue_script( 'freeminds_enquire', get_stylesheet_directory_uri() . '/js/vendor/enquire.min.js', array(), '1.0.2', false );
   wp_enqueue_script( 'freeminds', get_stylesheet_directory_uri() . '/js/freeminds.js', array('jquery', 'freeminds_enquire'));
 

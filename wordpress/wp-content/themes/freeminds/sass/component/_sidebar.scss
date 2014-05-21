@@ -3,6 +3,11 @@
 ***********************/
 #sidebar {
   background: transparent image-url('widget_top_bg.png') no-repeat center -3px;
+  background-size: 96% auto;
+
+  @include media($ipad) {
+    background-size: 99%;
+  }
 
   .widget {
     border: none;
@@ -38,6 +43,7 @@
 
 .widgets-archive-tags-inner {
   background: image-url('widget_bottom_bg.png') no-repeat center 100%;
+  background-size: 103% auto;
   padding-bottom: 30px;
 
 }

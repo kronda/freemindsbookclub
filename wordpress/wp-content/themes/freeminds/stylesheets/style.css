@@ -2313,24 +2313,31 @@ img {
 /* line 4, ../sass/component/_sidebar.scss */
 #sidebar {
   background: transparent url('../images/widget_top_bg.png?1397427075') no-repeat center -3px;
+  background-size: 96% auto;
 }
-/* line 7, ../sass/component/_sidebar.scss */
+@media screen and (max-width: 767px) {
+  /* line 4, ../sass/component/_sidebar.scss */
+  #sidebar {
+    background-size: 99%;
+  }
+}
+/* line 12, ../sass/component/_sidebar.scss */
 #sidebar .widget {
   border: none;
   padding: 1em;
 }
-/* line 12, ../sass/component/_sidebar.scss */
+/* line 17, ../sass/component/_sidebar.scss */
 #sidebar .widgets-archive-tags .widget {
   border-left: 2px solid rgba(205, 205, 205, 0.5);
   border-right: 2px solid rgba(205, 205, 205, 0.5);
 }
-/* line 17, ../sass/component/_sidebar.scss */
+/* line 22, ../sass/component/_sidebar.scss */
 #sidebar .widget_archive {
   margin-bottom: 0;
   padding-bottom: 2em;
 }
 
-/* line 23, ../sass/component/_sidebar.scss */
+/* line 28, ../sass/component/_sidebar.scss */
 .widget_tag_cloud .fa-tag {
   display: inline;
   float: left;
@@ -2340,7 +2347,7 @@ img {
   font-size: 1.5em;
 }
 
-/* line 31, ../sass/component/_sidebar.scss */
+/* line 36, ../sass/component/_sidebar.scss */
 .widgets-archive-tags {
   border-left: none;
   border-right: none;
@@ -2348,9 +2355,10 @@ img {
   margin-right: 10px;
 }
 
-/* line 39, ../sass/component/_sidebar.scss */
+/* line 44, ../sass/component/_sidebar.scss */
 .widgets-archive-tags-inner {
   background: url('../images/widget_bottom_bg.png?1397427075') no-repeat center 100%;
+  background-size: 103% auto;
   padding-bottom: 30px;
 }
 
