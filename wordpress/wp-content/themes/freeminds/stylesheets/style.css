@@ -2270,12 +2270,17 @@ img {
   border-radius: 5px;
   padding: 0.5em 2em 0.5em 1em;
 }
-/* line 72, ../sass/component/_header.scss */
+/* line 71, ../sass/component/_header.scss */
+#subnav .email-list a:hover {
+  background-color: #3fa02c;
+  color: #FFF;
+}
+/* line 77, ../sass/component/_header.scss */
 #subnav .donate {
   vertical-align: 30%;
 }
-/* line 75, ../sass/component/_header.scss */
-#subnav .donate a {
+/* line 80, ../sass/component/_header.scss */
+#subnav .donate a, #subnav .donate a:hover {
   color: #c44c18;
   padding: 1em;
   background: transparent url('../images/donate_bg.png?1397427075') no-repeat left top;
