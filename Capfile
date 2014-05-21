@@ -115,7 +115,7 @@ namespace :db do
       run "source /home/krondaco/.bash_profile && cd #{deploy_to}/current/wordpress && #{wp} db export #{temp}"
       download("#{temp}", "db/#{filename}", :via=> :scp)
       if "#{stage}" == "prod"
-        search = "#{application}.com"
+        search = "#{application}.org"
       else
         search = "#{application}.#{staging_domain}.com"
       end
