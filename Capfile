@@ -112,12 +112,14 @@ namespace :db do
       temp = "/tmp/#{release_name}_#{application}_#{filename}"
       run "touch #{temp} && chmod 600 #{temp}"
       run_locally "mkdir -p db"
-      run "cd #{deploy_to}/current/webroot && #{wp} db export #{temp} && cd -"
+      run "source /home/krondaco/.bash_profile && cd #{deploy_to}/current/wordpress && #{wp} db export #{temp}"
       download("#{temp}", "db/#{filename}", :via=> :scp)
       if "#{stage}" == "prod"
-        search = "#{application}.com"
+        search = "#{application}.org"
+      if "#{stage}" == "staging"
+        search = "#{stage}.#{application}.org"
       else
-        search = "#{stage}.#{application}.com"
+        search = "#{application}.#{staging_domain}.com"
       end
       replace = local_domain
       puts "searching (#{search}) and replacing (#{replace}) domain information"
@@ -130,7 +132,7 @@ namespace :db do
   task :pull, :roles => :db, :only => { :primary => true } do
     domains.each do |domain|
       filename = "#{domain}_#{stage}.sql"
-      run_locally "cd #{local_path}/webroot ; wp db import ../db/#{filename}"
+      system "cd #{local_path}/#{app_root} ; wp db import ../db/#{filename}"
     end
   end
 
@@ -149,7 +151,7 @@ namespace :db do
       puts "searching (#{search}) and replacing (#{replace}) domain information"
       run_locally "sed -e 's/#{search}/#{replace}/g' -i .bak db/#{filename}"
       upload("db/#{filename}", "#{temp}", :via=> :scp)
-      run "cd #{deploy_to}/current/webroot/ && #{wp} db import #{temp}"
+      run "source /home/krondaco/.bash_profile && cd #{deploy_to}/current/wordpress && #{wp} db import #{temp}"
       run "rm #{temp}"
     end
   end

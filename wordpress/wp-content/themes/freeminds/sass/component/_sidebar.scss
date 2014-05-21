@@ -3,10 +3,25 @@
 ***********************/
 #sidebar {
   background: transparent image-url('widget_top_bg.png') no-repeat center -3px;
+  background-size: 96% auto;
+
+  @include media($ipad) {
+    background-size: 99%;
+  }
 
   .widget {
     border: none;
     padding: 1em;
+  }
+  // Setting the border on the widgets so they don't overflow the bottom background image.
+  .widgets-archive-tags .widget {
+    border-left: 2px solid rgba(205,205,205, 0.5);
+    border-right: 2px solid rgba(205,205,205, 0.5);
+  }
+
+  .widget_archive {
+    margin-bottom: 0;
+    padding-bottom: 2em;
   }
 }
 
@@ -20,11 +35,15 @@
 }
 .widgets-archive-tags {
   @extend %widget_gradient_bg;
+  border-left: none;
+  border-right: none;
   margin-left: 10px;
   margin-right: 10px;
 } 
 
 .widgets-archive-tags-inner {
   background: image-url('widget_bottom_bg.png') no-repeat center 100%;
+  background-size: 103% auto;
   padding-bottom: 30px;
+
 }

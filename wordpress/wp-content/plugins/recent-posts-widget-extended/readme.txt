@@ -4,7 +4,7 @@ Donate link: http://satrya.me/donate/
 Tags: recent posts, random posts, thumbnails, widget, widgets, sidebar, excerpt, category, post tag, post type, multiple widgets
 Requires at least: 3.6
 Tested up to: 3.9
-Stable tag: 0.9.1
+Stable tag: 0.9.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,24 +93,11 @@ If you want to buy me a cup of coffee, you can do by visiting [this page](http:/
 
 == Frequently Asked Questions ==
 
-= How to filter the post query? =
-You can use `rpwe_default_query_arguments` to filter it. 
-`
-add_filter( 'rpwe_default_query_arguments', 'your_custom_function' );
-function your_custom_function( $args ) {
-	$args['posts_per_page'] = 10; // Changing the number of posts to show.
-	return $args;
-}
-`
+= How to filter the query from this plugin =
+You can use `rpwe_default_query_arguments` filter.
 
 = Thumbnail size option not working properly =
 Yes, this is because the plugin uses `the_post_thumbnail` custom sizes and not uses `add_image_size` function, [more information](http://codex.wordpress.org/Function_Reference/the_post_thumbnail). At the moment I have no idea how to fix this issue.
-
-= Ordering not working! =
-Did you installed any Post or Post Type Order? Please try to deactivate it and try again the ordering. [(related question)](http://wordpress.org/support/topic/ordering-set-to-descending-not-working)
-
-= No image options =
-Your theme needs to support Post Thumbnail, please go to http://codex.wordpress.org/Post_Thumbnails to read more info and how to activate it in your theme.
 
 == Screenshots ==
 
@@ -120,6 +107,9 @@ Your theme needs to support Post Thumbnail, please go to http://codex.wordpress.
 
 = 1.0.0 - Coming Soon =
 * The first major update, please read the Description tab for more info.
+
+= 0.9.2 - 5/20/2014 =
+* Fix missing stylesheet in the admin area.
 
 = 0.9.1 - 4/22/2014 =
 * If you use caching plugin, please flush the cache after updating

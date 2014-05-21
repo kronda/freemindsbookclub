@@ -16,3 +16,5 @@ set :wp, "cd #{current_path}/#{app_root} ; wp"
 
 # The username on the target system, if different from your local username
 ssh_options[:user] = 'krondaco'
+
+set :staging_domain, 'karveldigital'

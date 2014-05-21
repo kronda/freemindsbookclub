@@ -67,12 +67,17 @@
       background-color: $email_list_bg;
       @include border-radius(5px);
       padding: 0.5em 2em 0.5em 1em; 
+
+      &:hover {
+        background-color: $email_list_bg;
+        color: #FFF;
+      }
     }
   }
   .donate {
     vertical-align: 30%;
 
-    a {
+    a, a:hover {
       color: $links;
       padding: 1em;
       background: transparent image-url('donate_bg.png') no-repeat left top;

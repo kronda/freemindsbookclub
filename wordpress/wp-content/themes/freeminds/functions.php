@@ -152,6 +152,13 @@ function freeminds_widgets_init() {
   ));
 }
 
+
+//* Modify the WordPress read more link
+add_filter( 'the_content_more_link', 'fm_read_more_link' );
+function fm_read_more_link() {
+  return '<a class="more-link" href="' . get_permalink() . '">Read More</a>';
+}
+
 /** Exclude Success Story & News / Events category from posts */
 add_action( 'pre_get_posts', 'freeminds_exclude_category_from_blog' );
 function freeminds_exclude_category_from_blog( $query ) {
