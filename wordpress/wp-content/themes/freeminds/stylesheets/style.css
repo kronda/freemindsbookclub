@@ -2044,6 +2044,11 @@ img {
   padding: 0.5em;
 }
 
+/* line 68, ../sass/layout/_components.scss */
+.widget-wrap .widget_sf_widget_constantcontact input {
+  margin-bottom: 1.5em;
+}
+
 /* line 1, ../sass/layout/_home.scss */
 .home-feature-wrap {
   *zoom: 1;
