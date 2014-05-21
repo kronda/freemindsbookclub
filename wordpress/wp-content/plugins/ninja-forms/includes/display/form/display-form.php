@@ -1,20 +1,41 @@
 <?php
 
-if( isset ( $_POST['_ninja_forms_display_submit'] ) AND absint ( $_POST['_ninja_forms_display_submit'] ) == 1 ){
-	$form_row = ninja_forms_get_form_by_id( absint( $_POST['_form_id'] ) );
-	if( isset( $form_row['data']['ajax'] ) ){
-		$ajax = $form_row['data']['ajax'];
-	}else{
-		$ajax = '';
+/*
+ * Function that checks to see if we are processing a submission
+ *
+ * @since 2.6.2
+ * @return void
+ */
+
+function nf_check_post() {
+	if( isset ( $_POST['_ninja_forms_display_submit'] ) AND absint ( $_POST['_ninja_forms_display_submit'] ) == 1 ){
+		// If our nonce isn't set, bail
+		if ( !isset ( $_POST['_wpnonce'] ) )
+			return false;
+
+		// If our nonce doesn't validate, bail
+		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'nf_form_' + absint( $_POST['_form_id'] ) ) )
+			return false;
+
+		$form_row = ninja_forms_get_form_by_id( absint( $_POST['_form_id'] ) );
+		if( isset( $form_row['data']['ajax'] ) ){
+			$ajax = $form_row['data']['ajax'];
+		}else{
+			$ajax = '';
+		}
+
+		if( $ajax != 1 ){
+			add_action( 'init', 'ninja_forms_setup_processing_class', 5 );
+			add_action( 'init', 'ninja_forms_pre_process', 999 );
+		}else if( $ajax == 1 AND $_REQUEST['action'] == 'ninja_forms_ajax_submit' ){
+			add_action( 'init', 'ninja_forms_setup_processing_class', 5 );
+			add_action( 'init', 'ninja_forms_pre_process', 999 );
+		}
 	}
-	if( $ajax != 1 ){
-		add_action( 'init', 'ninja_forms_setup_processing_class', 5 );
-		add_action( 'init', 'ninja_forms_pre_process', 999 );
-	}else if( $ajax == 1 AND $_REQUEST['action'] == 'ninja_forms_ajax_submit' ){
-		add_action( 'init', 'ninja_forms_setup_processing_class', 5 );
-		add_action( 'init', 'ninja_forms_pre_process', 999 );
-	}
-} 
+}
+
+add_action( 'plugins_loaded', 'nf_check_post' );
+
 
 /*
  *
@@ -30,7 +51,7 @@ function ninja_forms_session_class_setup(){
 		if ( get_transient( $_SESSION['ninja_forms_transient_id'] ) !== false ) {
 			add_action( 'init', 'ninja_forms_setup_processing_class', 5 );
 		}
-	} 
+	}
 }
 
 add_action( 'init', 'ninja_forms_session_class_setup', 4 );
@@ -53,8 +74,6 @@ add_action( 'wp_head', 'ninja_forms_clear_transient' );
 function ninja_forms_page_append_check(){
 	global $post, $ninja_forms_append_page_form_id;
 
-
-
 	if(is_array($ninja_forms_append_page_form_id)){
 		unset($ninja_forms_append_page_form_id);
 	}
@@ -62,38 +81,32 @@ function ninja_forms_page_append_check(){
 		$ninja_forms_append_page_form_id = array();
 	}
 
-	if( !is_admin() AND is_main_query() AND ( is_page() OR is_single() ) ){
-		$form_ids = ninja_forms_get_form_ids_by_post_id($post->ID);
-		if(is_array($form_ids) AND !empty($form_ids)){
-			foreach($form_ids as $form_id){
-				$ninja_forms_append_page_form_id[] = $form_id;
-				//remove_filter('the_content', 'wpautop');
-				add_filter( 'the_content', 'ninja_forms_append_to_page', 9999 );
-			}
+
+	$form_ids = ninja_forms_get_form_ids_by_post_id($post->ID);
+	if(is_array($form_ids) AND !empty($form_ids)){
+		foreach($form_ids as $form_id){
+			$ninja_forms_append_page_form_id[] = $form_id;
+			//remove_filter('the_content', 'wpautop');
+			add_filter( 'the_content', 'ninja_forms_append_to_page', 9999 );
 		}
 	}
 }
 
 add_action('wp_head', 'ninja_forms_page_append_check');
 
-function remove_bad_br_tags($content) {
-	$content = str_ireplace( '</label><br />', '</label>', $content );
-	return $content;
-}
-
 function ninja_forms_append_to_page($content){
 	global $ninja_forms_append_page_form_id;
-	$form = '';
-	if(is_array($ninja_forms_append_page_form_id) AND !empty($ninja_forms_append_page_form_id)){
-		foreach($ninja_forms_append_page_form_id as $form_id){
-			$form .= ninja_forms_return_echo('ninja_forms_display_form', $form_id);
+	if( !is_admin() AND is_main_query() AND ( is_page() OR is_single() ) ){
+		$form = '';
+		if(is_array($ninja_forms_append_page_form_id) AND !empty($ninja_forms_append_page_form_id)){
+			foreach($ninja_forms_append_page_form_id as $form_id){
+				$form .= ninja_forms_return_echo('ninja_forms_display_form', $form_id);
+			}
+		}else{
+			$form = ninja_forms_return_echo('ninja_forms_display_form', $ninja_forms_append_page_form_id);
 		}
-	}else{
-		$form = ninja_forms_return_echo('ninja_forms_display_form', $ninja_forms_append_page_form_id);
+		$content .= $form;
 	}
-	$content .= $form;
-	//add_filter( 'the_content', 'remove_bad_br_tags', 99 );
-	//remove_filter( 'the_content', 'wpautop' );
 	return $content;
 }
 
@@ -101,7 +114,7 @@ function ninja_forms_append_to_page($content){
  * Main function used to display a Ninja Form.
  * ninja_forms_display_form() can be called anywhere on in a WordPress template.
  * By default it's called by the ninja_forms_append_to_page() function in the main ninja_forms.php file.
- * 
+ *
 **/
 
 function ninja_forms_display_form( $form_id = '' ){
@@ -156,7 +169,7 @@ function ninja_forms_display_form( $form_id = '' ){
 				$display = false;
 			}
 		}
-		
+
 		$display = apply_filters( 'ninja_forms_display_show_form', $display, $form_id );
 
 		if($ajax == 1){
@@ -168,14 +181,14 @@ function ninja_forms_display_form( $form_id = '' ){
 
 		if( $display ){
 			do_action( 'ninja_forms_before_form_display', $form_id );
-			
+
 			do_action('ninja_forms_display_before_form_wrap', $form_id);
 			do_action('ninja_forms_display_open_form_wrap', $form_id);
 
 			do_action('ninja_forms_display_before_form_title', $form_id);
 			do_action('ninja_forms_display_form_title', $form_id);
 			do_action('ninja_forms_display_after_form_title', $form_id);
-					
+
 			do_action('ninja_forms_display_before_form', $form_id);
 			do_action('ninja_forms_display_open_form_tag', $form_id);
 			do_action('ninja_forms_display_after_open_form_tag', $form_id);
@@ -185,7 +198,7 @@ function ninja_forms_display_form( $form_id = '' ){
 			do_action('ninja_forms_display_after_fields', $form_id);
 
 			do_action('ninja_forms_display_close_form_tag', $form_id);
-			do_action('ninja_forms_display_after_form', $form_id);		
+			do_action('ninja_forms_display_after_form', $form_id);
 
 			do_action('ninja_forms_display_close_form_wrap', $form_id);
 			do_action('ninja_forms_display_after_form_wrap', $form_id);
