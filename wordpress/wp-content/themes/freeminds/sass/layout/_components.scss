@@ -52,6 +52,9 @@
     @include media($tablet) {
       margin-top: 5px;
     }
+    @include media($mobile) {
+      display: none;
+    }
   }
   .genesis-nav-menu a {
     padding: 0.5em;
