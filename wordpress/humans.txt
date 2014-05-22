@@ -1,0 +1,12 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+/* TEAM */
+  Designer: Carrie Benzschawel / Cierra Creative
+  Contact: carrie@cierracreative.com
+  From: Portland, OR
+  
+  Developer: Kronda Adair / Karvel Digital 
+  Contact: kronda@karveldigital.com
+  Twitter: @karveldigital
+  From: Portland, OR
