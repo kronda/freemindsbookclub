@@ -116,8 +116,10 @@ namespace :db do
       download("#{temp}", "db/#{filename}", :via=> :scp)
       if "#{stage}" == "prod"
         search = "#{application}.org"
-      else
+      elsif "#{stage}" == "dev"
         search = "#{application}.#{staging_domain}.com"
+      else
+        search = "#{stage}.#{application}.org"
       end
       replace = local_domain
       puts "searching (#{search}) and replacing (#{replace}) domain information"
@@ -142,8 +144,10 @@ namespace :db do
       run "touch #{temp} && chmod 600 #{temp}"
       if "#{stage}" == "dev"
         replace = "#{application}.karveldigital.com"
+      elsif "#{stage}" == "staging"
+        replace = "#{stage}.#{application}.org"
       else
-        replace = "#{stage}.#{application}.com"
+        replace = "#{application}.org"
       end
       search = local_domain
       puts "searching (#{search}) and replacing (#{replace}) domain information"
