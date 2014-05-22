@@ -1,6 +1,6 @@
 jQuery( document ).ready( function( $ ) {
 
-    enquire.register("screen and (max-width: 768px)", {
+    enquire.register("screen and (max-width: 767px)", {
 
       match : function() {
           $('#title a img').attr('src', '/wp-content/themes/freeminds/images/fm_logo_small.png');
