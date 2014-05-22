@@ -1905,20 +1905,19 @@ img {
   /* line 20, ../sass/layout/_base.scss */
   #header .wrap {
     margin-top: 0;
-    border: 1px solid red;
   }
 }
-/* line 28, ../sass/layout/_base.scss */
+/* line 27, ../sass/layout/_base.scss */
 #header #title-area {
   width: 50%;
 }
 @media screen and (min-width: 768px) {
-  /* line 28, ../sass/layout/_base.scss */
+  /* line 27, ../sass/layout/_base.scss */
   #header #title-area {
     width: 100%;
   }
 }
-/* line 35, ../sass/layout/_base.scss */
+/* line 34, ../sass/layout/_base.scss */
 #header #description {
   position: absolute;
   right: 15px;
@@ -1926,30 +1925,30 @@ img {
   width: 40%;
 }
 @media screen and (min-width: 768px) {
-  /* line 35, ../sass/layout/_base.scss */
+  /* line 34, ../sass/layout/_base.scss */
   #header #description {
     width: 50%;
   }
 }
 
-/* line 47, ../sass/layout/_base.scss */
+/* line 46, ../sass/layout/_base.scss */
 #inner {
   padding: 1.5em;
 }
 
-/* line 52, ../sass/layout/_base.scss */
+/* line 51, ../sass/layout/_base.scss */
 .entry,
 .page .post.entry {
   margin-bottom: 24px;
   margin-bottom: 2em;
 }
 
-/* line 59, ../sass/layout/_base.scss */
+/* line 58, ../sass/layout/_base.scss */
 #footer .wrap {
   padding: 1.5em;
 }
 
-/* line 63, ../sass/layout/_base.scss */
+/* line 62, ../sass/layout/_base.scss */
 #sponsor-logos {
   width: 100%;
   *zoom: 1;
@@ -1964,7 +1963,7 @@ img {
   clear: both;
 }
 @media screen and (max-width: 480px) {
-  /* line 67, ../sass/layout/_base.scss */
+  /* line 66, ../sass/layout/_base.scss */
   #sponsor-logos img {
     width: 30.55556%;
     float: left;
