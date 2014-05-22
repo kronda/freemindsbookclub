@@ -16,10 +16,6 @@
   }
   @include media($tablet) {
     width: $two_column;
-
-    img {
-      width: 100%;
-    }
   }
 }
 #featured-post-teaser {
@@ -30,7 +26,7 @@
     clear: right;
   }
 
-  @include media(new-breakpoint(min-width 480 6)) {
+  @include media($ipad) {
     clear: both;
   }
 
