@@ -1,5 +1,6 @@
-Options +FollowSymlinks
+Options +FollowSymlinks -Indexes
 Options -MultiViews
+
 
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
@@ -12,3 +13,32 @@ RewriteRule . /index.php [L]
 </IfModule>
 
 # END WordPress
+
+### Blocking Spammers Section ###
+<files wp-config.php>
+order allow,deny
+deny from all
+</files>
+
+<IfModule mod_rewrite.c>
+# Stop spam attack logins and comments
+  RewriteEngine On
+  RewriteCond %{REQUEST_METHOD} POST
+  RewriteCond %{REQUEST_URI} .(wp-comments-post|wp-login)\.php*
+  RewriteCond %{HTTP_REFERER} !.*(freemindsbookclub.org).* [OR]
+  RewriteCond %{HTTP_USER_AGENT} ^$
+  RewriteRule (.*) http://%{REMOTE_ADDR}/$ [R=301,L]
+ # SVN & Git protection
+  RewriteRule ^(.*/)?(\.svn|\.git)/ - [F,L]
+  ErrorDocument 403 "Access Forbidden"
+</ifModule>
+
+<IfModule mod_rewrite.c>
+ RewriteEngine on
+# ultimate hotlink protection
+ RewriteCond %{HTTP_REFERER}     !^$
+ RewriteCond %{REQUEST_FILENAME} -f
+ RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g?|png)$               [NC]
+ RewriteCond %{HTTP_REFERER}     !^https?://([^.]+\.)?(freemindsbookclub.org) [NC]
+ RewriteRule \.(gif|jpe?g?|png)$                                 - [F,NC,L]
+</ifModule>
