@@ -9,6 +9,7 @@ $mobile: new-breakpoint(max-width 480px 4);
 $tablet: new-breakpoint(min-width 768px 12);
 $ipad: new-breakpoint(max-width 767px 12);
 $desktop: new-breakpoint(min-width 1024px 12);
+$phablet: new-breakpoint(min-width 767px 12);
 
 // Columns
 $one_column: 30.555555555%;

@@ -11,6 +11,7 @@
 #featured-post-4 div > a {
   img {
     border: 10px solid $widget_bg;
+    width: 100%;
     @include single-box-shadow();
   }
   @include media($tablet) {
