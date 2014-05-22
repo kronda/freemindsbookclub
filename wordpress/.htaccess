@@ -39,6 +39,6 @@ deny from all
  RewriteCond %{HTTP_REFERER}     !^$
  RewriteCond %{REQUEST_FILENAME} -f
  RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g?|png)$               [NC]
- RewriteCond %{HTTP_REFERER}     !^https?://([^.]+\.)?(freemindsbookclub.org) [NC]
+ RewriteCond %{HTTP_REFERER}     !^https?://([^.]+\.)?(freemindsbookclub.org|freemindsbookclub.kdev.com|freemindsbookclub.karveldigital.com) [NC]
  RewriteRule \.(gif|jpe?g?|png)$                                 - [F,NC,L]
 </ifModule>
