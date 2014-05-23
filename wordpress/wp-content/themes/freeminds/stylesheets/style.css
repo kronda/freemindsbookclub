@@ -2199,7 +2199,7 @@ img {
 
 @media screen and (min-width: 768px) {
   /* line 1, ../sass/layout/_full_width.scss */
-  .not-home .full-width-content .hentry {
+  .not-home.full-width-content .hentry {
     width: 66%;
     margin: 0 auto;
   }

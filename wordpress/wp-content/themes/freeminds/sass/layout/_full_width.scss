@@ -1,4 +1,4 @@
-.not-home .full-width-content .hentry {
+.not-home.full-width-content .hentry {
   @include media($tablet) {
     width: 66%;
     margin: 0 auto;
