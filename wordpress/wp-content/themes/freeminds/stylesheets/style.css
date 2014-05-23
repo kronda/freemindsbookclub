@@ -2176,6 +2176,14 @@ img {
   padding-bottom: 6em;
 }
 
+@media screen and (min-width: 768px) {
+  /* line 1, ../sass/layout/_full_width.scss */
+  .full-width-content .hentry {
+    width: 66%;
+    margin: 0 auto;
+  }
+}
+
 /**********************
   Header
 ***********************/
