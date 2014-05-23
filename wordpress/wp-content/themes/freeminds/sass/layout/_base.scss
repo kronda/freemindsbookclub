@@ -40,6 +40,10 @@ img {
     @include media ($tablet) {
       width: 50%;
     }
+
+    @include media($mobile) {
+      bottom: 0;
+    }
   }
 }
 
