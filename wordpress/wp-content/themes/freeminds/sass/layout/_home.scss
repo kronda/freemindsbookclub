@@ -78,9 +78,15 @@
     
   }
 
-  @include media($tablet) {
+  @include media(new-breakpoint(min-width 900px 12)) {
     p {
       margin-left: 200px;
+    }
+  }
+ @include media(new-breakpoint(max-width 899px 12)) {
+    p {
+      margin-left: auto;
+      clear: both;
     }
   }
 } // end news-teaser
