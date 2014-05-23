@@ -1896,28 +1896,32 @@ img {
   #header #title {
     margin-top: 0;
   }
+  /* line 19, ../sass/layout/_base.scss */
+  #header #title img {
+    float: left;
+  }
 }
-/* line 20, ../sass/layout/_base.scss */
+/* line 24, ../sass/layout/_base.scss */
 #header .wrap {
   margin-top: 50px;
 }
 @media screen and (min-width: 767px) {
-  /* line 20, ../sass/layout/_base.scss */
+  /* line 24, ../sass/layout/_base.scss */
   #header .wrap {
     margin-top: 0;
   }
 }
-/* line 27, ../sass/layout/_base.scss */
+/* line 31, ../sass/layout/_base.scss */
 #header #title-area {
   width: 50%;
 }
 @media screen and (min-width: 768px) {
-  /* line 27, ../sass/layout/_base.scss */
+  /* line 31, ../sass/layout/_base.scss */
   #header #title-area {
     width: 100%;
   }
 }
-/* line 34, ../sass/layout/_base.scss */
+/* line 38, ../sass/layout/_base.scss */
 #header #description {
   position: absolute;
   right: 15px;
@@ -1925,36 +1929,36 @@ img {
   width: 40%;
 }
 @media screen and (min-width: 768px) {
-  /* line 34, ../sass/layout/_base.scss */
+  /* line 38, ../sass/layout/_base.scss */
   #header #description {
     width: 50%;
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 34, ../sass/layout/_base.scss */
+  /* line 38, ../sass/layout/_base.scss */
   #header #description {
     bottom: 0;
   }
 }
 
-/* line 50, ../sass/layout/_base.scss */
+/* line 54, ../sass/layout/_base.scss */
 #inner {
   padding: 1.5em;
 }
 
-/* line 55, ../sass/layout/_base.scss */
+/* line 59, ../sass/layout/_base.scss */
 .entry,
 .page .post.entry {
   margin-bottom: 24px;
   margin-bottom: 2em;
 }
 
-/* line 62, ../sass/layout/_base.scss */
+/* line 66, ../sass/layout/_base.scss */
 #footer .wrap {
   padding: 1.5em;
 }
 
-/* line 66, ../sass/layout/_base.scss */
+/* line 70, ../sass/layout/_base.scss */
 #sponsor-logos {
   width: 100%;
   *zoom: 1;
@@ -1969,7 +1973,7 @@ img {
   clear: both;
 }
 @media screen and (max-width: 480px) {
-  /* line 70, ../sass/layout/_base.scss */
+  /* line 74, ../sass/layout/_base.scss */
   #sponsor-logos img {
     width: 30.55556%;
     float: left;
@@ -2053,11 +2057,15 @@ img {
   }
 }
 /* line 59, ../sass/layout/_components.scss */
+#subnav .genesis-nav-menu {
+  text-align: right;
+}
+/* line 62, ../sass/layout/_components.scss */
 #subnav .genesis-nav-menu a {
   padding: 0.5em;
 }
 
-/* line 71, ../sass/layout/_components.scss */
+/* line 74, ../sass/layout/_components.scss */
 .widget_sf_widget_constantcontact .widget-wrap input {
   margin-bottom: 1.5em;
 }

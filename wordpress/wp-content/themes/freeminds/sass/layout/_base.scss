@@ -15,6 +15,10 @@ img {
   #title {
     @include media($tablet) {
       margin-top: 0;
+
+      img {
+        float: left;
+      }
     }
   }
   .wrap {
@@ -44,7 +48,7 @@ img {
     @include media($mobile) {
       bottom: 0;
     }
-  }
+  }  
 }
 
 #inner {
