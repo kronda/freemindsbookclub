@@ -153,7 +153,7 @@ namespace :db do
       puts "searching (#{search}) and replacing (#{replace}) domain information"
       run_locally "sed -e 's/#{search}/#{replace}/g' -i .bak db/#{filename}"
       upload("db/#{filename}", "#{temp}", :via=> :scp)
-      run "source /home/krondaco/.bash_profile && cd #{deploy_to}/current/wordpress && #{wp} db import #{temp}"
+      run "cd #{deploy_to}/current/wordpress && #{wp} db import #{temp}"
       run "rm #{temp}"
     end
   end
