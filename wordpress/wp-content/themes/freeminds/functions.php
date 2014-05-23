@@ -16,17 +16,19 @@ function sample_viewport_meta_tag() {
 add_theme_support( 'custom-background' );
 add_theme_support( 'post-thumbnail');
 
-// Add support for custom header
-// add_theme_support( 'genesis-custom-header', array(
-// 	'width' => 1152,
-// 	'height' => 120
-// ) );
+// Add body classes
+function prefix_add_body_class( $classes ) {
+  global $post;
+  if ( isset( $post ) ) {
+      $classes[] = $post->post_type . '-' . $post->post_name;
+  }
+  if ( !is_front_page() ) {
+  $classes[] = 'not-home';
+  }
+  return $classes;
+}
 
-// Add support for 3-column footer widgets
-//add_theme_support( 'genesis-footer-widgets', 3 );
-
-// Remove default footer widgets
-//remove_action( 'genesis_footer', 'genesis_do_footer');
+add_filter( 'body_class', 'prefix_add_body_class' );
 
 //* Add support for structural wraps
 add_theme_support( 'genesis-structural-wraps', array(
