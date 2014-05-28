@@ -2,7 +2,7 @@
 set :deploy_to, "/home/freemind/sites/#{application}.org"
 
 # Use the correct branch on github. Uncomment this if you have set up seperate branches for each staging area
-set :branch, "staging"
+set :branch, "prod"
 
 # The hostnames to deploy to.
 role :web, "108.174.148.30"
