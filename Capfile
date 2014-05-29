@@ -112,7 +112,7 @@ namespace :db do
       temp = "/tmp/#{release_name}_#{application}_#{filename}"
       run "touch #{temp} && chmod 600 #{temp}"
       run_locally "mkdir -p db"
-      run "source /home/krondaco/.bash_profile && cd #{deploy_to}/current/wordpress && #{wp} db export #{temp}"
+      run "cd #{deploy_to}/current/wordpress && #{wp} db export #{temp}"
       download("#{temp}", "db/#{filename}", :via=> :scp)
       if "#{stage}" == "prod"
         search = "#{application}.org"
@@ -153,7 +153,7 @@ namespace :db do
       puts "searching (#{search}) and replacing (#{replace}) domain information"
       run_locally "sed -e 's/#{search}/#{replace}/g' -i .bak db/#{filename}"
       upload("db/#{filename}", "#{temp}", :via=> :scp)
-      run "source /home/krondaco/.bash_profile && cd #{deploy_to}/current/wordpress && #{wp} db import #{temp}"
+      run "cd #{deploy_to}/current/wordpress && #{wp} db import #{temp}"
       run "rm #{temp}"
     end
   end
