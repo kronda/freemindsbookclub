@@ -44,6 +44,21 @@ add_theme_support( 'genesis-structural-wraps', array(
 add_image_size('home-featured', 600, 325, TRUE);
 add_image_size('news-featured', 175, 130, TRUE);
 
+// Add image size reminder for featured images
+add_action( 'do_meta_boxes', 'freeminds_do_meta_boxes' );
+function freeminds_do_meta_boxes( $post_type ) {
+global $wp_meta_boxes;
+if ( ! current_theme_supports( 'post-thumbnails', $post_type ) || ! post_type_supports( $post_type, 'thumbnail' ) )
+return;
+
+foreach ( $wp_meta_boxes[ $post_type ] as $context => $priorities )
+foreach ( $priorities as $priority => $meta_boxes )
+foreach ( $meta_boxes as $id => $box )
+if ( 'postimagediv' == $id )
+$wp_meta_boxes[ $post_type ][ $context ][ $priority ][ $id ]['title'] .= ' <br />175w x 130h (posts) <br /> 600w x 325h (success stories)';
+
+remove_action( 'do_meta_boxes', 'freeminds_do_meta_boxes' );
+}
 /**
  * Add Google fonts to the header
  */
