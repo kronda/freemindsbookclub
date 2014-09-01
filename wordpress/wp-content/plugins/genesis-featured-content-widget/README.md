@@ -82,11 +82,3 @@ Well, I bother Nick all the time to change things. He's busy. I'm busy. So, inst
 1. gsfc_extra_post_args - extra post args for the extra posts list
 1. gsfc_list_items - HTML markup for the list items
 1. gsfc_form_fields - Add custom fields to widget form
-
-## Changelog ##
-1.0.0 (09/04/2013)
-
-* First Public Release
-
-## Special Thanks ##
-I owe a huge debt of gratitude to all the folks at StudioPress & Gary Jones, their themes make my life easier.

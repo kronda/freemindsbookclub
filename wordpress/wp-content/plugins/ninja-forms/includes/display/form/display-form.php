@@ -14,7 +14,7 @@ function nf_check_post() {
 			return false;
 
 		// If our nonce doesn't validate, bail
-		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'nf_form_' + absint( $_POST['_form_id'] ) ) )
+		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'nf_form_' . absint( $_POST['_form_id'] ) ) )
 			return false;
 
 		$form_row = ninja_forms_get_form_by_id( absint( $_POST['_form_id'] ) );
@@ -81,14 +81,15 @@ function ninja_forms_page_append_check(){
 		$ninja_forms_append_page_form_id = array();
 	}
 
-
-	$form_ids = ninja_forms_get_form_ids_by_post_id($post->ID);
-	if(is_array($form_ids) AND !empty($form_ids)){
-		foreach($form_ids as $form_id){
-			$ninja_forms_append_page_form_id[] = $form_id;
-			//remove_filter('the_content', 'wpautop');
-			add_filter( 'the_content', 'ninja_forms_append_to_page', 9999 );
-		}
+	if ( $post ) {
+		$form_ids = ninja_forms_get_form_ids_by_post_id($post->ID);
+		if(is_array($form_ids) AND !empty($form_ids)){
+			foreach($form_ids as $form_id){
+				$ninja_forms_append_page_form_id[] = $form_id;
+				//remove_filter('the_content', 'wpautop');
+				add_filter( 'the_content', 'ninja_forms_append_to_page', 9999 );
+			}
+		}		
 	}
 }
 

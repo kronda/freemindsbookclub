@@ -3,7 +3,7 @@
  * Plugin Name: Genesis Sandbox Featured Content Widget
  * Plugin URI: https://wpsmith.net/
  * Description: Based on the Genesis Featured Widget Amplified for additional functionality which allows support for custom post types, taxonomies, and extends the flexibility of the widget via action hooks to allow the elements to be re-positioned or other elements to be added.
- * Version: 1.1.4
+ * Version: 1.1.8
  * Author: Travis Smith
  * Author URI: http://wpsmith.net/
  *
@@ -80,9 +80,13 @@ add_action( 'widgets_init', 'gsfc_widgets_init', 50 );
  * @since 1.1.0
  */
 function gsfc_widgets_init() {
+    if ( class_exists( 'Premise_Base' ) && !is_admin() ) {
+        return;
+    }
     $gfwa = genesis_get_option( 'gsfc_gfwa' );
-    if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) && $gfwa )
+    if ( class_exists( 'Genesis_Featured_Widget_Amplified' ) && $gfwa ) {
         unregister_widget( 'Genesis_Featured_Widget_Amplified' );
+    }
     register_widget( 'GS_Featured_Content' );
 }
 
@@ -102,4 +106,26 @@ function gsfc_action_links( $links, $file ) {
         array_push( $links, sprintf( '<a href="http://wpsmith.net/donation" target="_blank">%s</a>', __( 'Donate', 'gsfc' ) ) );
     }
     return $links;
+}
+
+add_action( 'save_post', 'gsfc_save_post', 10, 3 );
+/**
+ * Hooks into save_post to remove all GSFC Transients.
+ *
+ * Contains a filter gsfc_save_post_query for anyone to modify the query.
+ *
+ * @since  1.1.5
+ * @date   2014-06-24
+ * @author Travis Smith <t(at)wpsmith.net>}
+ *
+ * @param  int            $post_ID                Post ID.
+ * @param  WP_Post        $post                   Post object.
+ * @param  bool           $update                 Whether post is being updated
+ */
+function gsfc_save_post( $post_ID, $post, $update ) {
+    global $wpdb;
+
+    $query = apply_filters( 'gsfc_save_post_query', "DELETE FROM $wpdb->options WHERE 'option_name' LIKE '%transient_gsfc%'", $post_ID, $post, $update );
+    $wpdb->query( $query );
+
 }

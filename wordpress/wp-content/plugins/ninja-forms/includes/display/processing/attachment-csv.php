@@ -1,21 +1,20 @@
 <?php
-add_action( 'ninja_forms_insert_sub', 'ninja_forms_csv_attachment' );
-add_action( 'ninja_forms_update_sub', 'ninja_forms_csv_attachment' );
+add_action( 'nf_save_sub', 'nf_csv_attachment' );
 
-function ninja_forms_csv_attachment( $sub_id ){
+function nf_csv_attachment( $sub_id ){
 	global $ninja_forms_processing;
 
 	// make sure this form is supposed to attach a CSV
 	if( 1 == $ninja_forms_processing->get_form_setting( 'admin_attach_csv' ) AND 'submit' == $ninja_forms_processing->get_action() ) {
 		
-		// convert submission id to array
-		$sub_ids = array($sub_id);
-		
 		// create CSV content
-		$csv_content = ninja_forms_export_subs_to_csv( $sub_ids, true );
+		$csv_content = Ninja_Forms()->sub( $sub_id )->export( true );
 		
+		$upload_dir = wp_upload_dir();
+		$path = trailingslashit( $upload_dir['path'] );
+
 		// create temporary file
-		$path = tempnam( get_temp_dir(), 'Sub' );
+		$path = tempnam( $path, 'Sub' );
 		$temp_file = fopen( $path, 'r+' );
 		
 		// write to temp file
@@ -43,5 +42,6 @@ function ninja_forms_csv_attachment( $sub_id ){
 		$files = $ninja_forms_processing->get_form_setting( 'admin_attachments' );
 		array_push( $files, $file1 );
 		$ninja_forms_processing->update_form_setting( 'admin_attachments', $files );
+		$ninja_forms_processing->update_extra_value( '_attachment_csv_path', $file1 );
 	}
 }
