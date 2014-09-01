@@ -75,13 +75,18 @@
     }
   }
   .donate {
-    vertical-align: 30%;
-
+    vertical-align: 30%; 
     a, a:hover {
       color: $links;
+      font-size: 1.2em;
       padding: 1em;
-      background: transparent image-url('donate_bg.png') no-repeat left top;
-      background-size: cover;
+      color: #FFF;
+      background-color: $links;
+      @include border-radius(5px);
+
+      @include media($mobile) {
+        font-size: 1em;
+      }
     }
     
   }
