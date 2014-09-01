@@ -351,7 +351,7 @@ class GS_Featured_Content extends WP_Widget {
         
         $byline = '';
         if ( !empty( $instance['post_info'] ) ) {
-            $byline = sprintf( '<p class="byline post-info">%s</p>', do_shortcode( esc_html( $instance['post_info'] ) ) );
+            $byline = sprintf( '<p class="byline post-info">%s</p>', do_shortcode( $instance['post_info'] ) );
 		}
         
         GS_Featured_Content::maybe_echo( $instance, 'gsfc_before_post_content', 'byline_position', 'before-title', $byline );
@@ -388,10 +388,13 @@ class GS_Featured_Content extends WP_Widget {
      */
     public static function do_post_image( $instance ) {
         //* Bail if empty show param
-        if ( empty( $instance['show_image'] ) ) return;
-        
+        if ( empty( $instance['show_image'] ) ) {
+            return;
+        }
+
         $align = $instance['image_alignment'] ? esc_attr( $instance['image_alignment'] ) : 'alignnone';
-        $link  = $instance['link_image_field'] && genesis_get_custom_field( $instance['link_image_field'] ) ? genesis_get_custom_field( $instance['link_image_field'] ) : get_permalink();
+        $link  = $instance['link_image_field'] ? $instance['link_image_field'] : get_permalink();
+        $link  = '' !== genesis_get_custom_field( 'gsfc_link_image_field' ) ? genesis_get_custom_field( 'gsfc_link_image_field' ) : $link;
         
         $image = genesis_get_image( array(
 				'format'  => 'html',
@@ -426,6 +429,9 @@ class GS_Featured_Content extends WP_Widget {
      * @param array $instance The settings for the particular instance of the widget.
      */
     public static function action( $name, $instance ) {
+        if ( 'gs_before_loop' == $name ) {
+            _deprecated_argument( 'GS_Featured_Content::action', '1.1.5', __( 'Please use gsfc_before_loop hook.','gsfc' ) );
+        }
         do_action( $name, $instance );
     }
     
@@ -466,7 +472,7 @@ class GS_Featured_Content extends WP_Widget {
         if ( empty( $instance['show_title'] ) ) return;
         
         //* Custom Link or Permalink
-        $link = $instance['link_title_field'] && genesis_get_custom_field( $instance['link_title_field']) ? genesis_get_custom_field( $instance['link_title_field']) : get_permalink();
+        $link = $instance['link_title'] && $instance['link_title_field'] && genesis_get_custom_field( 'link_title_field' ) ? genesis_get_custom_field( 'link_title_field' ) : get_permalink();
         
         //* Add Link to Title?
         $wrap_open = $instance['link_title'] == 1 ? sprintf( '<a href="%s" title="%s">', $link, the_title_attribute( 'echo=0' ) ) : '';
@@ -482,8 +488,9 @@ class GS_Featured_Content extends WP_Widget {
         } else {
             $hclass = '';
 		}
-        
-        printf( '<h2%s>%s%s%s</h2>', $hclass, $wrap_open, $title, $wrap_close );
+
+        $pattern = apply_filters( 'gsfc_post_title_pattern', '<h2%s>%s%s%s</h2>' );
+        printf( $pattern, $hclass, $wrap_open, $title, $wrap_close );
     }
     
     /**
@@ -493,19 +500,33 @@ class GS_Featured_Content extends WP_Widget {
      */
     public static function do_post_content( $instance ) {
         //* Bail if empty show param
-        if ( empty( $instance['show_content'] ) ) return;
-        
-        if ( $instance['show_content'] == 'excerpt' ) {
-            add_filter( 'excerpt_more', array( 'GS_Featured_Content', 'excerpt_more' ) );
-            the_excerpt();
-            remove_filter( 'excerpt_more', array( 'GS_Featured_Content', 'excerpt_more' ) );
-        } elseif ( $instance['show_content'] == 'content-limit' ) {
-            the_content_limit( ( int ) $instance['content_limit'], esc_html( $instance['more_text'] ) );
-        } elseif ( $instance['show_content'] == 'content' ) {
-            the_content( esc_html( $instance['more_text'] ) );
-        } else {
-            do_action( 'gsfc_show_content' );
+        if ( empty( $instance['show_content'] ) ) {
+            return;
         }
+
+        if ( '' !== $instance['show_content'] && ( $pre = apply_filters( 'gsfc_post_content_add_entry_content', false ) ) ) {
+            echo '<div class="entry-content">';
+        }
+        switch ( $instance['show_content'] ) {
+            case 'excerpt':
+                add_filter( 'excerpt_more', array( 'GS_Featured_Content', 'excerpt_more' ) );
+                the_excerpt();
+                remove_filter( 'excerpt_more', array( 'GS_Featured_Content', 'excerpt_more' ) );
+                break;
+            case 'content-limit':
+                the_content_limit( ( int ) $instance['content_limit'], esc_html( $instance['more_text'] ) );
+                break;
+            case 'content':
+                the_content( esc_html( $instance['more_text'] ) );
+                break;
+            default:
+                do_action( 'gsfc_show_content' );
+                break;
+        }
+        if ( '' !== $instance['show_content'] && ( $pre = apply_filters( 'gsfc_post_content_add_entry_content', false ) ) ) {
+            echo '</div>';
+        }
+        
     }
 
     /**
@@ -515,7 +536,7 @@ class GS_Featured_Content extends WP_Widget {
      */
     public static function do_post_meta( $instance ) {
         if ( ! empty( $instance['show_archive_line'] ) && ! empty( $instance['post_meta'] ) )
-            printf( '<p class="post-meta">%s</p>', do_shortcode( esc_html( $instance['post_meta'] ) ) );
+            printf( '<p class="post-meta">%s</p>', do_shortcode( $instance['post_meta'] ) );
     }
     
     /**
@@ -606,7 +627,7 @@ function gsfcSave(t) {
      * @param string $name Transient name.
      */
     protected static function get_transient( $name ) {
-        if ( defined( 'WP_DEBUG' ) && WP_DEBUG && apply_filters( 'gsfc_debug', false ) ) {
+        if ( defined( 'WP_DEBUG' ) && WP_DEBUG || apply_filters( 'gsfc_debug', false ) ) {
             GS_Featured_Content::delete_transient( $name );
             return false;
         }
@@ -702,10 +723,11 @@ function gsfcSave(t) {
             GS_Featured_Content::action( 'gsfc_taxonomy_more', $instance );
             GS_Featured_Content::action( 'gsfc_' . $taxonomy . '_more', $instance );
             $term = GS_Featured_Content::get_term_by( 'slug', $posts_term['1'], $taxonomy );
+            $link = $instance['archive_link'] ? $instance['archive_link'] : esc_url( get_term_link( $posts_term['1'], $taxonomy ) );
 			printf(
 				'<p class="more-from-%1$s"><a href="%2$s" title="%3$s">%4$s</a></p>',
                 $taxonomy,
-				esc_url( get_term_link( $posts_term['1'], $taxonomy ) ),
+				$link,
 				esc_attr( $term->name ),
 				esc_html( $instance['more_from_category_text'] )
 			);
@@ -936,9 +958,9 @@ function gsfcSave(t) {
                     'exclude' => __( 'Exclude', 'gsfc' ),
                 ),
                 'requires'    => array(
-                    'page_id',
-                    '',
-                    false
+                    'post_type',
+                    'page',
+                    true
                 ),
             ),
             'post_id'                 => array(
@@ -956,9 +978,9 @@ function gsfcSave(t) {
                 'description' => '',
                 'type'        => 'text_small',
                 'requires'    => array(
-                    'page_id',
-                    '',
-                    false
+                    'post_type',
+                    'page',
+                    true
                 ),
             ),
             'posts_offset'            => array(
@@ -966,9 +988,9 @@ function gsfcSave(t) {
                 'description' => '',
                 'type'        => 'text_small',
                 'requires'    => array(
-                    'page_id',
-                    '',
-                    false
+                    'post_type',
+                    'page',
+                    true
                 ),
             ),
             'orderby'                 => array(
@@ -986,9 +1008,9 @@ function gsfcSave(t) {
                     'meta_value_num' => __( 'Numeric Meta Value', 'gsfc' ),
                 ),
                 'requires'    => array(
-                    'page_id',
-                    '',
-                    false
+                    'post_type',
+                    'page',
+                    true
                 ),
             ),
             'order'                   => array(
@@ -1000,9 +1022,9 @@ function gsfcSave(t) {
                     'ASC'     => __( 'Ascending (1, 2, 3)' , 'gsfc' ),
                 ),
                 'requires'    => array(
-                    'page_id',
-                    '',
-                    false
+                    'post_type',
+                    'page',
+                    true
                 ),
             ),
             'meta_key'               => array(
@@ -1011,7 +1033,7 @@ function gsfcSave(t) {
                 'type'        => 'text',
                 'requires'    => array(
                     'orderby',
-                    'meta_value',
+                    array( 'meta_value', 'meta_value_num', ),
                     false
                 ),
             ),
@@ -1457,8 +1479,8 @@ function gsfcSave(t) {
                 'description' => '',
                 'type'        => 'checkbox',
                 'requires'    => array(
-                    'post_type',
-                    'page',
+                    'posts_term',
+                    '',
                     true
                 ),
             ),
@@ -1485,19 +1507,19 @@ function gsfcSave(t) {
         );
         
         $columns = array(
-			'col'  => array( $box, ),
+            'col'  => array( $box, ),
             'col1' => array(
                 $box_1,
                 $box_2,
                 $box_3,
                 $box_4,
             ),
-			'col2' => array(
+            'col2' => array(
                 $box_5,
                 $box_6,
                 $box_7,
             ),
-		);
+        );
         return apply_filters( 'gsfc_form_fields', $columns, GS_Featured_Content::$widget_instance, compact( "box_1", "box_2", "box_3", "box_4", "box_5", "box_6", "box_7" ) );
     }
     
@@ -1562,10 +1584,11 @@ function gsfcSave(t) {
 	 * @return array A list of taxonomy names or objects
 	 */
 	protected static function get_taxonomies( $args = array(), $output = 'names', $operator = 'and' ) {
-		$cache_key  = 'gsfc_get_tax_' . md5( $value );
+		
+        $cache_key  = 'gsfc_get_tax_' . md5( GS_Featured_Content::$widget_instance['widget']->id );
 		$taxonomies = wp_cache_get( $cache_key, 'get_taxonomies' );
 
-		if ( false === $term_id ) {
+		if ( false === $taxonomies || null === $taxonomies ) {
 			$taxonomies = get_taxonomies( $args, $output, $operator );
 			if ( $taxonomies && ! is_wp_error( $taxonomies ) ) {
 				wp_cache_set( $cache_key, $taxonomies, 'get_taxonomies', apply_filters( 'gsfc_get_taxonomies_cache_expires', 0 ) );
@@ -1574,8 +1597,10 @@ function gsfcSave(t) {
 				wp_cache_set( $cache_key, array(), 'get_taxonomies', apply_filters( 'gsfc_get_taxonomies_cache_expires', 0 ) );
 			}
 		} else {
-			$term = get_taxonomies( $args, $output, $operator );
+			$taxonomies = get_taxonomies( $args, $output, $operator );
 		}
+
+        return $taxonomies;
 	}
     
     /**
@@ -1597,7 +1622,8 @@ function gsfcSave(t) {
             printf( '<div class="%s">', $col_class );
             
 			foreach( $boxes as $box ) {
-                $box_style = isset( $box['box_requires'] ) ? ' style="'. GS_Featured_Content::get_display_option( $instance, $box['box_requires'][0], $box['box_requires'][1], $box['box_requires'][2] ) .'"' : '';
+                $box_style = isset( $box['box_requires'] ) ? ' style="'. GS_Featured_Content::get_display_option( $instance, $box['box_requires'] ) .'"' : '';
+                // $box_style = isset( $box['box_requires'] ) ? ' style="'. GS_Featured_Content::get_display_option( $instance, $box['box_requires'][0], $box['box_requires'][1], $box['box_requires'][2] ) .'"' : '';
 				printf( '<div class="gsfc-box"%s>', $box_style );
             
 				foreach( $box as $field_id => $args ) {
@@ -1606,7 +1632,7 @@ function gsfcSave(t) {
                     $style = '';
                    
                     if ( isset( $args['requires'] ) && is_array( $args['requires'] ) && 3 == count( $args['requires'] ) ) {
-                        $style = ' style="'. GS_Featured_Content::get_display_option( $instance, $args['requires'][0], $args['requires'][1], $args['requires'][2] ) .'"';
+                        $style = ' style="'. GS_Featured_Content::get_display_option( $instance, $args['requires'] ) .'"';
                         echo '<div ' . $style . ' class="' . $args['type'] . ' ' . $field_id . '" data-requires-key="' . $args['requires'][0] . '" data-requires-value="' . $args['requires'][1] . '" >';
                     } else {
                         echo '<div ' . $style . ' class="' . $args['type'] . ' ' . $field_id . '" >';
@@ -1659,6 +1685,10 @@ function gsfcSave(t) {
 							break;
 						
 						case 'select_taxonomy' :
+                            $taxonomies = GS_Featured_Content::get_taxonomies( apply_filters( 'gsfc_get_taxonomies_args', array( 'public' => true ), $instance, $obj ), 'objects' );
+                        
+                            $taxonomies = array_filter( (array)$taxonomies, array( 'GS_Featured_Content', 'exclude_taxonomies' ) );
+
                             printf( '<label for="%1$s">%2$s:</label><select id="%1$s" name="%3$s" onchange="gsfcSave(this)"><option value="" class="gs-pad-left-10" %4$s>%5$s</option>',
                                 $obj->get_field_id( $field_id ),
                                 $args['label'],
@@ -1666,9 +1696,6 @@ function gsfcSave(t) {
                                 selected( '', $instance['posts_term'], false ),
                                 __( 'All Taxonomies and Terms', 'gsfc' )
                             );
-							
-                            $taxonomies = GS_Featured_Content::get_taxonomies( apply_filters( 'gsfc_get_taxonomies_args', array( 'public' => true ), $instance, $obj ), 'objects' );
-                            $taxonomies = array_filter( $taxonomies, array( __CLASS__, 'exclude_taxonomies' ) );
 
                             foreach ( $taxonomies as $taxonomy ) {
                                 $query_label = '';
@@ -1772,8 +1799,8 @@ function gsfcSave(t) {
 	 * @param array $object Current GS_Featured_Content object
 	 */
     public static function do_form_fields( $instance, $object ) {
-        GS_Featured_Content::$widget_instance = $instance;
-        
+        GS_Featured_Content::$widget_instance = array_merge( $instance, array( 'widget' => $object ) );
+
         //* Get Columns
         $columns = GS_Featured_Content::get_form_fields();
         GS_Featured_Content::do_columns( $instance, $columns, $object );
@@ -1791,7 +1818,8 @@ function gsfcSave(t) {
         
 		//* Merge with defaults
 		$instance = wp_parse_args( (array) $instance, $this->defaults );
-        GS_Featured_Content::$widget_instance = $instance;
+        // GS_Featured_Content::$widget_instance = $instance;
+        GS_Featured_Content::$widget_instance = array_merge( $instance, array( 'widget' => $this ) );
         
         //* Title Field
         echo '<p><label for="'. $this->get_field_id( 'title' ) .'">'. __( 'Title', 'gsfc' ) .':</label><input type="text" id="'. $this->get_field_id( 'title' ) .'" name="'. $this->get_field_name( 'title' ) .'" value="'. esc_attr( $instance['title'] ) .'" style="width:99%;" /></p>';
@@ -1802,7 +1830,6 @@ function gsfcSave(t) {
         echo '<div class="gsfc-widget-wrapper">';
         
         do_action( 'gsfc_output_form_fields', $instance, $this );
-        // GS_Featured_Content::$widget_instance = $instance;
         
         echo '</div>';
         
@@ -1818,8 +1845,12 @@ function gsfcSave(t) {
      * @param mixed $value Value to test against.
      * @param boolean $standard Echo standard return false for oposite.
      */
-    public static function get_display_option( $instance, $option='', $value='', $standard=true ) {
-        $display = '';
+    public static function get_display_option( $instance, $requires ) {
+        $display  = '';
+        $option   = $requires[0];
+        $value    = $requires[1];
+        $standard = $requires[2];
+
         if ( is_array( $option ) ) {
             foreach ( $option as $key ) {
                 if ( in_array( $instance[$key], $value ) )
@@ -1894,14 +1925,14 @@ function gsfcSave(t) {
         echo $b;
     }
    
-   /**
-    * Linkify widget title
-    * 
-    * @param string $widget_title 
-    * @param array $instance The settings for the particular instance of the widget.
-    * @param string $id_base ID base of the widget.
-    * @return string Maybe modified widget title.
-    */
+    /**
+     * Linkify widget title
+     * 
+     * @param string $widget_title 
+     * @param array $instance The settings for the particular instance of the widget.
+     * @param string $id_base ID base of the widget.
+     * @return string Maybe modified widget title.
+     */
     public function widget_title( $widget_title, $instance, $id_base ) {
         
         if ( isset( $instance['widget_title_link'] ) && isset( $instance['widget_title_link_href'] ) && $instance['widget_title_link_href'] )
@@ -1920,7 +1951,7 @@ function gsfcSave(t) {
 	 */
 	public function widget( $args, $instance ) {
 
-        GS_Featured_Content::$widget_instance &= $instance;
+        GS_Featured_Content::$widget_instance = array_merge( $instance, array( 'widget_args' => $args, ) );
 		global $wp_query, $_genesis_displayed_ids, $gs_counter;
 
 		extract( $args );
@@ -2015,7 +2046,10 @@ function gsfcSave(t) {
         }
         
         //* Before Loop Action
-        GS_Featured_Content::action( 'gs_before_loop', $instance );
+        if ( has_filter( 'gs_before_loop' ) ) {
+            GS_Featured_Content::action( 'gs_before_loop', $instance );
+        }
+        GS_Featured_Content::action( 'gsfc_before_loop', $instance );
         
         if ( 0 === $instance['posts_num'] ) return;
         
@@ -2113,13 +2147,20 @@ function gsfcSave(t) {
 		$new_instance['custom_field']   = $new_instance['custom_field'] ? sanitize_title_with_dashes( $new_instance['custom_field'] ) : GS_Featured_Content::set_custom_field( $new_instance );
         
         GS_Featured_Content::delete_transient( 'gsfc_extra_' . $new_instance['custom_field'] );
-        if ( $new_instance['custom_field'] != $old_instance['custom_field'] )
+        if ( $new_instance['custom_field'] != $old_instance['custom_field'] ) {
             GS_Featured_Content::delete_transient( 'gsfc_extra_' . $old_instance['custom_field'] );
+        }
             
         GS_Featured_Content::delete_transient( 'gsfc_main_' . $new_instance['custom_field'] );
-        if ( $new_instance['custom_field'] != $old_instance['custom_field'] )
+        if ( $new_instance['custom_field'] != $old_instance['custom_field'] ) {
             GS_Featured_Content::delete_transient( 'gsfc_main_' . $old_instance['custom_field'] );
+        }
         
+        // Fix potential issues
+        $new_instance['page_id']         = 'page' !== $new_instance['post_type'] ? '' : absint( $new_instance['page_id'] );
+        $new_instance['include_exclude'] = 'page' !== $new_instance['post_type'] ? $new_instance['include_exclude'] : '';
+        $new_instance['link_title_field'] = $new_instance['link_title'] ? $new_instance['link_title_field'] : '';
+
 		return apply_filters( 'gsfc_update', $new_instance, $old_instance );
 
 	}
