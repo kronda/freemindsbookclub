@@ -3,21 +3,24 @@
 Plugin Name: Video User Manuals
 Plugin URI: http://www.videousermanuals.com/
 Description: A complete video manual for your clients
-Version: 2.3.2
+Version: 2.4.1
 Author: Video User Manuals Pty Ltd
 Author URI: http://www.videousermanuals.com
 */
 
 class Vum{
+ 
+    const pluginver     		= '2.4.1';
+    const ver_key       		= 'wpm_o_ver';
+    const vum_domain    		= 'http://wordpress.videousermanuals.com/';
+    const iframe_url    		= '//wordpress.videousermanuals.com/json.php?jsoncallback=?';
+    const activate_url  		= 'http://vum2.videousermanuals.com/activate.php?serial=';
+    const profile_url   		= 'http://vum2.videousermanuals.com/save-profile.php';
+    const prefs_url    			= 'http://vum2.videousermanuals.com/prefs.php?';
+    const api_url       		= 'http://vum2.videousermanuals.com/api.php';
+    const iframe_frontend_url   = '//wordpress.videousermanuals.com/json_embed.php?jsoncallback=?';
+    const embed_domain   		= 'http://vum2.videousermanuals.com/embed-video-setting.php';
 
-    const pluginver     = '2.3.2';
-    const ver_key       = 'wpm_o_ver';
-    const vum_domain    = 'http://wordpress.videousermanuals.com/';
-    const iframe_url    = '//wordpress.videousermanuals.com/json.php?jsoncallback=?';
-    const activate_url  = 'http://vum2.videousermanuals.com/activate.php?serial=';
-    const profile_url   = 'http://vum2.videousermanuals.com/save-profile.php';
-    const prefs_url     = 'http://vum2.videousermanuals.com/prefs.php?';
-    const api_url       = 'http://vum2.videousermanuals.com/api.php';
 
     var $serial, $form, $formPrefs, $WPLang, $pluginURL; // Holds the form data
 
@@ -47,11 +50,17 @@ class Vum{
         add_action( 'wp_head', array( $this, 'wp_head' ) );
         add_action( 'admin_head', array( $this, 'admin_head' ) );
         add_action( 'admin_menu', array( $this,'add_pages' ) );
-        add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts') );
+        add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts'), 999 );
         add_action( 'admin_init', array( $this, 'admin_init' ) );
+        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+        
         add_action( 'install_plugins_pre_plugin-information' , array( $this, 'update_plugin' ) );
-
+		add_shortcode("vum_embed", array( $this, 'video_shortcode' ) );
         register_activation_hook( __FILE__, array( $this, 'install' ) );
+
+        // add action for frontend pop-up url
+        add_action( 'init', array( $this, 'embed_vum_video_view' ) ); 
+        
     }
 
     function wp_head() {
@@ -74,10 +83,14 @@ class Vum{
 	function admin_scripts() {
 
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'jquery-ui' );
+		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-tabs' );
+		wp_enqueue_style("jquery-ui-css");
     }
-
+	
+	function enqueue_scripts(){
+		wp_enqueue_script( 'jquery' );
+	}
     /**
      *  Adds plugin action links used to reset.
      */
@@ -485,7 +498,7 @@ class Vum{
         $form->addRadioGroup(
                         'user_menu_restrict',
                         'Restrict VUM Settings',
-                        'The settings will only appear for the user logged into this account. This allows you to give clients different admin accounts, and they will not see the settings for this plugin',
+                        'This setting will only show the plugin settings for the admin user who installed the plugin - which is you! This allows you to give clients admin access and hide the plugin settings from them.',
                         array( get_current_user_id() => 'Yes', 0 => 'No' ),
                         0
                 );
@@ -493,14 +506,14 @@ class Vum{
         $form->addYesNo(
                         'hide_manual',
                         'Hide the User Manual',
-                        'You can remove the written User Manual option from the admin sidebar if you want. ',
+                        'You can remove the written user manual option from the admin sidebar if you want. ',
                         0
                 );
 
         $form->addYesNo(
                         'move_menu_item',
                         'Menu up top?',
-                        'The Menu item can go up under the dashboard rather than down the bottom',
+                        'The "Manual" menu item can appear up the top of the sidebar under the "Dashboard" rather than down the bottom',
                         0
                 );
 
@@ -511,24 +524,31 @@ class Vum{
                         1
                 );
 
+        $form->addYesNo(
+                        'change_popup_url',
+                        'Change popup url',
+                        'This setting will replace the url of the popup with the url of this website: ' . site_url(). '/?vum_video_view=49',
+                        0
+                );
+
         $form->addTextbox(
                         'custom_menu_name',
                         'Change Menu Name',
-                        'Change the menu name in the sidebar from Manual to what ever you want.',
+                        'Change the menu name in the sidebar from Manual to whatever you want.',
                         $this->terms( 'Manual' )
                 );
 
         $form->addTextbox(
                         'plugin_heading_video',
                         'Heading on the videos page',
-                        'Change the heading of the plugin from Manual to what you want.',
+                        'Change the heading of the plugin from Manual to whatever you want.',
                         $this->terms( 'Manual' )
                 );
 
         $form->addTextbox(
                         'plugin_heading_user',
                         'Custom User Manual Heading',
-                        'Change the heading of the plugin from User Manual to what you want.',
+                        'Change the heading of the plugin from User Manual to whatever you want.',
                         $this->terms( 'User Manual' )
                 );
 
@@ -606,7 +626,7 @@ class Vum{
         $form->addDropdown(
                 'num_local',
                 'Number of custom videos',
-                'How many custom videos will you be storing',
+                'How many custom videos would you like to add?',
                 array(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
         );
 
@@ -616,21 +636,21 @@ class Vum{
         $form->addTextbox(
                         'local_title',
                         'Title',
-                        'Title to appear above all your videos',
+                        'Title to appear above your custom videos section',
                         'Introduction Videos'
                 );
 
         $form->addTextbox(
                         'local_video_height',
                         'Popup Window Height',
-                        'Height of your videos. Only have a number, do not include px.',
+                        'Height of your videos. Just include a number, do not include px.',
                         660
                 );
 
         $form->addTextbox(
                         'local_video_width',
                         'Popup Window Width',
-                        'Width of your videos. Only have a number, do not include px.',
+                        'Width of your videos. Just include a number, do not include px.',
                         900
                 );
 
@@ -651,13 +671,13 @@ class Vum{
              $form->addTextbox(
                         'localvideos_' . $count . '_0',
                         'Your Video Name',
-                        'The Name of Your Video'
+                        'The name of your video'
                 );
 
              $form->addDropdown(
                         'localvideos_' . $count . '_loc',
                         'Location of the video',
-                        'This video can go in one of our sections, or in its own at the top',
+                        'This video can go in one of our sections, or in your own section at the top',
                         $locations,
                         0
                 );
@@ -665,7 +685,7 @@ class Vum{
              $id = $form->addYesNo(
                         'localvideos_' . $count . '_6',
                         'Use Embed Code',
-                        'If you select yes, you can paste in your own HTML embed code. Eg YouTube etc.',
+                        'If you select yes, you can paste in your own HTML embed code. Eg YouTube, Vimeo, etc.',
                         0
                 );
 
@@ -716,18 +736,73 @@ class Vum{
 
         $form->closeTab();
 
+        $form->openTab( 'Embed Videos' );
+		
+		//Check if embedding was activated
+		// Added version 2.3 by jhay-ar
+		$embed_status = $this->is_embed_enabled();
+		
+		if($embed_status->status == 4){ 
+			//if no current domain setup
+		
+	        $form->html( '<h2>Embed Videos on Your Membership Pages</h2><p>You can embed videos into pages on your membership site using short codes. Please read our definitions of a <a href="http://www.videousermanuals.com/wordpress-user-manual/embed-videos/?utm_campaign=vum-plugin&utm_medium=plugin&utm_source=embed" target="_blank">membership site.</a></p><p><strong>Please be aware, you do not have permision to embed these videos on publicly available webpages and doing so will result in your license being revoke and your videos will stop working.</strong></p><p>Please note you can only embed the videos on one (1) membership domain.</p><p>To enable the videos for this domain, please check the box below.</p>');
+	        $form->html( '<p><label><input type="checkbox" name="enable_embed" class="opt_enable_embed" value="1" /> Enable embed videos for this <a href="http://www.videousermanuals.com/wordpress-user-manual/embed-videos/?utm_campaign=vum-plugin&utm_medium=plugin&utm_source=embed" target="_blank">membership site</a>.</label></p>' );
+        
+        }elseif($embed_status->status == 2){
+	        //If embedding was activated
+	        $form->html( '<h2>Embed All Videos</h2><p>The videos that will appear in the "vum_embed all" shortcode are defined by the videos that will have selected in your Videos and Custom Videos list.</p><p>In order to change the videos that will be embedded, you must first configure your "Video" and "Custom Videos" tabs.</p><div class="clear"></div><div class="short_code_position"><p><strong>To embed the videos to your membership page use this short code:</strong></p><div class="vum_embed_shortcode">[vum_embed all]</div></div><br /> ');
+	        
+			$form->html( '<h2>Embed Selected Videos Only</h2><p>To generate short codes to display individual videos or groups of videos tick this box and choose the videos you wish to display.</p><p><label><input type="checkbox" class="opt_embed_selected_videos" /> <strong>Selected Videos only</strong></label></p>
+							<div class="embed_selected_videos" style="display:none">');
+	
+				foreach( $this->formPrefs->sections as $section2 ) {
+		
+					$key = strtolower(str_replace(' ','_',$section2->title) );
+		
+					$form->addYesNo(
+									'show_2_' . $key,
+									'Show ' . $section2->title . ' Videos',
+									''
+							);
+		
+					if( $section2->videos ) {
+						$vid = $form->openSection( '',  'show_2_' . $key );
+						$form->addClass( $vid, 'manual' );
+						foreach( $section2->videos as $video_item ) {
+								$form->addYesNo(
+											'show_video_2_' . $video_item->video_id,
+											'Show <em>' . $video_item->vidTitle . '</em>',
+											''
+									);
+						}
+						$form->closeSection();
+					}
+		
+				}
+	
+			$form->html( '</div>' );
+			$form->html( '<div class="clear"></div><h2>Change Domains</h2><p>If you would like to use the embed feature on a different domain you must reset this through the <a href="http://www.videousermanuals.com/members-zone/" target="_blank">members zone</a> first.</p>'); 
+
+        }else{
+	       
+			$form->html( '<p>You can only use this feature on 1 domain and you have already set this up on a different domain.</p><p>If you would like to use the embed feature on this domain, you must reset this through the <a href="http://www.videousermanuals.com/members-zone/" target="_blank">members zone</a> first.</p>'); 
+        }
+        
+        
+        $form->closeTab();
+        
         $form->openTab( 'Set Master Profile' );
 
         $form->html( '<p>If you would like to save theses settings as your "Master Profile" so you can reuse them on other sites, tick the box and click save. </p> ');
         $form->html( '<p> NB: This will overwrite your existing Master Profile, however it will not affect any sites you have previously setup with your Master Profile.</p>' );
-        $form->html( '<input type="checkbox" name="set_master_profile" value="1" /> Set as master profile? <br />' );
+        $form->html( '<label><input type="checkbox" name="set_master_profile" value="1" /> Set as master profile?</label><br />' );
 
         $form->closeTab();
 
         return $form;
     }
 
-        function terms( $term = '' , $useTerm = true )
+    function terms( $term = '' , $useTerm = true )
     {
         // Always passed in as eng - don't keep doing.
         if($this->WPLang=='en' && $useTerm ) {
@@ -881,6 +956,25 @@ class Vum{
 
         }
 
+		//Embed Video Tab
+		if(isset($_POST['enable_embed'])){
+            
+                 	
+	            $response = $this->request( self::embed_domain, array(
+	                                         'action' => 'set_embed_serial', 'serial' => $this->serial)
+											 );
+	            if( ! is_wp_error( $response ) )
+	            {
+					$json = json_decode($response);
+					//$json->status;
+					
+	            return true;
+	            	exit;
+	            }else{
+		            return ;
+	            }
+		}
+		
         // If we saved master profile - set a URL flag.
         $master_profile_tag = ( isset( $_POST['set_master_profile'] ) ? '&master_profile=saved' : '' );
 
@@ -888,11 +982,236 @@ class Vum{
             wp_redirect( $_POST['return'] . $master_profile_tag );
         else
             wp_redirect( remove_query_arg('saved') . '&saved=true' . $master_profile_tag );
-
         exit;
-
     }
 
+
+	function video_shortcode($atts){
+		global $wpdb;
+		
+		$vum_video_embed_out = "";
+		
+		 extract(shortcode_atts(array(
+	      	'ids' => ''
+		  ), $atts));
+	   $ids_array = array();
+	   if(!empty($ids))
+	 	$ids_array = explode(",", $ids);
+	 	
+	 	
+	 	$all_vids = ( count($ids_array) > 0) ? false : true ;
+	 	
+		$url                 = new stdClass;
+		$url->plugin_version = self::pluginver;
+		$url->wp_version     = 'default';
+		$url->lang           = get_option( 'wpm_o_lang' );
+		
+		$url->branding_img = get_option( 'wpm_o_branding_img' );
+		$url->video_image  = get_option( 'wpm_o_custom_vid_placeholder' );
+
+		$sectionsToShow = '';
+		$vidsToHide = '';
+		
+		//check if the domain is registered as embed domain
+		if(!$this->serial) {echo '<p>Videos not enabled.</p>'; return;};
+		
+		$is_embed_enabled = $this->is_embed_enabled();
+		
+		if($is_embed_enabled->status != 2) {
+				echo '<p>Videos not enabled.</p>';
+			return;
+		}
+
+        $this->formPrefs = $this->update_prefs();
+		// Get all sections we ARE showing.
+        foreach( $this->formPrefs->sections as $section ) {
+
+            $key = strtolower(str_replace(' ','_',$section->title) );
+			
+			$sectionsToShow .= "\'" . $key . "\',";
+
+           if(!$all_vids){
+	            if( $section->videos ) {
+					// Get all videos not to show.
+	                foreach( $section->videos as $video ) {
+	                	
+	                	if(!in_array($video->video_id, $ids_array)){
+		                	$vidsToHide .= $video->video_id . ',';
+		                }
+	                }
+                }
+            }
+
+        }
+        
+
+		// Trim off last comma and put in URL array to pass to VUM.
+		$url->sectionsToShow = substr_replace( $sectionsToShow, '', - 1 );
+
+		// Trim off last comma and put in URL array to pass to VUM.
+		$url->vidsToHide = substr_replace( $vidsToHide, '', - 1 );
+
+		$url_params = '';
+		foreach ( $url as $k => $v ) {
+			if ( $v === FALSE ) {
+				$v = '0';
+			}
+			$url_params .= $k . ':\'' . $v . '\',';
+		}
+
+		/* Trim last character (a comma) from string */
+		$url_params = substr_replace( $url_params, '', - 1 );
+		
+		
+		
+		/* Local Videos */
+
+		$show_local = get_option( 'wpm_o_num_local' );
+
+		if ( $show_local ) {
+
+			$local_videos = array();
+			$num_local    = get_option( 'wpm_o_num_local' );
+			$local_title  = get_option( 'wpm_o_local_title' );
+			$count        = 1;
+
+			while ( $count <= $num_local ) {
+
+				if ( get_option( 'wpm_o_localvideos_' . $count . '_loc' ) == 0 ) {
+
+					$local_videos[$count]          = new stdClass();
+					$local_videos[$count]->name    = get_option( 'wpm_o_localvideos_' . $count . '_0' );
+					$local_videos[$count]->thumb   = get_option( 'wpm_o_localvideos_' . $count . '_1' );
+					$local_videos[$count]->vid     = get_option( 'wpm_o_localvideos_' . $count . '_2' );
+					$local_videos[$count]->desc    = get_option( 'wpm_o_localvideos_' . $count . '_3' );
+					$local_videos[$count]->image   = get_option( 'wpm_o_localvideos_' . $count . '_4' );
+					$local_videos[$count]->embed   = get_option( 'wpm_o_localvideos_' . $count . '_5' );
+					$local_videos[$count]->doembed = get_option( 'wpm_o_localvideos_' . $count . '_6' );
+
+				} else {
+
+					$custom_local_videos[$count]          = new stdClass();
+					$custom_local_videos[$count]->name    = get_option( 'wpm_o_localvideos_' . $count . '_0' );
+					$custom_local_videos[$count]->thumb   = get_option( 'wpm_o_localvideos_' . $count . '_1' );
+					$custom_local_videos[$count]->vid     = get_option( 'wpm_o_localvideos_' . $count . '_2' );
+					$custom_local_videos[$count]->desc    = get_option( 'wpm_o_localvideos_' . $count . '_3' );
+					$custom_local_videos[$count]->image   = get_option( 'wpm_o_localvideos_' . $count . '_4' );
+					$custom_local_videos[$count]->embed   = get_option( 'wpm_o_localvideos_' . $count . '_5' );
+					$custom_local_videos[$count]->doembed = get_option( 'wpm_o_localvideos_' . $count . '_6' );
+					$custom_local_videos[$count]->loc     = get_option( 'wpm_o_localvideos_' . $count . '_loc' );
+
+				}
+
+				$count ++;
+			}
+		}
+		
+		if(empty($ids))
+		{
+			$vum_video_embed_out .= '<div id="manual-page" class="wrap">';
+			if( $show_local && $local_videos ):
+			
+			    $vum_video_embed_out .= stripslashes( "<h2>$local_title</h2>" ); 
+			
+			    foreach($local_videos as $video_id => $video ):
+			        
+			        $vum_video_embed_out .= $this->display_vid($video_id, $video);
+			
+			    endforeach;
+			
+			    $vum_video_embed_out .= '</div><br style="clear:both" />';
+			
+			endif;
+		
+		}
+	
+		$json_frontend_url = apply_filters( 'iframe_frontend_url', self::iframe_frontend_url );
+		$local_video_output = '';
+	
+		if( $show_local && isset($custom_local_videos) ):
+			foreach($custom_local_videos as $video_id => $video ):
+				$local_video_vid = addslashes($this->display_vid($video_id, $video));
+				$local_video_output .= "jQuery('#section-{$video->loc}').append('{$local_video_vid}');";
+			endforeach;
+		endif;
+	
+	
+		$popupsetting = get_option( 'wpm_o_change_popup_url', false );
+		$popupsetting_output = '';
+	    if( $popupsetting && $popupsetting == '1')
+	    {
+	
+	    	$video_site_url = site_url( "/?vum_video_view=1" );
+	    	$popupsetting_output .= "var form_obj = jQuery(this).find('form');
+					  	  form_obj.attr( 'action',  '{$video_site_url}');";
+	
+	    }
+		    
+		$vum_video_embed_out .= <<<xxxx
+		<style type="text/css">
+			.vum-video-container {margin-right: 20px;float: left;text-align: center;margin-bottom: 10px;}
+			.vum-video-container a {color: #21759B;text-decoration: none;font-size: 12px;}
+			.vum-video-container img {margin-bottom: 6px;}
+			.vum-video-container input[type="image"]{ border: 0!important;} 
+			.vum-video-container input[type="image"] { padding: 0; margin: 0; border: 0!important; }
+			.vum-highlight{border: #FFFFBF solid 10px; background:#FFFFBF; font-weight: bold;border-top:0;border-bottom: 0; -webkit-border-bottom-right-radius: 4px;-webkit-border-bottom-left-radius: 4px;-moz-border-radius-bottomright: 4px;-moz-border-radius-bottomleft: 4px;border-bottom-right-radius: 4px;border-bottom-left-radius: 4px;}
+		</style>
+		
+		    <div id="ajax_msg"></div>
+		    <div id="ajax_content"></div>
+		    <script type="text/javascript">
+		        
+		        jQuery(document).ready(function() 
+		        {
+		            jQuery.getJSON('{$json_frontend_url}', { $url_params },
+		                function(data, textStatus)
+		                {
+		                    jQuery('#ajax_content').append(data);
+							{$local_video_output}
+		                    // Get URL data now, only needs to be worked out once.
+		                    var entireUrl = jQuery(location).attr('href');
+		                    var urlBits = entireUrl.split('#');
+		                    
+		                    // Want to use JS to populate the URL used for sharing vids direct.
+		                    // Loops through divs, and chop the URL 
+		                    jQuery(".vum-video-container").each(function()
+		                    {
+		                        var link = jQuery(this).find("a");
+		                        var divId = jQuery(this).attr('id');
+		                        var newLink = urlBits[0] + '#' + divId ;
+		                        link.attr("href", newLink );
+		                        {$popupsetting_output}
+		                    });
+		
+		                    // If there is a anchor with the same as a div, highlight it.
+		                    if( window.location.hash )
+		                    {
+		                        // Need to use jQuery to scroll, as the browser jump is already done before the json is loaded.
+		                        jQuery('html,body').animate({scrollTop:jQuery(window.location.hash).offset().top}, 500);
+		                        
+		                        // Apply a border so people notice it
+		                        jQuery( window.location.hash ).addClass('vum-highlight'); 
+		                    }
+		            });
+		        });
+		
+		    </script>
+xxxx;
+		
+		return $vum_video_embed_out;
+	}
+	
+	function attr_exist($index, $atts) {
+	    $found = false;
+	    if(is_array($atts) && count($atts) > 0){
+		    foreach ($atts as $key => $value) {
+		        if (is_int($key) && $value === $index) $found = true;
+		    }
+		    
+	    }
+	    return $found;
+	}
+	
     function do_activate()
     {
         /* If Submit - lets check the serial */
@@ -942,7 +1261,7 @@ class Vum{
 
 						$body = wp_remote_retrieve_body( $response );
 
-						$settings = unserialize( stripslashes( $body ) );
+						$settings = unserialize( $body );
 
 						foreach ( $settings as $s ) {
 
@@ -1005,6 +1324,51 @@ class Vum{
 
 	function hide_stuff() {
 		echo '<style> .fyi ul, .fyi h2, .star-holder, small{display:none} </style>';
+	}
+	
+	function is_embed_enabled(){
+	
+				
+	            $response = $this->request( self::embed_domain, array(
+	                                         'action' => 'check_embed_status', 'serial' => $this->serial)
+											 );
+
+	            if( ! is_wp_error( $response ) )
+	            {
+					return  $json = json_decode($response);
+	          
+	            return true;
+	            	exit;
+	            }else{
+		            return ;
+	            }
+	            
+			return get_option( "vum_enable_embed_video", false);
+	}
+	function request($url = "", $arg = array()){
+	
+		if(empty($url)) return;
+		
+		$link =  "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$fields_string = "";
+		foreach($arg as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+		rtrim($fields_string, '&');
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch,CURLOPT_POST, count($arg));
+		curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+		curl_setopt($ch, CURLOPT_REFERER, $link);
+		return curl_exec($ch);
+	}
+	
+	function embed_vum_video_view(){
+		if(is_admin()) return;
+		if(!isset($_GET['vum_video_view'])) return;
+		$file = ($_GET['vum_video_view'] == 2)? 'backend' : 'frontend';
+		require_once("views/" . $file . "-pop-up-player.php");
+		exit;
 	}
 }
 

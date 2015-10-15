@@ -41,6 +41,17 @@ If you have any problems with the plugin, please submit a support ticket here: h
 Change Log
 *********
 
+2.4.1 - February 2014
+- fixed jquery-ui issue
+- Minor Bugs fixed.
+- fixed ssl embed video.
+- Minor Bugs fixed.
+- Added Front-end Video user manuals.
+- hide Video User Manual domain name
+
+2.3.3 - September 2014
+- Remove legacy fix for Master Profiles and magic quotes after VUM server upgrade. 
+
 2.3.2 - April 2014
 - Test for WordPress 3.9
 - Change capability to view videos to just `read` than `activate_plugins`

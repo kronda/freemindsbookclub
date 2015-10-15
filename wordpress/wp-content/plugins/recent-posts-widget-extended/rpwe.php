@@ -1,12 +1,14 @@
 <?php
 /**
  * Plugin Name:  Recent Posts Widget Extended
- * Plugin URI:   http://satrya.me/wordpress-plugins/recent-posts-widget-extended/
+ * Plugin URI:   https://themephe.com/items/recent-posts-widget-extended/
  * Description:  Enables advanced widget that gives you total control over the output of your site’s most recent Posts.
- * Version:      0.9.3
+ * Version:      0.9.9.3
  * Author:       Satrya
- * Author URI:   http://satrya.me/
- * Author Email: satrya@satrya.me
+ * Author URI:   https://themephe.com/
+ * Author Email: satrya@themephe.com
+ * Text Domain:  recent-posts-widget-extended
+ * Domain Path:  /languages
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
  * General Public License as published by the Free Software Foundation; either version 2 of the License, 
@@ -52,6 +54,9 @@ class RPW_Extended {
 		// Register widget.
 		add_action( 'widgets_init', array( &$this, 'register_widget' ) );
 
+		// Register new image size.
+		add_action( 'init', array( &$this, 'register_image_size' ) );
+
 	}
 
 	/**
@@ -70,6 +75,9 @@ class RPW_Extended {
 		// Set the constant path to the includes directory.
 		define( 'RPWE_INCLUDES', RPWE_DIR . trailingslashit( 'includes' ) );
 
+		// Set the constant path to the includes directory.
+		define( 'RPWE_CLASS', RPWE_DIR . trailingslashit( 'classes' ) );
+
 		// Set the constant path to the assets directory.
 		define( 'RPWE_ASSETS', RPWE_URI . trailingslashit( 'assets' ) );
 
@@ -81,7 +89,7 @@ class RPW_Extended {
 	 * @since  0.1
 	 */
 	public function i18n() {
-		load_plugin_textdomain( 'rpwe', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'recent-posts-widget-extended', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 
 	/**
@@ -90,7 +98,10 @@ class RPW_Extended {
 	 * @since  0.1
 	 */
 	public function includes() {
-		require_once( RPWE_INCLUDES . 'widget-recent-posts-extended.php' );
+		require_once( RPWE_INCLUDES . 'resizer.php' );
+		require_once( RPWE_INCLUDES . 'functions.php' );
+		require_once( RPWE_INCLUDES . 'shortcode.php' );
+		require_once( RPWE_INCLUDES . 'helpers.php' );
 	}
 
 	/**
@@ -99,14 +110,8 @@ class RPW_Extended {
 	 * @since  0.8
 	 */
 	public function admin_style() {
-
-		// Check if current screen is Widgets page.
-		if ( 'widgets' != get_current_screen()->base )
-			return;
-
 		// Loads the widget style.
 		wp_enqueue_style( 'rpwe-admin-style', trailingslashit( RPWE_ASSETS ) . 'css/rpwe-admin.css', null, null );
-
 	}
 
 	/**
@@ -115,7 +120,17 @@ class RPW_Extended {
 	 * @since  0.9.1
 	 */
 	public function register_widget() {
+		require_once( RPWE_CLASS . 'widget.php' );
 		register_widget( 'Recent_Posts_Widget_Extended' );
+	}
+
+	/**
+	 * Register new image size.
+	 *
+	 * @since  0.9.4
+	 */
+	function register_image_size() {
+		add_image_size( 'rpwe-thumbnail', 45, 45, true );
 	}
 
 }

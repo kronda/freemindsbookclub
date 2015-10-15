@@ -18,6 +18,7 @@ class Jetpack_Gravatar_Profile_Widget extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'grofile',
+			/** This filter is documented in modules/widgets/facebook-likebox.php */
 			apply_filters( 'jetpack_widget_name', __( 'Gravatar Profile', 'jetpack' ) ),
 			array(
 				'classname'   => 'widget-grofile grofile',
@@ -31,6 +32,13 @@ class Jetpack_Gravatar_Profile_Widget extends WP_Widget {
 	}
 
 	function widget( $args, $instance ) {
+
+		$instance = wp_parse_args( $instance, array(
+			'title' => '',
+			'email' => ''
+		) );
+
+		/** This filter is documented in core/src/wp-includes/default-widgets.php */
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
 		if ( !$instance['email'] ) {
@@ -59,7 +67,7 @@ class Jetpack_Gravatar_Profile_Widget extends WP_Widget {
 				'urls'         => array(),
 				'accounts'     => array(),
 			) );
-			$gravatar_url = add_query_arg( 's', 200, $profile['thumbnailUrl'] ); // the default grav returned by grofiles is super small
+			$gravatar_url = add_query_arg( 's', 320, $profile['thumbnailUrl'] ); // the default grav returned by grofiles is super small
 
 			wp_enqueue_style(
 				'gravatar-profile-widget',
@@ -92,7 +100,7 @@ class Jetpack_Gravatar_Profile_Widget extends WP_Widget {
 
 			?>
 
-			<h4><a href="<?php echo esc_url( $profile['profileUrl'] ); ?>" class="grofile-full-link"><?php echo esc_html( apply_filters( 'jetpack_gravatar_full_profile_title', __( 'View Full Profile &rarr;', 'jetpack' ) ) ); ?></a></h4>
+			<p><a href="<?php echo esc_url( $profile['profileUrl'] ); ?>" class="grofile-full-link"><?php echo esc_html( apply_filters( 'jetpack_gravatar_full_profile_title', __( 'View Full Profile &rarr;', 'jetpack' ) ) ); ?></a></p>
 
 			<?php
 
@@ -120,7 +128,7 @@ class Jetpack_Gravatar_Profile_Widget extends WP_Widget {
 					<a href="<?php echo esc_url( $personal_link['value'] ); ?>">
 						<?php
 							$link_title = ( ! empty( $personal_link['title'] ) ) ? $personal_link['title'] : $personal_link['value'];
-							echo esc_html( $link_title ); 
+							echo esc_html( $link_title );
 						?>
 					</a>
 				</li>

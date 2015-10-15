@@ -50,7 +50,18 @@ class WPCOM_JSON_API_Update_Comment_Endpoint extends WPCOM_JSON_API_Comment_Endp
 			return new WP_Error( 'unknown_post', 'Unknown post', 404 );
 		}
 
-		if ( -1 == get_option( 'blog_public' ) && ! is_user_member_of_blog() && ! is_super_admin() ) {
+		if (
+			-1 == get_option( 'blog_public' ) &&
+			/**
+			 * Filter allowing non-registered users on the site to comment.
+			 *
+			 * @since 3.4.0
+			 *
+			 * @param bool is_user_member_of_blog() Is the user member of the site.
+			 */
+			! apply_filters( 'wpcom_json_api_user_is_member_of_blog', is_user_member_of_blog() ) &&
+			! is_super_admin()
+		) {
 			return new WP_Error( 'unauthorized', 'User cannot create comments', 403 );
 		}
 
@@ -63,7 +74,7 @@ class WPCOM_JSON_API_Update_Comment_Endpoint extends WPCOM_JSON_API_Comment_Endp
 			return $can_view;
 		}
 
-		$post_status = get_post_status_object( $post->post_status );
+		$post_status = get_post_status_object( get_post_status( $post ) );
 		if ( !$post_status->public && !$post_status->private ) {
 			return new WP_Error( 'unauthorized', 'Comments on drafts are not allowed', 403 );
 		}
@@ -109,6 +120,12 @@ class WPCOM_JSON_API_Update_Comment_Endpoint extends WPCOM_JSON_API_Comment_Endp
 			'comment_type'         => '',
 		);
 
+		if ( $comment_parent_id ) {
+			if ( $comment_parent->comment_approved === '0' && current_user_can( 'edit_comment', $comment_parent->comment_ID ) ) {
+				wp_set_comment_status( $comment_parent->comment_ID, 'approve' );
+			}
+		}
+
 		$this->api->trap_wp_die( 'comment_failure' );
 		$comment_id = wp_new_comment( add_magic_quotes( $insert ) );
 		$this->api->trap_wp_die( null );
@@ -121,6 +138,7 @@ class WPCOM_JSON_API_Update_Comment_Endpoint extends WPCOM_JSON_API_Comment_Endp
 			return $return;
 		}
 
+		/** This action is documented in json-endpoints/class.wpcom-json-api-site-settings-endpoint.php */
 		do_action( 'wpcom_json_api_objects', 'comments' );
 		return $return;
 	}
@@ -209,6 +227,7 @@ class WPCOM_JSON_API_Update_Comment_Endpoint extends WPCOM_JSON_API_Comment_Endp
 			return $return;
 		}
 
+		/** This action is documented in json-endpoints/class.wpcom-json-api-site-settings-endpoint.php */
 		do_action( 'wpcom_json_api_objects', 'comments' );
 		return $return;
 	}
@@ -230,6 +249,7 @@ class WPCOM_JSON_API_Update_Comment_Endpoint extends WPCOM_JSON_API_Comment_Endp
 			return $return;
 		}
 
+		/** This action is documented in json-endpoints/class.wpcom-json-api-site-settings-endpoint.php */
 		do_action( 'wpcom_json_api_objects', 'comments' );
 
 		wp_delete_comment( $comment->comment_ID );

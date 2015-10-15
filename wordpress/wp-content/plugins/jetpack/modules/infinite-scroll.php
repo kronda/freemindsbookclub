@@ -185,9 +185,11 @@ class Jetpack_Infinite_Scroll_Extras {
 	 * @return null
 	 */
 	public function action_wp_enqueue_scripts() {
-		$load_scripts_and_styles = !( is_singular() || is_page() );
-		if( apply_filters( 'jetpack_infinite_scroll_load_scripts_and_styles', $load_scripts_and_styles ) )
+		// Do not load scripts and styles on singular pages and static pages
+		$load_scripts_and_styles = ! ( is_singular() || is_page() );
+		if ( ! apply_filters( 'jetpack_infinite_scroll_load_scripts_and_styles', $load_scripts_and_styles ) )
 			return;
+
 		// VideoPress stand-alone plugin
 		global $videopress;
 		if ( ! empty( $videopress ) && The_Neverending_Home_Page::archive_supports_infinity() && is_a( $videopress, 'VideoPress' ) && method_exists( $videopress, 'enqueue_scripts' ) ) {
@@ -196,7 +198,7 @@ class Jetpack_Infinite_Scroll_Extras {
 
 		// VideoPress Jetpack module
 		if ( Jetpack::is_module_active( 'videopress' ) ) {
-			Jetpack_VideoPress_Shortcode::enqueue_scripts();
+			wp_enqueue_script( 'videopress' );
 		}
 
 		// Fire the post_gallery action early so Carousel scripts are present.

@@ -70,6 +70,15 @@ endif;
                         var divId = jQuery(this).attr('id');
                         var newLink = urlBits[0] + '#' + divId ;
                         link.attr("href", newLink );
+                        <?php
+                        	$popupsetting = get_option( 'wpm_o_change_popup_url', false);
+		                    if( $popupsetting && $popupsetting == '1'){?>
+		                      var form_obj = jQuery(this).find("form");
+	                      	  form_obj.attr( "action",  "<?php echo site_url("/?vum_video_view=2")?>");
+	                      	 <?php
+	                        }
+	                        
+                        ?>
                     });
 
                     // If there is a anchor with the same as a div, highlight it.

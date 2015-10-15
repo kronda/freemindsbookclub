@@ -135,9 +135,10 @@ Class Vum_form_html
 
     static function closeForm()
     {
-        echo '<p class="submit"><input type="submit" name="submit-button" class="button-primary" value="Save Changes" /></p>';
+        echo '<div id="frm_footer"><p class="submit"><input type="submit" name="submit-button" class="button-primary" value="Save Changes" /></p>';
         echo '<input type="hidden" name="return" id="return" value="" />';
-        echo '<p> <a href="admin.php?page=vum-reset" onclick="return confirm(\'Are you sure you want to reset the plugin?\')">Reset the plugin</a> <em> please note you will lose all your settings, but this will not effect your master profile. </em> </p>';
+        echo '<p id="frm_footer_reset"> <a href="admin.php?page=vum-reset" onclick="return confirm(\'Are you sure you want to reset the plugin?\')">Reset the plugin</a> <em> please note you will lose all your settings, but this will not effect your master profile. </em> </p>';
+        echo '</div>'; // Closes #frm_footer
         echo '</div>'; // Closes #tabs
         echo '</form>';
         echo '</div>'; // Close #wrap

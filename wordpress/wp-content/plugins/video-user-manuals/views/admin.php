@@ -1,5 +1,6 @@
 <script type="text/javascript">
     // Used on Videos - little arrow to rotate 
+    var wpm_form_action = jQuery("#wpm_form").attr("action");
     (function($){
         var _e = document.createElement("canvas").width
         $.fn.cssrotate = function(d) {
@@ -22,7 +23,10 @@
 
 
     jQuery(document).ready(function(){
- 
+
+	//check if you active tab is in embed videos
+	check_if_embed_activated();
+    
     jQuery( "select[name='lang']" ).change( function() {
         
         var selected = jQuery(this).val();
@@ -68,10 +72,17 @@
 
                 jQuery('#wpm_o_'+divId+' input:radio').click(function()
                 {
-                   if( jQuery('#wpm_o_'+divId+' input:radio:checked').val()  == '0' )
-                   {
+					if( jQuery('#wpm_o_'+divId+' input:radio:checked').val()  == '0' )
+					{
                         jQuery('#'+divId).slideUp();
-                   }
+						jQuery("#"+divId+" input:radio[value=0]").each(function(){
+							jQuery(this).attr('checked', true);
+						}); 
+                   }else{
+						jQuery("#"+divId+" input:radio[value=1]").each(function(){
+							jQuery(this).attr('checked', true);
+						});
+				   }
                 });
             }
             else
@@ -90,7 +101,31 @@
             }
         }
     });
-
+	
+	//selected videos for embed videos tab
+    jQuery(".opt_embed_selected_videos").change(function() {
+		jQuery("#tabs-3 .wpm_input input:radio[value=0]").attr('checked', true);
+		
+		if(jQuery(this).is(":checked")){
+			jQuery(".short_code_position").addClass("vum_embed_shortcode_wrapper");
+			show_vum_shortcodes();
+			jQuery(".embed_selected_videos").show();
+		}else{
+			jQuery(".short_code_position").removeClass("vum_embed_shortcode_wrapper");
+			jQuery(".vum_embed_shortcode").html('[vum_embed all]');
+			jQuery(".embed_selected_videos").hide();
+		}
+	});
+	
+	
+    jQuery("#tabs-3 .wpm_input").on("click", "input:radio", function() {
+		show_vum_shortcodes();
+	});
+	
+	jQuery(".vum_embed_shortcode").on("click", function() {
+		vumselect_all(this);
+	});
+	
     // Custom Videos Dropdown - submit form on change.
     jQuery("[name=num_local]").change(function() {
         jQuery('#wpm-waiting').show();
@@ -99,13 +134,64 @@
 
     // Enable Tabs
     jQuery("#tabs").tabs();
-
     // Update Hidden field with current tab open
     jQuery('#tabs').bind('tabsselect', function(event, ui) {
         jQuery('#return').val( ui.tab );
+        e.preventDefault();
      });
- 
-
+     
+	 jQuery("#tabs").on("tabsactivate", function(event, ui){
+		 var index = ui.newTab.index();
+		 if(index !== 0)
+		 	jQuery("#frm_footer_reset").hide();
+		 else
+		 jQuery("#frm_footer_reset").show();
+		 
+		 var activeTabId = ui.newPanel.selector;
+		 activeTabIdnohash = activeTabId.replace("#", "");
+		 
+		 //Add hash to the form to active the current tab after submitting
+		 jQuery("#wpm_form").attr({"action": wpm_form_action + activeTabId });
+		 
+		 if(index == 3 && jQuery(".opt_enable_embed").length == 0)
+		 	jQuery("#frm_footer").hide();
+		 else
+			 jQuery("#frm_footer").show();
+	 });
+	 
+	function show_vum_shortcodes(){
+		var allvideos = jQuery("#tabs-3 .manual .wpm_input input:radio[value=1]").length;
+		var allcheckedvideos = jQuery("#tabs-3 .manual .wpm_input input:radio[value=1]:checked").length;
+		var shortcode_video = "";
+		
+		var scode_video = ' ids="';
+		jQuery("#tabs-3 .manual .wpm_input input:radio[value=1]:checked").each(function(){
+			var vname = jQuery(this).attr('name');
+			var res = vname.replace("show_video_2_", ""); 
+			
+		 scode_video += res +', ';
+			//console.log(vname);
+		});
+		shortcode_video = scode_video.substring(0,scode_video.length - 2);
+		shortcode_video += '"';
+		if(allcheckedvideos > 0 && jQuery(".opt_embed_selected_videos").is(":checked"))
+		jQuery(".vum_embed_shortcode").html('[vum_embed '+shortcode_video + ']');
+		else
+		jQuery(".vum_embed_shortcode").html('No selected videos');
+	}
+	
+	function check_if_embed_activated(){
+		
+		if(window.location.hash) {
+			var hash = window.location.hash.substring(1);
+				jQuery("#wpm_form").attr({"action": wpm_form_action + "#"+ hash });
+			if(hash == 'tabs-3' && jQuery(".opt_enable_embed").length == 0 ){
+				jQuery("#frm_footer_reset").hide();
+				jQuery("#frm_footer").hide();
+			}
+		}
+	}
+    
     function toggleView( divId )
     {
         var showHideDiv = jQuery('#wpm_o_'+divId+' input:radio:checked').val();
@@ -151,7 +237,19 @@
          }
     }
     
-
+    function vumselect_all(el) {
+        if (typeof window.getSelection != "undefined" && typeof document.createRange != "undefined") {
+            var range = document.createRange();
+            range.selectNodeContents(el);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        } else if (typeof document.selection != "undefined" && typeof document.body.createTextRange != "undefined") {
+            var textRange = document.body.createTextRange();
+            textRange.moveToElementText(el);
+            textRange.select();
+        }
+    }
 
 });
 </script>
