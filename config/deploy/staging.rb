@@ -17,4 +17,4 @@ set :wp, "cd #{current_path}/#{app_root} ; wp"
 # The username on the target system, if different from your local username
 ssh_options[:user] = 'freemind'
 
-set :staging_domain, "#{application}.org"
+set :staging_domain, "staging.#{application}.org"
