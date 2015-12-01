@@ -2,6 +2,7 @@ wordpress/wp-content/uploads
 wordpress/wp-content/w3tc
 wordpress/wp-content/avatars
 wordpress/wp-content/cache
+wordpress/wp-content/updraft
 wordpress/local-config.php
 .buildpath
 .project
