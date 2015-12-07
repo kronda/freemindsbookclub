@@ -167,6 +167,15 @@ function freeminds_widgets_init() {
     'before_title' => '<h3 class="footer-widget footer-widget-two">',
     'after_title' => '</h3>',
   ));
+  genesis_register_sidebar( array(
+    'name' => 'Sponsor Logos',
+    'id'  => 'sponsor-logos',
+    'description' => 'Use this area to add sponsor logos',
+    'before_widget' => '<div id="%1$s" class="%2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h3 class="footer-widget footer-widget-two">',
+    'after_title' => '</h3>',
+  ));
 }
 
 

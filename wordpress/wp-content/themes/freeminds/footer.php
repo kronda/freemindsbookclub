@@ -29,15 +29,13 @@
 
 </div> <!-- end footer -->
 
+
   <?php genesis_structural_wrap('footer-widgets', 'open'); ?>
     <div id="sponsor-logos" class="">
-      <a href="http://www.guidestar.org/partners/networkforgood/donate.jsp?ein=43-2066514" target"_blank"><img class="one-sixth first" src="/wp-content/themes/freeminds/images/logo_donate_btn.png" alt="Donate Now" width="auto" /></a>
-      <a href="http://www.globalgiving.org/donate/1275/free-minds-book-club-and-writing-workshop/"><img class="one-sixth" src="/wp-content/themes/freeminds/images/logo_global_giving.jpg" alt="Donate Now" width="auto" /></a>
-      <img class="one-sixth" src="/wp-content/themes/freeminds/images/logo_united_way.jpg" alt="Donate Now" width="auto" />
-      <img class="one-sixth" src="/wp-content/themes/freeminds/images/logo_innovations_reading.jpg" alt="Donate Now" width="auto" />
-      <img class="one-sixth" src="/wp-content/themes/freeminds/images/logo_mayors_arts.jpg" alt="Donate Now" width="auto" />
-      <a href="http://www.catalogueforphilanthropy-dc.org/cfpdc/nonprofit-detail.php?id=94820"><img class="one-sixth" src="/wp-content/themes/freeminds/images/logo_philanthropy.jpg" alt="Donate Now" width="auto" /></a>
-      
+      <div class="footer-1 one-sixth first">
+        <?php if ( dynamic_sidebar('Sponsor Logos') ) : ?>
+        <?php endif; ?>
+      </div>
     </div> <!-- end sponsor logos -->
 </div> <!-- end .site-container or #wrap -->
 
