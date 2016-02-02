@@ -1,7 +1,0 @@
-0000.000 (0) Opened log file at time: Fri, 30 Jan 2015 17:21:42 +0000 on http://freemindsbookclub.org
-0000.004 (0) UpdraftPlus WordPress backup plugin (http://updraftplus.com): 1.9.50 WP: 3.9.2 PHP: 5.3.29 (Linux s4-dc.accountservergroup.com 3.14.25-grsec.3.el5 #1 SMP Wed Jan 14 14:26:48 GMT 2015 x86_64) MySQL: 5.5.40-36.1-log Server: Apache safe_mode: 0 max_execution_time: 900 memory_limit: 256M (used: 49.6M | 50M) multisite: N mcrypt: Y LANG:  ZipArchive::addFile: Y
-0000.224 (0) Free space on disk containing Updraft's temporary directory: 125836.8 Mb / Free disk space in account: 3529262.2 Mb (0 % used)
-0000.229 (0) Tasks: Backup files:  (schedule: monthly) Backup DB: 1 (schedule: monthly)
-0000.231 (0) Processed schedules. Tasks now: Backup files:  Backup DB: 
-0000.235 (0) No email will be sent - this backup set was empty.
-0000.236 (0) The backup apparently succeeded and is now complete
