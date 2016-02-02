@@ -42,9 +42,9 @@ h1.entry-title {
 .more-link {
     display: inline-block;
 }
-    #inner {
+    .page-template-template-home #inner {
         background:none;
-        /*padding-bottom: 6em; */
+        padding-bottom: 0;
     }
 
     #footer {

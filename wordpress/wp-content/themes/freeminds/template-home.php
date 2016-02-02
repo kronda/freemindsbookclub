@@ -1,4 +1,4 @@
-<?php /* Template Name: Home Beaver */
+<?php /* Template Name: Page Builder */
  
 add_action( 'wp_enqueue_scripts', 'custom_load_custom_style_sheet' );
 function custom_load_custom_style_sheet() {
