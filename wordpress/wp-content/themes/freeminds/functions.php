@@ -155,7 +155,7 @@ function freeminds_widgets_init() {
   genesis_register_sidebar( array(
     'name' => 'Giving Tuesday',
     'id'  => 'home-page-givingtuesday',
-    'description' => 'Use this area to add a quote to the home page',
+    'description' => 'Use this area to add the Giving Tuesday Widget',
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => '</div>',
     'before_title' => '<h5 class="home-page-quote">',
