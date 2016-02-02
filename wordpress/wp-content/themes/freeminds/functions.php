@@ -44,10 +44,6 @@ add_theme_support( 'genesis-structural-wraps', array(
 add_image_size('home-featured', 600, 325, TRUE);
 add_image_size('news-featured', 175, 130, TRUE);
 
-
-
-
-
 // Add image size reminder for featured images
 add_action( 'do_meta_boxes', 'freeminds_do_meta_boxes' );
 function freeminds_do_meta_boxes( $post_type ) {
@@ -63,6 +59,7 @@ $wp_meta_boxes[ $post_type ][ $context ][ $priority ][ $id ]['title'] .= ' <br /
 
 remove_action( 'do_meta_boxes', 'freeminds_do_meta_boxes' );
 }
+
 /**
  * Add Google fonts to the header
  */
@@ -150,7 +147,6 @@ function freeminds_widgets_init() {
     'before_title' => '<h3 class="featured-poetry">',
     'after_title' => '</h3>',
   ));
-  
 
   genesis_register_sidebar( array(
     'name' => 'Giving Tuesday',
@@ -161,7 +157,7 @@ function freeminds_widgets_init() {
     'before_title' => '<h5 class="home-page-quote">',
     'after_title' => '</h5>',
   ));
-  
+
   genesis_register_sidebar( array(
     'name' => 'Home Page Quote',
     'id'  => 'home-page-quote',
@@ -191,6 +187,7 @@ function freeminds_widgets_init() {
     'before_title' => '<h3 class="footer-widget footer-widget-two">',
     'after_title' => '</h3>',
   ));
+
   genesis_register_sidebar( array(
     'name' => 'Sponsor Logos',
     'id'  => 'sponsor-logos',
@@ -201,7 +198,6 @@ function freeminds_widgets_init() {
     'after_title' => '</h3>',
   ));
 }
-
 
 //* Modify the WordPress read more link
 add_filter( 'the_content_more_link', 'fm_read_more_link' );
@@ -217,16 +213,14 @@ function freeminds_exclude_category_from_blog( $query ) {
         $query->set( 'cat', '-393, -394' );
     }
 }
-?>
 
-<?php
 function add_my_meta_boxes() {
 
 add_meta_box('tab2', 'press link', 'show_meta_box_tab2', 'press', 'normal', 'high');
 $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
 }
 add_action('add_meta_boxes', 'add_my_meta_boxes');
-?><?php
+
 /*--------------------------------------------------------------------------------------*/
 /*                               Meta Box Details Starts for Nutrition Information                */
 /*--------------------------------------------------------------------------------------*/
@@ -266,4 +260,3 @@ delete_post_meta($post_id, 'place');
 }
 }
 add_action('save_post', 'save_my_meta_box_tab2');
-?>
