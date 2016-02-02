@@ -218,67 +218,7 @@ function freeminds_exclude_category_from_blog( $query ) {
     }
 }
 ?>
-<?php
-/*----------Defining Custom Posts for Press Section Here-------------*/
-add_action( 'init', 'press_custom_post' );
-function press_custom_post()
-		{
-		register_post_type( 'press',
-		array(
-			'labels' => array(
-							'name' => __( 'Press' ),
-							'singular_name' => __( 'All Press' ),
-							'add_new' => __( 'Add New' ),
-							'add_new_item' => __( 'Add New Press  here' ),
-							'edit' => __( 'Edit' ),
-							'edit_item' => __( 'Edit Press ' ),
-							'new_item' => __( 'New Press ' ),
-							'view' => __( 'View Press ' ),
-							'view_item' => __( 'View Press ' ),
-							'search_items' => __( 'Search Press ' ),
-							'not_found' => __( 'No Press found ' ),
-							'not_found_in_trash' => __( 'No Press  found in Trash' )
-							),
 
-			'supports' => array( 'title', 'author', 'editor', 'thumbnail', 'page-attributes','comments'),
-			//'taxonomies' => array('category', 'post_tag'),
-			'hierarchical' => true,
-			'public' => true,
-			'rewrite' => true,
-            'has_archive' =>true
-			)
-		);
-	}
-/*----------Defining Custom Posts for Service Section Here-------------*/
-?><?php
-/*----------Defining  Service Section Taxonomy Starts Here-------------*/
-add_action( 'init', 'press_taxonomies', 0 );
-function press_taxonomies() 
-{
-  $labels = array(
-    'name' => _x( 'Press Categories', 'taxonomy general name' ),
-    'singular_name' => _x( 'Press Category', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Press Category' ),
-    'all_items' => __( 'All Press Categories' ),
-    'parent_item' => __( 'Parent Press Category' ),
-    'parent_item_colon' => __( 'Parent Press  Category:' ),
-    'edit_item' => __( 'Edit Press Category' ), 
-    'update_item' => __( 'Update Press Category' ),
-    'add_new_item' => __( 'Add New Press Category' ),
-    'new_item_name' => __( 'New Press Category Name' ),
-    'menu_name' => __( 'Press  Categories' ),
-  ); 	
-  register_taxonomy('press_tax',array('press'), array(
-    'hierarchical' => true,
-    'labels' => $labels,
-    'show_ui' => true,
-    'show_admin_column' => true,
-    'query_var' => true,
-    'rewrite' => true,
-  ));
- }
-/*----------Defining  Service Section Taxonomy Ends Here-------------*/
-?>
 <?php
 function add_my_meta_boxes() {
 
