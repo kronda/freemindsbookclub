@@ -22,9 +22,10 @@ class FLPhotoModule extends FLBuilderModule {
 	public function __construct()
 	{
 		parent::__construct(array(
-			'name'          => __('Photo', 'fl-builder'),
-			'description'   => __('Upload a photo or display one from the media library.', 'fl-builder'),
-			'category'      => __('Basic Modules', 'fl-builder')
+			'name'          	=> __('Photo', 'fl-builder'),
+			'description'   	=> __('Upload a photo or display one from the media library.', 'fl-builder'),
+			'category'      	=> __('Basic Modules', 'fl-builder'),
+			'partial_refresh'	=> true
 		));
 	}
 
@@ -175,6 +176,37 @@ class FLPhotoModule extends FLBuilderModule {
 		}
 
 		return $this->data;
+	}
+
+	/**
+	 * @method get_classes
+	 */
+	public function get_classes()
+	{
+		$classes = array( 'fl-photo-img' );
+		
+		if ( ! empty( $this->settings->photo ) ) {
+			
+			$data = self::get_data();
+			
+			if ( is_object( $data ) ) {
+				
+				$classes[] = 'wp-image-' . $data->id;
+
+				if ( isset( $data->sizes ) ) {
+
+					foreach ( $data->sizes as $key => $size ) {
+						
+						if ( $size->url == $this->settings->photo_src ) {
+							$classes[] = 'size-' . $key;
+							break;
+						}
+					}
+				}
+			}
+		}
+		
+		return implode( ' ', $classes );
 	}
 
 	/**
@@ -330,6 +362,12 @@ class FLPhotoModule extends FLBuilderModule {
 			$filename    = uniqid(); // Return a file that doesn't exist.
 		}
 		else {
+			
+			if ( stristr( $url, '?' ) ) {
+				$parts = explode( '?', $url );
+				$url   = $parts[0];
+			}
+			
 			$pathinfo    = pathinfo($url);
 			$dir         = $pathinfo['dirname'];
 			$ext         = $pathinfo['extension'];
@@ -457,7 +495,7 @@ FLBuilder::register_module('FLPhotoModule', array(
 				)
 			),
 			'link'          => array(
-				'title'         => 'Link',
+				'title'         => __('Link', 'fl-builder'),
 				'fields'        => array(
 					'link_type'     => array(
 						'type'          => 'select',

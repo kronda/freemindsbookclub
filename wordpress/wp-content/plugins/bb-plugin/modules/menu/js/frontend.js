@@ -1,5 +1,3 @@
-var FLBuilderMenu;
-
 (function($) {
 	
 	/**
@@ -50,7 +48,7 @@ var FLBuilderMenu;
 		 * @return bool
 		 */
 		_isMobile: function(){
-			return $( window ).width() < this.breakPoints.small ? true : false;
+			return window.innerWidth < this.breakPoints.small ? true : false;
 		},
 
 		/**

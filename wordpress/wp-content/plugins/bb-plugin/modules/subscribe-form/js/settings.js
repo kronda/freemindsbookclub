@@ -48,7 +48,7 @@
 				FLBuilder.alert( FLBuilderStrings.subscriptionModuleAccountError );
 				return false;
 			}
-			else if ( ( 0 === list.length || '' == list.val() ) && 'email-address' != service.val() ) {
+			else if ( ( 0 === list.length || '' == list.val() ) && 'email-address' != service.val() && 'sendy' != service.val() ) {
 				FLBuilder.alert( FLBuilderStrings.subscriptionModuleListError );
 				return false;
 			}

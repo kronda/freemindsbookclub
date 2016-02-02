@@ -15,7 +15,7 @@
 				<span><?php echo $settings->items[$i]->label; ?></span>
 				<i class="fa<?php if($i > 0) echo ' fa-plus'; ?>"></i>
 			</div>
-			<div class="fl-tabs-panel-content<?php if($i == 0) echo ' fl-tab-active'; ?>" data-index="<?php echo $i; ?>">
+			<div class="fl-tabs-panel-content fl-clearfix<?php if($i == 0) echo ' fl-tab-active'; ?>" data-index="<?php echo $i; ?>">
 				<?php echo $settings->items[$i]->content; ?>
 			</div>
 		</div>

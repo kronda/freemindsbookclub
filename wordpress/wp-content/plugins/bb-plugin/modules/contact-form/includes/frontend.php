@@ -1,5 +1,5 @@
 <form class="fl-contact-form">
-
+  
 	<?php if ($settings->name_toggle == 'show') : ?>
 	<div class="fl-input-group fl-name">
 		<label for="fl-name"><?php _ex( 'Name', 'Contact form field label.', 'fl-builder' );?></label>
@@ -39,8 +39,17 @@
 	</div>
 
 	<input type="text" value="<?php echo $settings->mailto_email; ?>" style="display: none;" class="fl-mailto">
-
+  
 	<input type="submit" value="<?php esc_attr_e( 'Send', 'fl-builder' ); ?>" class="fl-contact-form-submit" />
-	<span class="fl-success" style="display:none;"><?php _e( 'Message Sent!', 'fl-builder' ); ?></span>
+	<?php if ($settings->success_action == 'redirect') : ?>
+		<input type="text" value="<?php echo $settings->success_url; ?>" style="display: none;" class="fl-success-url">  
+	<?php elseif($settings->success_action == 'none') : ?>  
+		<span class="fl-success-none" style="display:none;"><?php _e( 'Message Sent!', 'fl-builder' ); ?></span>
+	<?php endif; ?>  
+    
 	<span class="fl-send-error" style="display:none;"><?php _e( 'Message failed. Please try again.', 'fl-builder' ); ?></span>
 </form>
+<?php if($settings->success_action == 'show_message') : ?>  
+  <span class="fl-success-msg" style="display:none;"><?php echo $settings->success_message; ?></span>
+<?php endif; ?>  
+

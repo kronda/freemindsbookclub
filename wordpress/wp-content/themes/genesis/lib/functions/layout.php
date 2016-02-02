@@ -338,9 +338,10 @@ function genesis_site_layout( $use_cache = true ) {
 
 	global $wp_query;
 
-	//* If viewing a singular page or post
-	if ( is_singular() ) {
-		$custom_field = genesis_get_custom_field( '_genesis_layout' );
+	//* If viewing a singular page or post, or the posts page, but not the front page
+	if ( is_singular() || ( is_home() && ! genesis_is_root_page() ) ) {
+		$post_id      = is_home() ? get_option( 'page_for_posts' ) : null;
+		$custom_field = genesis_get_custom_field( '_genesis_layout', $post_id );
 		$site_layout  = $custom_field ? $custom_field : genesis_get_option( 'site_layout' );
 	}
 
@@ -424,7 +425,7 @@ function genesis_layout_selector( $args = array() ) {
 		$class = $id == $args['selected'] ? ' selected' : '';
 
 		$output .= sprintf(
-			'<label class="box%2$s"><img src="%3$s" alt="%1$s" /><br /> <input type="radio" name="%4$s" id="%5$s" value="%5$s" %6$s /></label>',
+			'<label class="box%2$s" for="%5$s"><span class="screen-reader-text">%1$s </span><img src="%3$s" alt="%1$s" /><input type="radio" name="%4$s" id="%5$s" value="%5$s" %6$s class="screen-reader-text" /></label>',
 			esc_attr( $data['label'] ),
 			esc_attr( $class ),
 			esc_url( $data['img'] ),

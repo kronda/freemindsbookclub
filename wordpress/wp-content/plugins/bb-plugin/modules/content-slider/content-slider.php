@@ -11,9 +11,10 @@ class FLContentSliderModule extends FLBuilderModule {
 	public function __construct()
 	{
 		parent::__construct(array(
-			'name'          => __('Content Slider', 'fl-builder'),
-			'description'   => __('Displays multiple slides with an optional heading and call to action.', 'fl-builder'),
-			'category'      => __('Advanced Modules', 'fl-builder')
+			'name'          	=> __('Content Slider', 'fl-builder'),
+			'description'   	=> __('Displays multiple slides with an optional heading and call to action.', 'fl-builder'),
+			'category'      	=> __('Advanced Modules', 'fl-builder'),
+			'partial_refresh'	=> true
 		));
 
 		$this->add_css('jquery-bxslider');
@@ -76,6 +77,9 @@ class FLContentSliderModule extends FLBuilderModule {
 		
 		// Photo
 		if($slide->content_layout == 'photo' && !empty($slide->fg_photo_src)) {
+			
+			$alt = get_post_meta($slide->fg_photo, '_wp_attachment_image_alt', true);
+			
 			echo '<div class="fl-slide-photo-wrap">';
 			echo '<div class="fl-slide-photo">';
 			
@@ -83,7 +87,7 @@ class FLContentSliderModule extends FLBuilderModule {
 				echo '<a href="' . $slide->link . '" target="' . $slide->link_target. '">';
 			}
 			
-			echo '<img class="fl-slide-photo-img" src="' . $slide->fg_photo_src . '" />';
+			echo '<img class="fl-slide-photo-img" src="' . $slide->fg_photo_src . '" alt="' . esc_attr( $alt ) . '" />';
 			
 			if(!empty($slide->link)) {
 				echo '</a>';
@@ -113,17 +117,20 @@ class FLContentSliderModule extends FLBuilderModule {
 		if($slide->content_layout == 'photo') {
 
 			$src = '';
+			$alt = '';
 
 			if($slide->r_photo_type == 'main' && !empty($slide->fg_photo_src)) {
 				$src = $slide->fg_photo_src;
+				$alt = get_post_meta($slide->bg_photo, '_wp_attachment_image_alt', true);
 			}
 			else if($slide->r_photo_type == 'another' && !empty($slide->r_photo_src)) {
 				$src = $slide->r_photo_src;
+				$alt = get_post_meta($slide->r_photo, '_wp_attachment_image_alt', true);
 			}
 
 			if(!empty($src)) {
 				echo '<div class="fl-slide-mobile-photo">';
-				echo '<img class="fl-slide-mobile-photo-img" src="' . $src . '" />';
+				echo '<img class="fl-slide-mobile-photo-img" src="' . $src . '" alt="' . esc_attr( $alt ) . '" />';
 				echo '</div>';
 			}
 		}
@@ -135,17 +142,20 @@ class FLContentSliderModule extends FLBuilderModule {
 		elseif($slide->bg_layout == 'photo') {
 
 			$src = '';
+			$alt = '';
 
 			if($slide->r_photo_type == 'main' && !empty($slide->bg_photo_src)) {
 				$src = $slide->bg_photo_src;
+				$alt = get_post_meta($slide->bg_photo, '_wp_attachment_image_alt', true);
 			}
 			else if($slide->r_photo_type == 'another' && !empty($slide->r_photo_src)) {
 				$src = $slide->r_photo_src;
+				$alt = get_post_meta($slide->r_photo, '_wp_attachment_image_alt', true);
 			}
 
 			if(!empty($src)) {
 				echo '<div class="fl-slide-mobile-photo">';
-				echo '<img class="fl-slide-mobile-photo-img" src="' . $src . '" />';
+				echo '<img class="fl-slide-mobile-photo-img" src="' . $src . '" alt="' . esc_attr( $alt ) . '" />';
 				echo '</div>';
 			}
 		}

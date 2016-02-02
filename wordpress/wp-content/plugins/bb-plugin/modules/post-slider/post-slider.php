@@ -11,11 +11,11 @@ class FLPostSliderModule extends FLBuilderModule {
 	public function __construct()
 	{
 		parent::__construct(array(
-			'name'          => __('Posts Slider', 'fl-builder'),
-			'description'   => __('Display a slider of your WordPress posts.', 'fl-builder'),
-			'category'      => __('Advanced Modules', 'fl-builder'),
-			'editor_export' => false,
-			'enabled'       => true
+			'name'          	=> __('Posts Slider', 'fl-builder'),
+			'description'   	=> __('Display a slider of your WordPress posts.', 'fl-builder'),
+			'category'      	=> __('Advanced Modules', 'fl-builder'),
+			'editor_export' 	=> false,
+			'partial_refresh'   => true
 		));
 
 		$this->add_css('jquery-bxslider');
@@ -465,7 +465,7 @@ FLBuilder::register_module('FLPostSliderModule', array(
 						),
 						'toggle'        => array(
 							'background'    => array(
-								'fields'        => array( 'text_position' )
+								'fields'        => array( 'text_position', 'thumb_size' )
 							),
 							'thumb'         => array(
 								'fields'        => array( 'thumb_crop', 'thumb_size', 'thumb_text_position' )
@@ -475,7 +475,7 @@ FLBuilder::register_module('FLPostSliderModule', array(
 					'thumb_size'    => array(
 						'type'          => 'photo-sizes',
 						'label'         => __( 'Size', 'fl-builder' ),
-						'default'       => 'medium',
+						'default'       => 'large',
 					),
 					'thumb_crop'    => array(
 						'type'          => 'select',
