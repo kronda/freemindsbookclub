@@ -32,7 +32,7 @@
 
   <?php genesis_structural_wrap('footer-widgets', 'open'); ?>
     <div id="sponsor-logos" class="">
-      <div class="footer-1 one-sixth first">
+      <div class="footer-1">
         <?php if ( dynamic_sidebar('Sponsor Logos') ) : ?>
         <?php endif; ?>
       </div>

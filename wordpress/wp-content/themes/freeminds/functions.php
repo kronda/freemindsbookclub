@@ -44,6 +44,10 @@ add_theme_support( 'genesis-structural-wraps', array(
 add_image_size('home-featured', 600, 325, TRUE);
 add_image_size('news-featured', 175, 130, TRUE);
 
+
+
+
+
 // Add image size reminder for featured images
 add_action( 'do_meta_boxes', 'freeminds_do_meta_boxes' );
 function freeminds_do_meta_boxes( $post_type ) {
@@ -137,7 +141,27 @@ function freeminds_widgets_init() {
     'before_title' => '<h3 class="featured-poetry">',
     'after_title' => '</h3>',
   ));
+  genesis_register_sidebar( array(
+    'name' => 'Upcoming Events',
+    'id'  => 'upcoming-event',
+    'description' => 'Use this area to add Upcoming Events',
+    'before_widget' => '<div id="%1$s" class="%2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h3 class="featured-poetry">',
+    'after_title' => '</h3>',
+  ));
+  
 
+  genesis_register_sidebar( array(
+    'name' => 'Giving Tuesday',
+    'id'  => 'home-page-givingtuesday',
+    'description' => 'Use this area to add a quote to the home page',
+    'before_widget' => '<div id="%1$s" class="%2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h5 class="home-page-quote">',
+    'after_title' => '</h5>',
+  ));
+  
   genesis_register_sidebar( array(
     'name' => 'Home Page Quote',
     'id'  => 'home-page-quote',
@@ -193,3 +217,113 @@ function freeminds_exclude_category_from_blog( $query ) {
         $query->set( 'cat', '-393, -394' );
     }
 }
+?>
+<?php
+/*----------Defining Custom Posts for Press Section Here-------------*/
+add_action( 'init', 'press_custom_post' );
+function press_custom_post()
+		{
+		register_post_type( 'press',
+		array(
+			'labels' => array(
+							'name' => __( 'Press' ),
+							'singular_name' => __( 'All Press' ),
+							'add_new' => __( 'Add New' ),
+							'add_new_item' => __( 'Add New Press  here' ),
+							'edit' => __( 'Edit' ),
+							'edit_item' => __( 'Edit Press ' ),
+							'new_item' => __( 'New Press ' ),
+							'view' => __( 'View Press ' ),
+							'view_item' => __( 'View Press ' ),
+							'search_items' => __( 'Search Press ' ),
+							'not_found' => __( 'No Press found ' ),
+							'not_found_in_trash' => __( 'No Press  found in Trash' )
+							),
+
+			'supports' => array( 'title', 'author', 'editor', 'thumbnail', 'page-attributes','comments'),
+			//'taxonomies' => array('category', 'post_tag'),
+			'hierarchical' => true,
+			'public' => true,
+			'rewrite' => true,
+            'has_archive' =>true
+			)
+		);
+	}
+/*----------Defining Custom Posts for Service Section Here-------------*/
+?><?php
+/*----------Defining  Service Section Taxonomy Starts Here-------------*/
+add_action( 'init', 'press_taxonomies', 0 );
+function press_taxonomies() 
+{
+  $labels = array(
+    'name' => _x( 'Press Categories', 'taxonomy general name' ),
+    'singular_name' => _x( 'Press Category', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Press Category' ),
+    'all_items' => __( 'All Press Categories' ),
+    'parent_item' => __( 'Parent Press Category' ),
+    'parent_item_colon' => __( 'Parent Press  Category:' ),
+    'edit_item' => __( 'Edit Press Category' ), 
+    'update_item' => __( 'Update Press Category' ),
+    'add_new_item' => __( 'Add New Press Category' ),
+    'new_item_name' => __( 'New Press Category Name' ),
+    'menu_name' => __( 'Press  Categories' ),
+  ); 	
+  register_taxonomy('press_tax',array('press'), array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => true,
+  ));
+ }
+/*----------Defining  Service Section Taxonomy Ends Here-------------*/
+?>
+<?php
+function add_my_meta_boxes() {
+
+add_meta_box('tab2', 'press link', 'show_meta_box_tab2', 'press', 'normal', 'high');
+$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
+}
+add_action('add_meta_boxes', 'add_my_meta_boxes');
+?><?php
+/*--------------------------------------------------------------------------------------*/
+/*                               Meta Box Details Starts for Nutrition Information                */
+/*--------------------------------------------------------------------------------------*/
+function show_meta_box_tab2($post){
+echo '<input type="hidden" name="my_meta_box_nonce_tab2" value="'. wp_create_nonce('tab2'). '" />';
+?>
+<table class="form-table">
+<tr>
+<th scope="row"><label for="tab2_ititle">press link:</label></th>
+<td><input type="text" name="place" id="size" size="80" value="<?php echo get_post_meta($post->ID, 'place', true)?>" /></td>
+</tr>
+
+</table>
+<?php
+}
+function save_my_meta_box_tab2($post_id) {
+// check nonce
+if (!isset($_POST['my_meta_box_nonce_tab2']) || !wp_verify_nonce($_POST['my_meta_box_nonce_tab2'], 'tab2')) {
+return $post_id;
+}
+// check capabilities
+if ('post' == $_POST['post_type']) {
+if (!current_user_can('edit_post', $post_id)) {
+return $post_id;
+}
+} elseif (!current_user_can('edit_page', $post_id)) {
+return $post_id;
+}
+// exit on autosave
+if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+return $post_id;
+}
+if(isset($_POST['place'])) {
+update_post_meta($post_id, 'place', $_POST['place']);
+} else {
+delete_post_meta($post_id, 'place');
+}
+}
+add_action('save_post', 'save_my_meta_box_tab2');
+?>

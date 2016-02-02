@@ -22,5 +22,40 @@
 @import url('stylesheets/style.css');
 
 /* YOUR CUSTOMIZATIONS GO HERE */
+#left-sidebar{ width:33.3333%; float:left; padding:10px 20px 10px 0px}
+#right-sidebar{ width:66.6667%; float:left; padding:10px 10px;}
+.inner-wrap{ padding:0px !important;}
+#left-sidebar .new-featured{ width:100% !important;}
+#left-sidebar .new-poetry{ width:100% !important;}
+#left-sidebar .new-signup{ width:100% !important;}
+#right-sidebar .alignright.new-right{ width:100%;}
+#right-sidebar .event{width:100% !important; margin-left:0px; box-shadow: 0 0 3px 0 #ccc; padding:10px; margin-top:25px;}
+#right-sidebar .event-iner {float: left;width: 33%;border-left: 2px solid rgba(205, 205, 205, 0.5);
+    border-right: 6px solid rgba(205, 205, 205, 0.5); border-top: 2px solid rgba(205, 205, 205, 0.5)
+	border-bottom: 2px solid rgba(205, 205, 205, 0.5); background: transparent url("images/widget_top_bg.png") no-repeat scroll center 0px / 103% auto; padding:10px; background:#fff;}
+.upcome-list{ padding:0; margin:0; list-style:none;}
+.upcome-list > li{ padding-bottom:10px; display:inline-block; font-size:15px;}
+.upcome-list span{ font-size:13px; padding-left:10px;}
+#right-sidebar .alignleft.new-align{ width:100%;}
+#right-sidebar .event-iner a{ font-size:17px;}
+#right-sidebar  .press-wrap{box-shadow: 0 0 3px 0 #ccc;   padding: 20px; width:100%; float:left; margin-top:20px;}
+#inner {
+    background: rgba(0, 0, 0, 0) url("images/book_bg.png?1409601789") repeat-x scroll left bottom;  padding-bottom: 6em;
+}
+.not-home.full-width-content .hentry.post-3525 {width: 100%}
+.footer-1 .widget_sp_image { float: left;padding: 15px;width: 16.333%;}
+.footer-1 .widget_sp_image img{width:100%;}
+#n-input .sub-btn{ margin-top:10px;}
+ #featured-post-3 .post-3372.post.type-post.status-publish.format-standard.hentry.category-poetry.tag-daughter.tag-dreams.tag-family.tag-father.tag-fatherhood.tag-forever.tag-poem.tag-world.entry.gs-1.gs-odd.gs-featured-content-entry{ width:100% !important;}
+
+@media only screen and (max-width: 480px) {
+.footer-1 .widget_sp_image {
+    float: left;
+    padding: 5px;
+    width: 33.333%;
+}
+#sponsor-logos img{width:100% !important;}
+
+}
 
 

@@ -28,7 +28,4 @@ jQuery( document ).ready( function( $ ) {
 
   // Add tag icon next to to the tag cloud
   $('.widget_tag_cloud .widget-title').before('<i class="fa fa-tag"></i>');
-
-  // Remove class for full width on test page
-  $('.page-id-3344').removeClass('not-home');
 });
