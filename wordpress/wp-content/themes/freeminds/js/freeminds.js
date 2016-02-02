@@ -28,4 +28,12 @@ jQuery( document ).ready( function( $ ) {
 
   // Add tag icon next to to the tag cloud
   $('.widget_tag_cloud .widget-title').before('<i class="fa fa-tag"></i>');
-});
+
+  // Add a class to the parent divs of left sidebar content in the page builder to display gradient style
+
+  $('.fl-col-content').has('.left-sidebar-widgets').addClass('left-sidebar');
+
+}); // end jQuery
+
+
+
